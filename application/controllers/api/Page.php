@@ -120,6 +120,7 @@ class Page extends REST_Controller
                 'Id' => $this->post('Id'),
                 'MenuId' => $this->post('MenuId'),
                 'PageTitle' => $this->post('PageTitle'),
+                'Content' => $this->post('Content'),
                 'ShowPageTitle' => $this->post('ShowPageTitle'),
             ];
 
@@ -138,6 +139,7 @@ class Page extends REST_Controller
             $data = [
                 'MenuId' => $this->post('MenuId'),
                 'PageTitle' => $this->post('PageTitle'),
+                'Content' => $this->post('Content'),
                 'ShowPageTitle' => $this->post('ShowPageTitle'),
             ];
 
