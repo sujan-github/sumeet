@@ -11,9 +11,10 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script src="//cdn.ckeditor.com/4.7.1/full/ckeditor.js"></script>
 </head>
 <body>
-  	<app-root></app-root>
+	<app-root></app-root>
 	<script type="text/javascript" src="angular/dist/inline.bundle.js"></script>
 	<script type="text/javascript" src="angular/dist/polyfills.bundle.js"></script>
 	<script type="text/javascript" src="angular/dist/styles.bundle.js"></script>

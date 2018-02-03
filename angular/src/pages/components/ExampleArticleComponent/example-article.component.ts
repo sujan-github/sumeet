@@ -9,12 +9,20 @@ import { ArticleService } from '../../../services/base.service';
       <ul>
         <li *ngFor="let item of articleList">{{item.Heading}}</li>
       </ul>
+      <div>
+        <div>
+          Name:
+          <input [(ngModel)]="inputArticle.Heading" >
+        </div>
+        <button type="submit" (click)="save()">Save</button>
+      </div>
     `,
     providers: [ArticleService]
 })
 export class ExampleArticleComponent implements OnInit {
     title = 'Article Editor';
     articleList: IArticle[] = [];
+    inputArticle: IArticle = <IArticle>{};
 
     public editorValue = '';
 
@@ -35,5 +43,11 @@ export class ExampleArticleComponent implements OnInit {
         this.articleList = data;
       });
 
+    }
+
+    save() {
+      this.articleService.post(this.inputArticle).subscribe((data: IArticle) => {
+        alert('done');
+      });
     }
 }
