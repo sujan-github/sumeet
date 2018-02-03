@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -48,15 +48,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | Examples: my-controller/index -> my_controller/index
 |   my-controller/my-method -> my_controller/my_method
-*/
+ */
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
-$route['translate_uri_dashes'] = TRUE;
+$route['translate_uri_dashes'] = true;
 
 /*
 | -------------------------------------------------------------------------
 | Sample REST API Routes
 | -------------------------------------------------------------------------
-*/
+ */
 $route['api/example/users/(:num)'] = 'api/example/users/id/$1'; // Example 4
 $route['api/example/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/example/users/id/$1/format/$3$4'; // Example 8
+
+$route['api/menu/(:num)'] = 'api/menu/menu/id/$1'; // Example 4
+$route['api/menu/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/menu/menu/id/$1/format/$3$4'; // Example 8
+
+$route['api/article/(:num)'] = 'api/article/article/id/$1'; // Example 4
+$route['api/article/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/article/article/id/$1/format/$3$4'; // Example 8
+
+$route['api/articleImage/(:num)'] = 'api/articleImage/articleImage/id/$1'; // Example 4
+$route['api/articleImage/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/articleImage/articleImage/id/$1/format/$3$4'; // Example 8
+
+$route['api/blogCategory/(:num)'] = 'api/blogCategory/blogCategory/id/$1'; // Example 4
+$route['api/blogCategory/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/blogCategory/blogCategory/id/$1/format/$3$4'; // Example 8
+
+$route['api/image/(:num)'] = 'api/blogCategory/blogCategory/id/$1'; // Example 4
+$route['api/image/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/blogCategory/blogCategory/id/$1/format/$3$4'; // Example 8
+
+$route['api/page/(:num)'] = 'api/page/page/id/$1'; // Example 4
+$route['api/page/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/page/page/id/$1/format/$3$4'; // Example 8
+
+$route['api/template/(:num)'] = 'api/template/template/id/$1'; // Example 4
+$route['api/template/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/template/template/id/$1/format/$3$4'; // Example 8
+
+$route['api/user/(:num)'] = 'api/user/user/id/$1'; // Example 4
+$route['api/user/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/user/user/id/$1/format/$3$4'; // Example 8
