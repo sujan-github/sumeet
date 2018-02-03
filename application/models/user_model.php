@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class article_model extends CI_Model
+class user_model extends CI_Model
 {
     public function get_all($query = null)
     {
@@ -24,7 +24,7 @@ class article_model extends CI_Model
             }
         }
 
-        $query = $this->db->get('article');
+        $query = $this->db->get('user');
         // echo $this->db->last_query() ;
         return $query->result_array();
     }
@@ -53,7 +53,7 @@ class article_model extends CI_Model
         }
         $this->db->where('Id =', $id);
 
-        $queryResult = $this->db->get('article');
+        $queryResult = $this->db->get('user');
 
         // print $this->db->last_query();
         return $queryResult->result_array();
@@ -63,7 +63,7 @@ class article_model extends CI_Model
     {
         $this->db->where('Id', $id);
         $query = $this->db->set($data);
-        if ($query->insert('article')) {
+        if ($query->insert('user')) {
             return $data;
         } else {
             return false;
@@ -73,7 +73,7 @@ class article_model extends CI_Model
     public function post($data)
     {
         $query = $this->db->set($data);
-        if ($query->insert('article')) {
+        if ($query->insert('user')) {
             return $data;
         } else {
             return false;
@@ -82,7 +82,7 @@ class article_model extends CI_Model
 
     public function delete($id)
     {
-        if ($this->db->delete('article', array('Id' => $id))) {
+        if ($this->db->delete('user', array('Id' => $id))) {
             return true;
         } else {
             return false;
