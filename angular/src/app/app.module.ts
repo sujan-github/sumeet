@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CKEditorModule } from 'ngx-ckeditor';
 
 import { AppComponent } from './app.component';
 import { ArticleEditorComponent } from '../pages/components/ArticleEditor/articleEditor.component';
@@ -10,7 +11,8 @@ import { ArticleEditorComponent } from '../pages/components/ArticleEditor/articl
     ArticleEditorComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    CKEditorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

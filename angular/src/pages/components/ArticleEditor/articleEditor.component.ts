@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: './articleEditor.component.html',
     styleUrls: ['./articleEditor.component.css']
 })
-export class ArticleEditorComponent {
+export class ArticleEditorComponent implements OnInit {
     title = 'Article Editor';
+
+    public editorValue = '';
+
+    ngOnInit() { }
 }
