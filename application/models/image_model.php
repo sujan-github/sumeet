@@ -21,12 +21,16 @@ class image_model extends CI_Model
 
             if ($query['where']) {
                 $this->db->where($query['where']);
+			}
+			
+			if ($query['join']) {
+                $this->db->join($query['join']);
             }
         }
 
         $query = $this->db->get('image');
-        // echo $this->db->last_query() ;
-        return $query->result_array();
+        echo $this->db->last_query() ;
+        // return $query->result_array();
     }
 
     public function get_by_id($id, $query = null)
@@ -49,14 +53,18 @@ class image_model extends CI_Model
 
             if ($query['where']) {
                 $this->db->where($query['where']);
+			}
+			
+			if ($query['join']) {
+                $this->db->join($query['join']);
             }
         }
         $this->db->where('Id =', $id);
 
         $queryResult = $this->db->get('image');
 
-        // print $this->db->last_query();
-        return $queryResult->result_array();
+        print $this->db->last_query();
+        // return $queryResult->row();
     }
 
     public function put($id, $data)

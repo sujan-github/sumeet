@@ -56,7 +56,7 @@ class menu_model extends CI_Model
         $queryResult = $this->db->get('menu');
 
         // print $this->db->last_query();
-        return $queryResult->result_array();
+        return $queryResult->row();
     }
 
     public function put($id, $data)

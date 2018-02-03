@@ -7,7 +7,7 @@ class user_model extends CI_Model
     {
         if ($query != null) {
             if ($query['select']) {
-                $this->db->select($query['select']);
+				$this->db->select($query['select']);
             } else {
                 $this->db->select('*');
             }
@@ -21,12 +21,25 @@ class user_model extends CI_Model
 
             if ($query['where']) {
                 $this->db->where($query['where']);
-            }
+			}
+			
+			// if ($query['join']) {
+			// 	$query['join'] = explode(',',$query['join']);
+			// 	foreach($query['join'] as $item){
+			// 		if(strtolower($item) == 'article'){
+			// 			$this->db->join('article','article.UserId=User.Id','left');
+			// 		}else if()
+
+			// 	}
+			// 	if($query['join'])
+
+            //     $this->db->join('article','article.UserId=User.Id','left');
+            // }
         }
 
         $query = $this->db->get('user');
-        // echo $this->db->last_query() ;
-        return $query->result_array();
+        // echo $this->db->last_query();
+        return $query->result_array();	
     }
 
     public function get_by_id($id, $query = null)
@@ -49,14 +62,18 @@ class user_model extends CI_Model
 
             if ($query['where']) {
                 $this->db->where($query['where']);
-            }
+			}
+			
+			// if ($query['join']) {
+            //     $this->db->join($query['join']);
+            // }
         }
         $this->db->where('Id =', $id);
 
         $queryResult = $this->db->get('user');
 
         // print $this->db->last_query();
-        return $queryResult->result_array();
+        return $queryResult->row();
     }
 
     public function put($id, $data)
