@@ -126,7 +126,7 @@ class Template extends REST_Controller
             if ($this->template_model->put($this->post('Id'), $data)) {
                 $message = [
                     'message' => 'The update request was completed successfully.',
-					'inserted_id' => $this->db->insert_id()
+					'inserted_id' => $this->post('Id')
 				];
                 $this->set_response($message, REST_Controller::HTTP_OK); // CREATED (200) being the HTTP response code
             } else {

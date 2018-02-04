@@ -63,7 +63,7 @@ class menu_model extends CI_Model
     {
         $this->db->where('Id', $id);
         $query = $this->db->set($data);
-        if ($query->insert('menu')) {
+        if ($query->update('menu')) {
             return $data;
         } else {
             return false;

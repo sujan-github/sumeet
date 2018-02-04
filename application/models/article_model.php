@@ -63,7 +63,7 @@ class article_model extends CI_Model
     {
         $this->db->where('Id', $id);
         $query = $this->db->set($data);
-        if ($query->insert('article')) {
+        if ($query->update('article')) {
             return $data;
         } else {
             return false;
