@@ -80,7 +80,7 @@ class user_model extends CI_Model
     {
         $this->db->where('Id', $id);
         $query = $this->db->set($data);
-        if ($query->insert('user')) {
+        if ($query->update('user')) {
             return $data;
         } else {
             return false;

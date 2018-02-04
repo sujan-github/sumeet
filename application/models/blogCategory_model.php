@@ -63,7 +63,7 @@ class blogCategory_model extends CI_Model
     {
         $this->db->where('Id', $id);
         $query = $this->db->set($data);
-        if ($query->insert('blogCategory')) {
+        if ($query->update('blogCategory')) {
             return $data;
         } else {
             return false;
