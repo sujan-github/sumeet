@@ -1,3 +1,16 @@
+<style>
+    #templates,
+    #templates article,
+    #templates h1,
+    #templates h2,
+    #templates p,
+    #templates h3,
+    #templates div,
+    #templates span {
+        font-size: 1px !important;
+        font-weight: 100;
+    }
+</style>
 <div class="container">
     <section class="pageList">
         <h2>All Pages</h2>
@@ -47,6 +60,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <ck-editor name="Content" [(ngModel)]="currentPage.Content" skin="moono-lisa" lang="en" [fullPage]="true">
                 </ck-editor>
                 <div class="row">
@@ -56,14 +70,14 @@
                 </div>
             </div>
         </form>
-    </section>
-    <section class="templates">
-        <ul class="list-unstyled">
-            <li *ngFor="let template of templates">
-                <a (click)="selectedTemplate(template)">
-                    <iframe style="max-height:200px;max-width:200px" [innerHTML]="template"></iframe>
-                </a>
-            </li>
-        </ul>
+        <section id="templates">
+            <ul class="list-unstyled">
+                <li *ngFor="let template of templates" (click)="templateSelected(template.template)">
+                    <button (click)="templateSelected(template.template)" style="z-index: 100; background:none;">
+                        <iframe [srcdoc]="template.safeHtml" style="max-width: 150px; max-height: 150px"></iframe>
+                    </button>
+                </li>
+            </ul>
+        </section>
     </section>
 </div>
