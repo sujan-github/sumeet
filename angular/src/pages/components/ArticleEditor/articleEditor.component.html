@@ -14,68 +14,75 @@
 <div class="container">
     <section class="pageList">
         <h2>All Pages</h2>
-        <ul>
+        <ul> 
             <li *ngFor="let page of pages" class="list-unstyled">
-                <figure class="figure">
-                    <img class="figure-img img-fluid rounded" alt={{page.PageTitle}} style="vertical-align: center;width:200px; height: auto;"
-                        src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22400%22%20height%3D%22300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20300%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1615c664aad%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A20pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1615c664aad%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22148.859375%22%20y%3D%22159%22%3E400x300%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E">
-                    <figcaption class="figure-caption">
-                        <a (click)="getPageInfo(page.Id)">
+                <figure class="figure thumbnail">
+                    <iframe class="img-responsive" [srcdoc]="page.Content"></iframe>
+                    <!-- <img class="img-responsive" alt={{page.PageTitle}} src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22400%22%20height%3D%22300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20300%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1615c664aad%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A20pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1615c664aad%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22148.859375%22%20y%3D%22159%22%3E400x300%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"> -->
+                    <figcaption class="caption whiteSmokeBg">
+                        <button (click)="getPageInfo(page.Id)" class="btn btn-control" style="max-width:100px; min-width:100px;">
                             <span class="glyphicon glyphicon-edit"></span>
-                        </a>
-                        <a (click)="deletePage(page)">Delete</a>
+                        </button>
+                        <button (click)="deletePage(page)" style="max-width:100px ;min-width:100px;" class="btn btn-control">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
                     </figcaption>
                 </figure>
             </li>
         </ul>
     </section>
-
-    <button (click)="toggleForm()" class="btn btn-default right">
-        <span [hidden]="!onChangingProgress">Close</span>
-        <span [hidden]="onChangingProgress">Add new Page</span>
-    </button>
-
+    <div>
+        <button (click)="toggleForm()" class="btn btn-primary right">
+            <span [hidden]="!onChangingProgress">Close</span>
+            <span [hidden]="onChangingProgress">Add new Page</span>
+        </button>
+    </div>
     <section class="form" [hidden]="!onChangingProgress">
         <form>
-            <div class="form-control">
-                <h2>Please fill the details below for setting up page for the menu:</h2>
-                <div class="col-12">
-                    <div class="form-group row">
-                        <label for="Name" class="col-form-label">Menu Title</label>
-                        <div class="col-4">
-                            <input type="text" class="form-control" name="Name" [(ngModel)]="currentMenu.Name" />
-                        </div>
-                        <div class="col-1"></div>
-                        <div class="col-4">
-                            <select [(ngModel)]="currentMenu.ParentId" name="ParentId" class="form-control pull-left">
-                                <option value="">Select a parent menu</option>
-                                <option *ngFor="let menu of menus">{{menu.Name}}</option>
-                            </select>
-                        </div>
+            <h2>Please fill the details below for setting up page for the menu:</h2>
+            <div class="form-group">
+
+                <label for="Name" class="control-label">Menu Title</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="Name" [(ngModel)]="currentMenu.Name" />
                     </div>
-                    <div class="form-group row">
-                        <label for="PageTitle" class="col-form-label">Page Title</label>
-                        <div class="col-6">
-                            <input type="text" class="form-control" name="PageTitle" [(ngModel)]="currentPage.PageTitle" />
-                        </div>
+                    <div class="col-md-6">
+                        <select [(ngModel)]="currentMenu.ParentId" name="ParentId" class="form-control pull-left">
+                            <option value=0>Select a parent menu</option>
+                            <option *ngFor="let menu of menus">{{menu.Name}}</option>
+                        </select>
                     </div>
                 </div>
-                
-                <ck-editor name="Content" [(ngModel)]="currentPage.Content" skin="moono-lisa" lang="en" [fullPage]="true">
-                </ck-editor>
+            </div>
+            <div class="form-group">
+                <label for="PageTitle" class="control-label">Page Title</label>
                 <div class="row">
-                    <div class="col-12  text-right">
-                        <button type="button" (click)="savePage()" class="btn btn-primary right">Save</button>
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" name="PageTitle" [(ngModel)]="currentPage.PageTitle" />
                     </div>
+                </div>
+            </div>
+
+            <ck-editor name="Content" [(ngModel)]="currentPage.Content" skin="moono-lisa" lang="en" [fullPage]="true">
+            </ck-editor>
+            <div class="row">
+                <div class="col-12  text-right">
+                    <button type="button" (click)="savePage()" class="btn btn-primary right">Save</button>
                 </div>
             </div>
         </form>
         <section id="templates">
             <ul class="list-unstyled">
                 <li *ngFor="let template of templates" (click)="templateSelected(template.template)">
-                    <button (click)="templateSelected(template.template)" style="z-index: 100; background:none;">
-                        <iframe [srcdoc]="template.safeHtml" style="max-width: 150px; max-height: 150px"></iframe>
-                    </button>
+                    <figure class="figure thumbnail">
+                        <iframe class="img-responsive" [srcdoc]="template.SafeHtml"></iframe>
+                        <figcaption class="caption whiteSmokeBg">
+                            <button (click)="templateSelected(template.template)" class="btn btn-control">
+                                Select
+                            </button>
+                        </figcaption>
+                    </figure>
                 </li>
             </ul>
         </section>

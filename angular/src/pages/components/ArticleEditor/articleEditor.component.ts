@@ -68,7 +68,7 @@ export class ArticleEditorComponent implements OnInit {
     }
 
     public getAllPages() {
-        this.pageService.getAll(`$select=Id, MenuId, PageTitle`).subscribe((data: IPage[]) => {
+        this.pageService.getAll().subscribe((data: IPage[]) => {
             this.pages = data;
         }, (err) => {
             this.errorMessage = `There was some problem when trying to retrieve data.`;
@@ -76,7 +76,7 @@ export class ArticleEditorComponent implements OnInit {
     }
 
     public getAllMenus() {
-        this.menuService.getAll(`$select=Id, Name, ParentId`).subscribe((data: IMenu[]) => {
+        this.menuService.getAll().subscribe((data: IMenu[]) => {
             this.menus = data;
         }, (err) => {
             this.errorMessage = `There was some problem when trying to retrieve data.`;
@@ -86,11 +86,13 @@ export class ArticleEditorComponent implements OnInit {
     public savePage() {
         this.currentMenu.Url = ``;
         this.currentMenu.ParentId = this.currentMenu.ParentId > 0 ? this.currentMenu.ParentId : 0;
-        this.menuService.post(this.currentMenu).subscribe((data: IMenu) => {
-            this.currentPage.MenuId = data.Id;
+        this.menuService.post(this.currentMenu).subscribe((data: any) => {
+            this.currentPage.MenuId = data.inserted_id;
             this.currentPage.ShowPageTitle = false;
             this.pageService.post(this.currentPage).subscribe((page: IPage) => {
                 this.onChangingProgress = false;
+                this.getAllMenus();
+                this.getAllPages();
             });
         });
     }
@@ -99,6 +101,7 @@ export class ArticleEditorComponent implements OnInit {
         this.pageService.get(pageId).subscribe((data: IPage) => {
             this.onChangingProgress = true;
             this.currentPage = Array.isArray(data) ? data[0] : data;
+            this.currentMenu = this.menus.filter(x => x.Id === this.currentPage.MenuId)[0];
         }, (err) => {
             this.errorMessage = `There was some problem when trying to retrieve data.`;
         });
@@ -108,6 +111,8 @@ export class ArticleEditorComponent implements OnInit {
         this.pageService.delete(page.Id).subscribe(() => {
             this.menuService.delete(page.MenuId).subscribe(() => {
                 this.onChangingProgress = false;
+                this.getAllMenus();
+                this.getAllPages();
             }, (err) => {
                 this.errorMessage = `There was some problem when trying to delete data`;
             });
@@ -127,5 +132,9 @@ export class ArticleEditorComponent implements OnInit {
     public templateSelected(template) {
         debugger;
         this.currentPage.Content = template;
+    }
+
+    private _createMenuHierachyTree() {
+        const allMenus: IMenu[] = this.menus;
     }
 }
