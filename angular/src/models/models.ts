@@ -52,6 +52,7 @@ export interface IPage {
   PageTitle: string;
   Content: string;
   ShowPageTitle: boolean;
+Content: string;
   menu?: IMenu;
 }
 
