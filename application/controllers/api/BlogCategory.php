@@ -124,7 +124,8 @@ class BlogCategory extends REST_Controller
             if ($this->blogCategory_model->put($this->post('Id'), $data)) {
                 $message = [
                     'message' => 'The update request was completed successfully.',
-                ];
+					'inserted_id' => $this->db->insert_id()
+				];
                 $this->set_response($message, REST_Controller::HTTP_OK); // CREATED (200) being the HTTP response code
             } else {
                 $message = [
@@ -140,7 +141,8 @@ class BlogCategory extends REST_Controller
             if ($this->blogCategory_model->post($data)) {
                 $message = [
                     'message' => 'The insert request was completed successfully.',
-                ];
+					'inserted_id' => $this->db->insert_id()
+				];
                 $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
             } else {
                 $message = [
