@@ -50,9 +50,8 @@ export interface IPage {
   Id: number;
   MenuId: number;
   PageTitle: string;
-  Content: string;
   ShowPageTitle: boolean;
-Content: string;
+  Content: string;
   menu?: IMenu;
 }
 

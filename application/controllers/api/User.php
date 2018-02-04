@@ -138,9 +138,10 @@ class User extends REST_Controller
             }
         } else {
             $data = [
-                'Name' => $this->post('Heading'),
-                'InnerHtml' => $this->post('Content'),
-                'IsBlog' => $this->post('PageId'),
+                'FullName' => $this->post('FullName'),
+                'UserName' => $this->post('UserName'),
+                'Password' => $this->post('Password'),
+                'Email' => $this->post('Email'),
             ];
 
             if ($this->user_model->post($data)) {
