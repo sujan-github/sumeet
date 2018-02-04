@@ -126,6 +126,7 @@ class Menu extends REST_Controller
             if ($this->menu_model->put($this->post('Id'), $data)) {
                 $message = [
                     'message' => 'The update request was completed successfully.',
+					'inserted_id' => $this->db->insert_id()
                 ];
                 $this->set_response($message, REST_Controller::HTTP_OK); // CREATED (200) being the HTTP response code
             } else {
@@ -143,11 +144,12 @@ class Menu extends REST_Controller
             if ($this->menu_model->post($data)) {
                 $message = [
                     'message' => 'The insert request was completed successfully.',
+					'inserted_id' => $this->db->insert_id()
                 ];
                 $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
             } else {
                 $message = [
-                    'message' => 'The insert request could not be completed successfully.',
+					'message' => 'The insert request could not be completed successfully.',
                 ];
                 $this->set_response($message, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
             }
