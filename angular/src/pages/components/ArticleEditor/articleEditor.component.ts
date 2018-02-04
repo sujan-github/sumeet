@@ -20,8 +20,10 @@ export class ArticleEditorComponent implements OnInit {
     public currentMenu: IMenu = {} as IMenu;
     // use to hold object of the page object that is currently in progress of adding or updating
     public currentPage: IPage = {} as IPage;
+    public sideBarExpanded: Boolean = false;
     constructor(public sanitizer: DomSanitizer, public menuService: MenuService, public pageService: PageService) { }
     public template = `
+    <div class="iframe">
     <heading>Our Medical Team</heading>
 <div class="container">
     <article>
@@ -54,7 +56,7 @@ export class ArticleEditorComponent implements OnInit {
             lifestyle. A native of North Carolina, Dr. McCarthy-Keith is the proud mother of two energetic sons. She spends
             her free time in Atlanta visiting the zoo, strolling the botanical gardens and cheering on the Braves.</p>
     </article>
-</div>`;
+</div></div>`;
     public templates = [];
 
     ngOnInit() {
@@ -136,5 +138,10 @@ export class ArticleEditorComponent implements OnInit {
 
     private _createMenuHierachyTree() {
         const allMenus: IMenu[] = this.menus;
+    }
+
+    public toggleSideBar() {
+        document.getElementById('mySidenav').style.width = this.sideBarExpanded ? '0' : '420px';
+        this.sideBarExpanded = !this.sideBarExpanded;
     }
 }

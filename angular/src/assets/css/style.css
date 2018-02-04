@@ -90,32 +90,52 @@ Author URI: http://bootstrapthemes.co
        outline: none;
    }
    .form-control {
-       border: 1px solid rgba(0, 0, 0, 0.08);
-       font-size: 16px;
-       height: 45px;
-   }
-   .form-control {
-       display: inline-block;
-       width: 100%;
-       height: 34px;
-       padding: 6px 12px;
-       font-size: 14px;
-       line-height: 1.42857143;
-       color: #555;
-       background-color: #fff;
-       background-image: none;
-       border: 1px solid #ccc;
-       border-radius: 4px;
-       -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-       box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-       -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-       -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-       transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-   }
-   .form-control:focus {
-       border-color: #f56363;
-   }
-   
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    font-size: 16px;
+    height: 45px;
+    }
+    .form-control {
+    display: inline-block;
+    width: 100%;
+    height: 45px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+    .form-control:focus {
+    border-color: #f56363;
+    }
+    .form-group {
+    width: 100%;
+    }
+    .form-group label, .form-group input {
+    display: inline-block;
+    padding-right: 30px;
+    float: left;
+    }
+    .form-group label {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    }
+    .form-group .control-label {
+    display: block;
+    width: 100%;
+    }
+    .templates ul li , .pageList ul li {
+    float: left;
+    padding-right: 30px;
+    }
+    
    h1,
    h2,
    h3 {
@@ -192,6 +212,10 @@ Author URI: http://bootstrapthemes.co
        color: #ffffff;
    }
    
+   .whiteSmokeBg {
+    background-color: whitesmoke;
+    }
+
    .lightbg {
        background-color: #f9f9f9;
    }
@@ -1062,6 +1086,7 @@ Author URI: http://bootstrapthemes.co
        padding:0px 10px;
        color:#ff0000;
    }
+
    .copyright_text p a{
        padding:0px 10px;
        color:#ab987a;
@@ -1101,7 +1126,99 @@ Author URI: http://bootstrapthemes.co
        margin-top: -7px;
        margin-left: -6px;
        text-decoration: none;
-   
    }
-   
-   
+
+   .pageList .thumbnail, .templates .thumbnail {
+        padding:10px;
+        max-width:400px;
+        min-width: 150px;
+        display: inline-block;
+    }
+
+    .pageList .thumbnail iframe, .templates .thumbnail iframe {
+        max-width: 380px;
+        min-width:130px;
+        margin: auto;
+    }
+    
+    .pageList .thumbnail .caption, .templates .thumbnail .caption {
+        width: inherit;
+        padding: 10px;
+        max-height: 100px;
+        text-align: center;
+    }
+
+    .btn-control {
+        margin:0;
+        max-height: 100px;  
+    }
+
+    .pageList ul li {
+        float: left;
+        padding-right: 30px;
+    }
+
+    /*for sidebar*/
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        right: -25px;
+        background-color: whitesmoke;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+    
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+    
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+    
+    @media screen and (max-width: 450px) {
+        .sidenav {
+            max-width: 100% !important;
+        }
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+    }
+    iframe {
+        pointer-events: none;
+    }
+    
+    .iframe input,
+    .iframe span,
+    .iframe h1,
+    .iframe h2,
+    .iframe h3,
+    .iframe div,
+    .iframe table,
+    .iframe img,
+    .iframe figure,
+    .iframe figcaption{
+        width:1%;
+        height: 1%;
+    }
