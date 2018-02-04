@@ -11,7 +11,9 @@ import { ExampleArticleComponent } from '../pages/components/ExampleArticleCompo
 
 const appRoutes: Routes = [
   { path: 'example-article', component: ExampleArticleComponent },
-  { path: '',
+  { path: 'article-editor', component: ArticleEditorComponent },
+  {
+    path: '',
     redirectTo: '/example-article',
     pathMatch: 'full'
   },
@@ -28,7 +30,7 @@ const appRoutes: Routes = [
     BrowserModule,
     CKEditorModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes, {useHash: true})
+    RouterModule.forRoot(appRoutes, { useHash: true })
   ],
   providers: [],
   bootstrap: [AppComponent]

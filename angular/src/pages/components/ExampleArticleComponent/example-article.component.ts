@@ -20,7 +20,7 @@ import { ArticleService } from '../../../services/base.service';
     providers: [ArticleService]
 })
 export class ExampleArticleComponent implements OnInit {
-    title = 'Article Editor';
+    title = 'Example Article Editor';
     articleList: IArticle[] = [];
     inputArticle: IArticle = <IArticle>{};
 

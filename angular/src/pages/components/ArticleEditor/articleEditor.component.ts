@@ -1,15 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-
+import { IPage, IMenu } from '../../../models/models';
+import { PageService, MenuService } from '../../../services/base.service';
 @Component({
     moduleId: module.id,
     selector: 'app-article-editor',
     templateUrl: './articleEditor.component.html',
-    styleUrls: ['./articleEditor.component.css']
+    styleUrls: ['./articleEditor.component.css'],
+    providers: [PageService, MenuService],
 })
+
 export class ArticleEditorComponent implements OnInit {
     title = 'Article Editor';
+    public errorMessage: String = '';
+    public pages: IPage[] = [];
+    public menus: IMenu[] = [];
 
-    public editorValue = `
+    public onChangingProgress: Boolean = false;
+    public currentMenu: IMenu = {} as IMenu;
+    // use to hold object of the page object that is currently in progress of adding or updating
+    public currentPage: IPage = {} as IPage;
+    constructor(public menuService: MenuService, public pageService: PageService) { }
+    templates = [`
     <heading>Our Medical Team</heading>
 <div class="container">
     <article>
@@ -68,7 +79,68 @@ export class ArticleEditorComponent implements OnInit {
         A native of North Carolina, Dr. McCarthy-Keith is the proud mother of two energetic sons. She spends her free time
         in Atlanta visiting the zoo, strolling the botanical gardens and cheering on the Braves.</p>
     </article>
-</div>`;
+</div>`];
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.getAllPages();
+        this.getAllMenus();
+    }
+
+    public getAllPages() {
+        this.pageService.getAll(`$select=Id, MenuId, PageTitle`).subscribe((data: IPage[]) => {
+            this.pages = data;
+        }, (err) => {
+            this.errorMessage = `There was some problem when trying to retrieve data.`;
+        });
+    }
+
+    public getAllMenus() {
+        this.menuService.getAll(`$select=Id, Name, ParentId`).subscribe((data: IMenu[]) => {
+            this.menus = data;
+        }, (err) => {
+            this.errorMessage = `There was some problem when trying to retrieve data.`;
+        });
+    }
+
+    public savePage() {
+        this.menuService.post(this.currentMenu).subscribe((data: IMenu) => {
+            this.currentPage.MenuId = data.Id;
+            this.pageService.post(this.currentPage).subscribe((page: IPage) => {
+                this.onChangingProgress = false;
+            });
+        });
+    }
+
+    public getPageInfo(pageId: number, forEdit: boolean = false) {
+        this.pageService.get(pageId).subscribe((data: IPage) => {
+            this.onChangingProgress = true;
+            this.currentPage = Array.isArray(data) ? data[0] : data;
+        }, (err) => {
+            this.errorMessage = `There was some problem when trying to retrieve data.`;
+        });
+    }
+
+    public deletePage(page: IPage) {
+        this.pageService.delete(page.Id).subscribe(() => {
+            this.menuService.delete(page.MenuId).subscribe(() => {
+                this.onChangingProgress = false;
+            }, (err) => {
+                this.errorMessage = `There was some problem when trying to delete data`;
+            });
+        }, (err) => {
+            this.errorMessage = `There was some problem when trying to delete data`;
+        });
+    }
+
+    public toggleForm() {
+        if (this.onChangingProgress) {
+            this.currentPage = {} as IPage;
+            this.currentMenu = {} as IMenu;
+        }
+        this.onChangingProgress = !this.onChangingProgress;
+    }
+
+    public selectedTemplate(template) {
+        this.currentPage.Content = template;
+    }
 }
