@@ -6,10 +6,12 @@ import { HttpModule } from '@angular/http';
 import { CKEditorModule } from 'ngx-ckeditor';
 
 import { AppComponent } from './app.component';
+import { HomeComponent } from '../pages/components/Home/home.component';
 import { ArticleEditorComponent } from '../pages/components/ArticleEditor/articleEditor.component';
 import { ExampleArticleComponent } from '../pages/components/ExampleArticleComponent/example-article.component';
 
 const appRoutes: Routes = [
+  { path: 'home', component: HomeComponent },
   { path: 'example-article', component: ExampleArticleComponent },
   { path: 'article-editor', component: ArticleEditorComponent },
   {
@@ -24,7 +26,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     ArticleEditorComponent,
-    ExampleArticleComponent
+    ExampleArticleComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
