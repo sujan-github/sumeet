@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import {
-    IArticle, IPage, IMenu
+    IArticle, IPage, IMenu, IBlogCategory, ITemplate
 } from '../models/models';
 
 export interface IService {
@@ -103,4 +103,14 @@ export class PageService extends Service<IPage> {
 @Injectable()
 export class MenuService extends Service<IMenu> {
     public baseUrl = domain + 'api/menu/menu';
+}
+
+@Injectable()
+export class BlogCategoryService extends Service<IBlogCategory> {
+    public baseUrl = domain + 'api/blogcategory/blogcategory';
+}
+
+@Injectable()
+export class TemplateService extends Service<ITemplate> {
+    public baseUrl = domain + 'api/template/template';
 }

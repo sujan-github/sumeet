@@ -7,6 +7,7 @@ import { CKEditorModule } from 'ngx-ckeditor';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from '../pages/components/Home/home.component';
+import { BlogComponent } from '../pages/components/BlogComponent/blog.component';
 import { ArticleEditorComponent } from '../pages/components/ArticleEditor/articleEditor.component';
 import { ExampleArticleComponent } from '../pages/components/ExampleArticleComponent/example-article.component';
 
@@ -14,9 +15,10 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'example-article', component: ExampleArticleComponent },
   { path: 'article-editor', component: ArticleEditorComponent },
+  { path: 'blog', component: BlogComponent },
   {
     path: '',
-    redirectTo: '/example-article',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   { path: '**', component: ExampleArticleComponent }
@@ -27,7 +29,8 @@ const appRoutes: Routes = [
     AppComponent,
     ArticleEditorComponent,
     ExampleArticleComponent,
-    HomeComponent
+    HomeComponent,
+    BlogComponent
   ],
   imports: [
     BrowserModule,

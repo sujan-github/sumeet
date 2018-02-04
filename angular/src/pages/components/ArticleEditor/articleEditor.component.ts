@@ -21,6 +21,7 @@ export class ArticleEditorComponent implements OnInit {
     // use to hold object of the page object that is currently in progress of adding or updating
     public currentPage: IPage = {} as IPage;
     public sideBarExpanded: Boolean = false;
+    public showPreview: Boolean = false;
     constructor(public sanitizer: DomSanitizer, public menuService: MenuService, public pageService: PageService) { }
     public template = `
     <div class="iframe">
@@ -132,7 +133,6 @@ export class ArticleEditorComponent implements OnInit {
     }
 
     public templateSelected(template) {
-        debugger;
         this.currentPage.Content = template;
     }
 
@@ -143,5 +143,12 @@ export class ArticleEditorComponent implements OnInit {
     public toggleSideBar() {
         document.getElementById('mySidenav').style.width = this.sideBarExpanded ? '0' : '420px';
         this.sideBarExpanded = !this.sideBarExpanded;
+    }
+
+    public togglePreview() {
+        this.showPreview = !this.showPreview;
+        if (this.sideBarExpanded) {
+            this.toggleSideBar();
+        }
     }
 }

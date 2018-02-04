@@ -1152,13 +1152,6 @@ Author URI: http://bootstrapthemes.co
         margin:0;
         max-height: 100px;  
     }
-
-    .pageList ul li {
-        float: left;
-        padding-right: 30px;
-    }
-
-    /*for sidebar*/
     .sidenav {
         height: 100%;
         width: 0;
@@ -1169,7 +1162,6 @@ Author URI: http://bootstrapthemes.co
         background-color: whitesmoke;
         overflow-x: hidden;
         transition: 0.5s;
-        padding-top: 60px;
         padding-left: 20px;
         padding-right: 20px;
     }
@@ -1188,9 +1180,9 @@ Author URI: http://bootstrapthemes.co
     }
     
     .sidenav .closebtn {
-        position: absolute;
         top: 0;
-        right: 25px;
+        margin-right: 25px;
+        float: right;
         font-size: 36px;
         margin-left: 50px;
     }
@@ -1208,17 +1200,105 @@ Author URI: http://bootstrapthemes.co
     iframe {
         pointer-events: none;
     }
+    ck-editor iframe {
+        pointer-events: all;
+    }
+
+    ul.post-grid, ul.pageList {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+    }
+
+    ul.post-grid li, ul.pageList li {
+        padding: 20px;
+        cursor: pointer;
+        -webkit-transition: background linear 0.5s;
+        transition: background linear 0.5s;
+        border-bottom: 1px solid #3a8bab;
+    }
+
     
-    .iframe input,
-    .iframe span,
-    .iframe h1,
-    .iframe h2,
-    .iframe h3,
-    .iframe div,
-    .iframe table,
-    .iframe img,
-    .iframe figure,
-    .iframe figcaption{
-        width:1%;
-        height: 1%;
+    ul.post-grid li:hover,
+    ul.post-grid li:hover h3,
+     ul.pageList li:hover,
+     ul.pageList li:hover h3 {
+        color: white;
+    }
+
+    ul.post-grid li:hover {
+        background: #3a8bab;
+    }
+    ul.pageList li:hover {
+        background: #032f3e;
+        opacity:.8;
+    }
+    ul.pageList li iframe {
+        border:none;
+    }
+    .content {
+        width: 100%;
+        position: relative;
+        padding: 20px 40px 20px;
+    }
+
+    h2,
+    h3 {
+        color: #3a8bab;
+    }
+
+    .post {
+        -webkit-transition: 0.5s linear all;
+        transition: 0.5s linear all;
+        opacity: 1;
+        padding-bottom: 30px;
+    }
+
+    .post cite {
+        display: inline-block;
+        padding: 10px 0;
+    }
+
+    .comments ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    .comments ul li {
+        list-style-type: none;
+        padding: 20px 5px;
+        border-bottom: 1px #79B9D2 solid;
+    }
+
+    .post.ng-hide {
+        opacity: 0;
+    }
+
+    .post.ng-hide-add,
+    .post.ng-hide-remove {
+        display: block!important;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    input,
+    textarea {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 1.1em;
+    }
+
+    .ng-invalid.ng-dirty {
+        border-color: red;
+    }
+
+    .ng-valid.ng-dirty {
+        border-color: green;
+    }
+
+    img {
+        max-width: 100%;
     }
