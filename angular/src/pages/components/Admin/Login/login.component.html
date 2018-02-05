@@ -1,13 +1,13 @@
+<div class="alert alert-danger" *ngIf="errMessage != null">{{errMessage}}</div>
 <div>
-  <div>
-    <label>Username:</label>
-    <input class="form-control" [(ngModel)]="loginForm.UserName" />
-  </div>
-  <div>
-    <label>Password:</label>
-    <input class="form-control" [(ngModel)]="loginForm.Password" />
-  </div>
-  <div>
-    <button class="btn btn-default" (click)="submitLoginForm()">Login</button>
-  </div>
+  <label>Username:</label>
+  <input class="form-control" [(ngModel)]="loginForm.UserName" />
+</div>
+<div>
+  <label>Password:</label>
+  <input class="form-control" [(ngModel)]="loginForm.Password" />
+</div>
+<div class="text-center">
+  <button class="btn btn-primary" (click)="submitLoginForm()" *ngIf="isLoading != true">Login</button>
+  <button class="btn btn-primary disabled" *ngIf="isLoading == true">Loading...</button>
 </div>
