@@ -1,1 +1,46 @@
-<router-outlet></router-outlet>
+<nav style="height: 80px">
+  <div class="main-nav navbar-collapse collapse">
+    <div class="container">
+      <div class="minilogo">
+        <div class="navbar-brand">
+          CMS
+        </div>
+      </div>
+      <ul class="nav nav-justified">
+        <li>
+          <a class="active" href="#home">HOME</a>
+        </li>
+        <li>
+          <a href="#service">ABOUT US</a>
+        </li>
+        <li>
+          <a href="#lessons">LESSONS</a>
+        </li>
+        <li>
+          <a href="#portfolio">PORTFOLIO</a>
+        </li>
+        <li>
+          <a href="#blog">BLOG</a>
+        </li>
+        <li>
+          <a href="#contact">CONTACT</a>
+        </li>
+        <li>
+          <a href="#article-editor">Article Editor</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section id="home" style="padding-top: 80px;">
+  <div class="overlay">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
