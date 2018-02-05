@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   providers: [AuthenticationService]
 })
 
-export class AdminComponent {
+export class AdminComponent implements OnInit {
   userInfo: IUser = <IUser>(JSON.parse(localStorage.getItem('UserInfo')));
 
   constructor(
@@ -18,12 +18,23 @@ export class AdminComponent {
     public authenticationService: AuthenticationService
   ) {
     this.userInfo = <IUser>(JSON.parse(localStorage.getItem('UserInfo')));
-    console.log(<IUser>(JSON.parse(localStorage.getItem('UserInfo'))));
+
     if (this.userInfo != null) {
       this.router.navigateByUrl('admin/article-editor');
     } else {
-      this.router.navigateByUrl('admin/login');
+        this.router.navigateByUrl('admin/login');
     }
+  }
+
+  ngOnInit() {
+    const that = this;
+    window.addEventListener('hashchange', function () {
+      console.log(window.location.hash);
+      if (that.userInfo == null && window.location.hash !== '#/login') {
+        // that.router.navigateByUrl('admin/login');
+        window.location.reload();
+      }
+    });
   }
 
   logout() {
