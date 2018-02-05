@@ -1,32 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { IPage, IMenu, IArticle, ICategoryViewModel } from '../../../models/models';
-import { ArticleService } from '../../../services/base.service';
+import { IBlog, ICategoryViewModel } from '../../../models/models';
+import { BlogService } from '../../../services/base.service';
 @Component({
     moduleId: module.id,
     selector: 'app-blog',
     templateUrl: './blog.component.html',
-    providers: [ArticleService],
+    providers: [BlogService],
 })
 
 export class BlogComponent implements OnInit {
-    title = 'Blog';
+    title = 'All Posts';
     public errorMessage: String = '';
-    public blogs: IArticle[] = [];
+    public blogs: IBlog[] = [];
     public onChangingProgress: Boolean = false;
-    public currentBlog: IArticle = {} as IArticle;
+    public currentBlog: IBlog = {} as IBlog;
     public isSelected: Boolean = false;
-    public selectedBlog: IArticle = {} as IArticle;
+    public selectedBlog: IBlog = {} as IBlog;
     public categories: ICategoryViewModel[] = [];
     public expandedView: Boolean = false;
     public selectedCategory: String = '';
-    public filteredBlogs: IArticle[] = [];
-    constructor(public blogService: ArticleService) { }
+    public filteredBlogs: IBlog[] = [];
+    constructor(public blogService: BlogService) { }
     ngOnInit() {
         this.getAllBlogs();
     }
 
     public getAllBlogs() {
-        this.blogService.getAll().subscribe((data: IArticle[]) => {
+        this.blogService.getAll().subscribe((data: IBlog[]) => {
             this.blogs = data;
             this.filteredBlogs = data;
             data.forEach((blog) => {
@@ -44,27 +44,26 @@ export class BlogComponent implements OnInit {
     }
 
     public saveBlog() {
-        this.currentBlog.CategoryId = 1;
-        this.currentBlog.PageId = 1;
         this.currentBlog.UserId = 1;
-        this.currentBlog.IsBlog = true;
         this.currentBlog.PostedOn = new Date();
         this.blogService.post(this.currentBlog).subscribe((data: any) => {
             this.onChangingProgress = false;
             this.getAllBlogs();
+            this.setTitle();
         });
     }
 
     public getBlogInfo(blogId: number, forEdit: boolean = false) {
-        this.blogService.get(blogId).subscribe((data: IArticle) => {
+        this.blogService.get(blogId).subscribe((data: IBlog) => {
             this.onChangingProgress = true;
             this.currentBlog = data;
+            this.setTitle();
         }, (err) => {
             this.errorMessage = `There was some problem when trying to retrieve data.`;
         });
     }
 
-    public deleteBlog(page: IPage) {
+    public deleteBlog(page: IBlog) {
         this.blogService.delete(page.Id).subscribe(() => {
             this.onChangingProgress = false;
             this.getAllBlogs();
@@ -75,9 +74,10 @@ export class BlogComponent implements OnInit {
 
     public toggleForm() {
         if (this.onChangingProgress) {
-            this.currentBlog = {} as IArticle;
+            this.currentBlog = {} as IBlog;
         }
         this.onChangingProgress = !this.onChangingProgress;
+        this.setTitle();
     }
 
     public blogSelected(blog) {
@@ -88,7 +88,7 @@ export class BlogComponent implements OnInit {
             this.toggleForm();
         } else {
             this.isSelected = false;
-            this.selectedBlog = {} as IArticle;
+            this.selectedBlog = {} as IBlog;
         }
     }
 
@@ -99,5 +99,15 @@ export class BlogComponent implements OnInit {
 
     public showExpandedView(show) {
         this.expandedView = show;
+        this.onChangingProgress = false;
+        this.setTitle();
+    }
+
+    public setTitle() {
+        if (this.onChangingProgress) {
+            this.title = 'Add New Post';
+        } else {
+            this.title = 'All Posts';
+        }
     }
 }

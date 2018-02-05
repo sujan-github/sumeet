@@ -82,6 +82,7 @@ export class ArticleEditorComponent implements OnInit {
     public getAllMenus() {
         this.menuService.getAll().subscribe((data: IMenu[]) => {
             this.menus = data;
+            this.menus.unshift({ Id: 0, Name: 'Select a Parent', ParentId: 0, Url: '' });
         }, (err) => {
             this.errorMessage = `There was some problem when trying to retrieve data.`;
         });
@@ -92,7 +93,7 @@ export class ArticleEditorComponent implements OnInit {
         this.currentMenu.ParentId = this.currentMenu.ParentId > 0 ? this.currentMenu.ParentId : 0;
         this.menuService.post(this.currentMenu).subscribe((data: any) => {
             this.currentPage.MenuId = data.inserted_id;
-            this.currentPage.ShowPageTitle = false;
+            this.currentPage.Menu = this.currentMenu.Name;
             this.pageService.post(this.currentPage).subscribe((page: IPage) => {
                 this.onChangingProgress = false;
                 this.getAllMenus();

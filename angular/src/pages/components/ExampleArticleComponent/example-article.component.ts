@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IArticle } from '../../../models/models';
-import { ArticleService } from '../../../services/base.service';
+import { IBlog } from '../../../models/models';
+import { BlogService } from '../../../services/base.service';
 
 @Component({
     moduleId: module.id,
@@ -17,17 +17,17 @@ import { ArticleService } from '../../../services/base.service';
         <button type="submit" (click)="save()">Save</button>
       </div>
     `,
-    providers: [ArticleService]
+    providers: [BlogService]
 })
 export class ExampleArticleComponent implements OnInit {
     title = 'Example Article Editor';
-    articleList: IArticle[] = [];
-    inputArticle: IArticle = <IArticle>{};
+    articleList: IBlog[] = [];
+    inputArticle: IBlog = <IBlog>{};
 
     public editorValue = '';
 
   constructor(
-    public articleService: ArticleService
+    public articleService: BlogService
   ) {
     console.log(window.location.host);
     console.log(window.location.protocol);
@@ -39,14 +39,14 @@ export class ExampleArticleComponent implements OnInit {
     }
 
     getAllArticle() {
-      this.articleService.getAll().subscribe((data: IArticle[]) => {
+      this.articleService.getAll().subscribe((data: IBlog[]) => {
         this.articleList = data;
       });
 
     }
 
     save() {
-      this.articleService.post(this.inputArticle).subscribe((data: IArticle) => {
+      this.articleService.post(this.inputArticle).subscribe((data: IBlog) => {
         alert('done');
       });
     }

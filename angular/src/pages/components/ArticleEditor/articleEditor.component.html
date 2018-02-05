@@ -1,139 +1,140 @@
 <div class="container" [hidden]="showPreview">
-    <section [hidden]="onChangingProgress">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>All Pages
-                    <div class="dropdown pull-right">
-                        <a href="javascript:void(0)" id="dropdownMenu" data-toggle="dropdown">
-                            <span class="fa fa-th"></span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-top" aria-labelledby="dropdownMenu">
-                            <li class="dropdown-iconized">
-                                <a href="javascript:void(0)" (click)="toggleForm()">
-                                    <i class="fa fa-plus-circle"></i>
-                                    Add new page
-                                </a>
-                            </li>
-                            <li class="dropdown-iconized">
-                                <a href="javascript:void(0)" (click)="showTableView(false)">
-                                    <i class="fa fa-th-list"></i>
-                                    View List
-                                </a>
-                            </li>
-                            <li class="dropdown-iconized">
-                                <a href="javascript:void(0)" (click)="showTableView(true)">
-                                    <i class="fa fa-table"></i>
-                                    View Table
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </h2>
-                <ul class="pageList" [hidden]="tableView">
-                    <li *ngFor="let post of pages" class="col-sm-4" (click)="getPageInfo(post.Id)">
-                        <h3>{{post.PageTitle}}</h3>
-                        <iframe class="img-responsive" [srcdoc]="post.Content"></iframe>
-                    </li>
-                </ul>
-                <table class="table" [hidden]="!tableView">
-                    <thead>
-                        <tr>
-                            <th>
-                                <h4>Menu</h4>
-                            </th>
-                            <th>
-                                <h4>Page Title</h4>
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let post of pages">
-                            <td>{{post.MenuId}}</td>
-                            <td>{{post.PageTitle}}</td>
-                            <td>
-                                <h4>
-                                    <a href="javascript:void(0)" (click)="getPageInfo(post.Id)">
-                                        <i class="fa fa-cog"></i>
-                                    </a>
-                                </h4>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <section class="post" [hidden]="!onChangingProgress">
-        <div class="row">
-            <div class="col-md-12">
-                <button (click)="toggleForm()" class="btn btn-primary right">
-                    <span class="fa fa-angle-double-left"></span> Back to All Posts
-                </button>
-            </div>
-        </div>
-        <form>
-            <h2>Setup Page</h2>
-            <div class="form-group">
-
-                <label for="Name" class="control-label">Menu Title</label>
-                <div class="row">
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" name="Name" [(ngModel)]="currentMenu.Name" />
-                    </div>
-                    <div class="col-md-6">
-                        <select [(ngModel)]="currentMenu.ParentId" name="ParentId" class="form-control pull-left">
-                            <option value=0>Select a parent menu</option>
-                            <option *ngFor="let menu of menus">{{menu.Name}}</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="PageTitle" class="control-label">Page Title</label>
-                <div class="row">
-                    <div class="col-md-12">
-                        <input type="text" class="form-control" name="PageTitle" [(ngModel)]="currentPage.PageTitle" />
-                    </div>
-                </div>
-            </div>
+    <div class="content">
+        <section [hidden]="onChangingProgress">
             <div class="row">
                 <div class="col-md-12">
-                    <section class="templates">
-                        <a (click)="toggleSideBar()" href="javascript:void(0)" class="btn btn-primary pull-right">Pick a Template</a>
-                        <div id="mySidenav" class="sidenav closedSidenav">
-                            <label class="title">Templates
-                                <span (click)="toggleSideBar()" class="fa fa-close closeBtn"></span>
-                            </label>
-                            <hr/>
-                            <ul class="list-unstyled">
-                                <li *ngFor="let template of templates" (click)="templateSelected(template.template)">
-                                    <figure class="figure thumbnail" style="cursor: pointer">
-                                        <iframe class="img-responsive" [srcdoc]="template.safeHtml"></iframe>
-                                    </figure>
+                    <h2>All Pages
+                        <div class="dropdown pull-right">
+                            <a href="javascript:void(0)" id="dropdownMenu" data-toggle="dropdown">
+                                <span class="fa fa-th"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-top" aria-labelledby="dropdownMenu">
+                                <li class="dropdown-iconized">
+                                    <a href="javascript:void(0)" (click)="toggleForm()">
+                                        <i class="fa fa-plus-circle"></i>
+                                        Add new page
+                                    </a>
+                                </li>
+                                <li class="dropdown-iconized">
+                                    <a href="javascript:void(0)" (click)="showTableView(false)">
+                                        <i class="fa fa-th-list"></i>
+                                        View List
+                                    </a>
+                                </li>
+                                <li class="dropdown-iconized">
+                                    <a href="javascript:void(0)" (click)="showTableView(true)">
+                                        <i class="fa fa-table"></i>
+                                        View Table
+                                    </a>
                                 </li>
                             </ul>
                         </div>
-                    </section>
+                    </h2>
+                    <ul class="pageList" [hidden]="tableView">
+                        <li *ngFor="let post of pages" class="col-sm-4" (click)="getPageInfo(post.Id)">
+                            <h3>{{post.PageTitle}}</h3>
+                            <iframe class="img-responsive" [srcdoc]="post.Content"></iframe>
+                        </li>
+                    </ul>
+                    <table class="table" [hidden]="!tableView">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <h4>Menu</h4>
+                                </th>
+                                <th>
+                                    <h4>Page Title</h4>
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let post of pages">
+                                <td>{{post.Menu}}</td>
+                                <td>{{post.PageTitle}}</td>
+                                <td>
+                                    <h4>
+                                        <a href="javascript:void(0)" (click)="getPageInfo(post.Id)">
+                                            <i class="fa fa-cog"></i>
+                                        </a>
+                                    </h4>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </section>
+
+        <section class="post" [hidden]="!onChangingProgress">
             <div class="row">
                 <div class="col-md-12">
-                    <ck-editor name="Content" [(ngModel)]="currentPage.Content" skin="moono-lisa" lang="en" [fullPage]="true">
-                    </ck-editor>
+                    <button (click)="toggleForm()" class="btn btn-primary right">
+                        <span class="fa fa-angle-double-left"></span> Back to All Posts
+                    </button>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12  text-right">
-                    <button type="button" (click)="togglePreview()" class="btn btn-primary right">
-                        <span class="fa fa-search-plus"></span>&nbsp;Preview</button>
-                    <button type="button" (click)="savePage()" class="btn btn-primary right">
-                        <span class="fa fa-check-circle"></span>&nbsp;&nbsp;Save</button>
+            <form>
+                <h2>Setup Page</h2>
+                <div class="form-group">
+
+                    <label for="Name" class="control-label">Menu Title</label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="Name" [(ngModel)]="currentMenu.Name" />
+                        </div>
+                        <div class="col-md-6">
+                            <select [(ngModel)]="currentMenu.ParentId" name="ParentId" class="form-control pull-left">
+                                <option *ngFor="let menu of menus">{{menu.Name}}</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </form>
-    </section>
+                <div class="form-group">
+                    <label for="PageTitle" class="control-label">Page Title</label>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="PageTitle" [(ngModel)]="currentPage.PageTitle" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <section class="templates">
+                            <a (click)="toggleSideBar()" href="javascript:void(0)" class="btn btn-primary pull-right">Pick a Template</a>
+                            <div id="mySidenav" class="sidenav closedSidenav">
+                                <label class="title">Templates
+                                    <span (click)="toggleSideBar()" class="fa fa-close closeBtn"></span>
+                                </label>
+                                <hr/>
+                                <ul class="list-unstyled">
+                                    <li *ngFor="let template of templates" (click)="templateSelected(template.template)">
+                                        <figure class="figure thumbnail" style="cursor: pointer">
+                                            <iframe class="img-responsive" [srcdoc]="template.safeHtml"></iframe>
+                                        </figure>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ck-editor name="Content" [(ngModel)]="currentPage.Content" skin="moono-lisa" lang="en" [fullPage]="true">
+                        </ck-editor>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12  text-right">
+                        <button type="button" (click)="togglePreview()" class="btn btn-primary right">
+                            <span class="fa fa-search-plus"></span>&nbsp;Preview</button>
+                        <button type="button" (click)="savePage()" class="btn btn-primary right">
+                            <span class="fa fa-check-circle"></span>&nbsp;&nbsp;Save</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
 </div>
 <div class="container">
     <div [hidden]="!showPreview">
