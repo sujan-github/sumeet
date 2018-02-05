@@ -21,17 +21,19 @@ export class AdminComponent implements OnInit {
 
     if (this.userInfo != null) {
       this.router.navigateByUrl('admin/article-editor');
+      // window.location.href = window.location.hash;
     } else {
-        this.router.navigateByUrl('admin/login');
+      this.router.navigateByUrl('admin/login');
     }
   }
 
   ngOnInit() {
     const that = this;
     window.addEventListener('hashchange', function () {
-      console.log(window.location.hash);
-      if (that.userInfo == null && window.location.hash !== '#/login') {
-        // that.router.navigateByUrl('admin/login');
+      if (that.userInfo != null && window.location.hash === '#/login') {
+        window.location.href = window.location.hash;
+        // that.router.navigateByUrl('admin/article-editor');
+      } else {
         window.location.reload();
       }
     });
