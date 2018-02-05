@@ -3,11 +3,11 @@
         <div class="row">
             <h2>{{title}}
                 <div class="dropdown pull-right">
-                    <a href="javascript:void(0)" (click)="toggleSideBar()">
-                        <span class="fa fa-bars"></span>
-                    </a>
                     <a href="javascript:void(0)" id="dropdownMenu" data-toggle="dropdown">
                         <span class="fa fa-th"></span>
+                    </a>
+                    <a *ngIf="!isSelected&&!onChangingProgress" href="javascript:void(0)" (click)="toggleSideBar()">
+                        <span class="fa fa-bars"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-top" aria-labelledby="dropdownMenu">
                         <li class="dropdown-iconized">
@@ -39,7 +39,7 @@
             </h4>
         </div>
         <div class="row" [hidden]="onChangingProgress||isSelected">
-            <ul class="post-grid" [hidden]="expandedView">
+            <ul class="post-grid" *ngIf="!expandedView">
                 <li *ngFor="let post of filteredBlogs" class="col-sm-4" (click)="blogSelected(post)">
                     <h3>{{post.Title}}</h3>
                     <p>{{post.Content|slice:0:70}}...</p>
@@ -47,7 +47,7 @@
                     <p class="text-right">On {{post.PostedOn | date: 'MMM dd'}} at {{post.PostedOn | date: 'h:m a'}}</p>
                 </li>
             </ul>
-            <ul [hidden]="!expandedView">
+            <ul *ngIf="expandedView">
                 <li *ngFor="let post of filteredBlogs" (click)="blogSelected(post)">
                     <div class="post">
                         <div>
@@ -65,7 +65,9 @@
             </ul>
         </div>
         <div class="row">
-            <div class="post" [hidden]="!isSelected">
+            <div class="post" *ngIf="isSelected">
+                <a href="javascript:void(0)" style="padding-left:0;padding-right:0;margin-right:30px;" (click)="deleteBlog()" class="btn pull-right">
+                    <span class="fa fa-close"></span>&nbsp;Delete</a>
                 <div>
                     <img [src]="selectedBlog.Image" [hidden]="!selectedBlog.Image" />
                     <cite>by {{selectedBlog.PostedBy}} on {{selectedBlog.PostedOn}}</cite>
@@ -76,7 +78,7 @@
                     </div>
                 </div>
             </div>
-            <div class="post" [hidden]="!onChangingProgress">
+            <div *ngIf="onChangingProgress">
                 <form name="postForm" novalidate>
                     <h4>Title</h4>
                     <input type="text" name="Title" [(ngModel)]="currentBlog.Title" />

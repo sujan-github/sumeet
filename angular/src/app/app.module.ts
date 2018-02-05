@@ -18,13 +18,13 @@ import { ExampleArticleComponent } from '../pages/components/ExampleArticleCompo
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'example-article', component: ExampleArticleComponent },
-  { path: 'article-editor', component: ArticleEditorComponent },
-  { path: 'blog', component: BlogComponent },
   {
     path: 'admin',
     component: AdminComponent,
     children: [
       { path: 'login', component: LoginComponent },
+      { path: 'article-editor', component: ArticleEditorComponent },
+      { path: 'blog', component: BlogComponent },
       {
         path: '',
         redirectTo: '/admin/login',

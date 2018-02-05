@@ -1159,10 +1159,9 @@ Author URI: http://bootstrapthemes.co
         height: 100%;
         position: fixed;
         z-index: 1;
-        top: 0;
+        top: 80px;
         right: -25px;
         background-color: whitesmoke;
-        
         overflow-x: hidden;
         transition: 0.5s;
         padding-left: 20px;
@@ -1315,6 +1314,7 @@ Author URI: http://bootstrapthemes.co
 
     img {
         max-width: 100%;
+        max-height: 100%;
     }
 
     .post img {
@@ -1325,6 +1325,10 @@ Author URI: http://bootstrapthemes.co
     .post cite {
         display: inline-block;
         padding: 10px 0;
+    }
+    
+    .post-body p {
+        white-space: pre-line;
     }
 
     .comments ul {

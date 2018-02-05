@@ -19,10 +19,12 @@ export class AdminComponent implements OnInit {
   ) {
     this.userInfo = <IUser>(JSON.parse(localStorage.getItem('UserInfo')));
 
-    if (this.userInfo != null) {
-      this.router.navigateByUrl('admin/article-editor');
-      // window.location.href = window.location.hash;
-    } else {
+    // if (this.userInfo == null) {
+    //   // this.router.navigateByUrl('admin/article-editor');
+    //   // window.location.href = window.location.hash;
+    
+    // }
+    if (this.userInfo == null) {
       this.router.navigateByUrl('admin/login');
     }
   }

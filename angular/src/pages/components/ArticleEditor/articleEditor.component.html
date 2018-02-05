@@ -41,17 +41,17 @@
                 </div>
             </h2>
         </div>
-        <div [hidden]="templatesMenuActive">
-            <section [hidden]="onChangingProgress">
+        <div *ngIf="!templatesMenuActive">
+            <section *ngIf="!onChangingProgress">
                 <div class="row">
                     <div class="col-md-12">
-                        <ul class="pageList" [hidden]="tableView">
+                        <ul class="pageList" *ngIf="!tableView">
                             <li *ngFor="let post of pages" class="col-sm-4" (click)="getPageInfo(post.Id)">
                                 <h3>{{post.PageTitle}}</h3>
                                 <iframe class="img-responsive" [srcdoc]="post.Content"></iframe>
                             </li>
                         </ul>
-                        <table class="table" [hidden]="!tableView">
+                        <table class="table" *ngIf="tableView">
                             <thead>
                                 <tr>
                                     <th>
@@ -80,10 +80,14 @@
                     </div>
                 </div>
             </section>
-            <section [hidden]="!onChangingProgress">
+            <section *ngIf="onChangingProgress">
                 <form>
                     <div class="form-group">
-                        <label for="Name" class="control-label">Menu Title</label>
+                        <label for="Name" class="control-label">Menu Title
+                            {{currentPage.Id}}
+                            <a *ngIf="currentPage.Id>0" href="javascript:void(0)" (click)="deletePage()" class="deleteLink pull-right">
+                                <span class="fa fa-close"></span>&nbsp;Delete</a>
+                        </label>
                         <div class="row">
                             <div class="col-sm-6">
                                 <input type="text" class="form-control" name="Name" [(ngModel)]="currentMenu.Name" />
@@ -129,7 +133,7 @@
             </section>
         </div>
     </div>
-    <div id="mySidenav" class="sidenav col-md-3 left-sidenav lightsteelblueBg" [hidden]="!sideBarExpanded">
+    <div id="mySidenav" class="sidenav col-md-3 left-sidenav lightsteelblueBg" *ngIf="sideBarExpanded">
         <label class="title">Templates
             <span (click)="toggleSideBar()" class="fa fa-close closeBtn"></span>
         </label>
@@ -143,16 +147,17 @@
         </ul>
     </div>
 
-    <div id="templates" [hidden]="!templatesMenuActive">
-        <ul class="pageList" [hidden]="templateFormOpen">
+    <div id="templates" *ngIf="templatesMenuActive">
+        <ul class="pageList" *ngIf="!templateFormOpen">
             <li *ngFor="let template of fetchedTemplates" class="col-sm-4" (click)="getTemplateInfo(template.Id)">
                 <h3>{{template.Name}}</h3>
                 <iframe class="img-responsive" [srcdoc]="template.InnerHtml"></iframe>
             </li>
         </ul>
-        <form [hidden]="!templateFormOpen">
+        <form *ngIf="templateFormOpen">
             <div class="form-group">
-                <label for="Name" class="control-label">Name</label>
+                <label for="Name" class="control-label">Name <a *ngIf="currentTemplate.Id>0" href="javascript:void(0)" (click)="deleteTemplate()" class="deleteLink pull-right">
+                        <span class="fa fa-close"></span>&nbsp;Delete</a></label>
                 <div class="row">
                     <div class="col-md-12">
                         <input type="text" class="form-control" name="Name" [(ngModel)]="currentTemplate.Name" />

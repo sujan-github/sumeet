@@ -92,9 +92,9 @@ export class ArticleEditorComponent implements OnInit {
         });
     }
 
-    public deletePage(page: IPage) {
-        this.pageService.delete(page.Id).subscribe(() => {
-            this.menuService.delete(page.MenuId).subscribe(() => {
+    public deletePage() {
+        this.pageService.delete(this.currentPage.Id).subscribe(() => {
+            this.menuService.delete(this.currentPage.MenuId).subscribe(() => {
                 this.onChangingProgress = false;
                 this.getAllMenus();
                 this.getAllPages();
@@ -189,5 +189,15 @@ export class ArticleEditorComponent implements OnInit {
             this.getAllTemplates();
             this.toggleTemplateForm();
         });
+    }
+
+    public deleteTemplate() {
+        this.templateService.delete(this.currentTemplate.Id).subscribe(() => {
+            this.getAllTemplates();
+            this.toggleTemplateForm();
+        }, (err) => {
+            this.errorMessage = `There was some problem when trying to delete data`;
+        });
+
     }
 }

@@ -70,9 +70,10 @@ export class BlogComponent implements OnInit {
         });
     }
 
-    public deleteBlog(page: IBlog) {
-        this.blogService.delete(page.Id).subscribe(() => {
+    public deleteBlog() {
+        this.blogService.delete(this.selectedBlog.Id).subscribe(() => {
             this.onChangingProgress = false;
+            this.isSelected = false;
             this.getAllBlogs();
         }, (err) => {
             this.errorMessage = `There was some problem when trying to delete data`;
@@ -82,6 +83,9 @@ export class BlogComponent implements OnInit {
     public toggleForm() {
         if (this.onChangingProgress) {
             this.currentBlog = {} as IBlog;
+        } else {
+            this.isSelected = false;
+            this.sideBarExpanded = false;
         }
         this.onChangingProgress = !this.onChangingProgress;
         this.setTitle();
