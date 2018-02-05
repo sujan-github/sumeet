@@ -20,9 +20,13 @@ export class BlogComponent implements OnInit {
     public expandedView: Boolean = false;
     public selectedCategory: String = '';
     public filteredBlogs: IBlog[] = [];
+    public sideBarExpanded: Boolean = true;
+    private _sideBarWidth: Number = 0;
+    public sideBar: any = 'mySidenav';
     constructor(public blogService: BlogService) { }
     ngOnInit() {
         this.getAllBlogs();
+        this._sideBarWidth = document.getElementById(this.sideBar).clientWidth;
     }
 
     public getAllBlogs() {
@@ -101,6 +105,11 @@ export class BlogComponent implements OnInit {
         this.expandedView = show;
         this.onChangingProgress = false;
         this.setTitle();
+    }
+
+    public toggleSideBar() {
+        document.getElementById(this.sideBar).style.width = this.sideBarExpanded ? '0' : `${this._sideBarWidth}px`;
+        this.sideBarExpanded = !this.sideBarExpanded;
     }
 
     public setTitle() {

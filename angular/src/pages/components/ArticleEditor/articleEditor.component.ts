@@ -11,7 +11,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 
 export class ArticleEditorComponent implements OnInit {
-    title = 'Article Editor';
+    public title = 'All Pages';
     public errorMessage: String = '';
     public pages: IPage[] = [];
     public menus: IMenu[] = [];
@@ -98,6 +98,7 @@ export class ArticleEditorComponent implements OnInit {
                 this.onChangingProgress = false;
                 this.getAllMenus();
                 this.getAllPages();
+                this.setTitle();
             });
         });
     }
@@ -107,6 +108,7 @@ export class ArticleEditorComponent implements OnInit {
             this.onChangingProgress = true;
             this.currentPage = Array.isArray(data) ? data[0] : data;
             this.currentMenu = this.menus.filter(x => x.Id === this.currentPage.MenuId)[0];
+            this.setTitle();
         }, (err) => {
             this.errorMessage = `There was some problem when trying to retrieve data.`;
         });
@@ -118,6 +120,7 @@ export class ArticleEditorComponent implements OnInit {
                 this.onChangingProgress = false;
                 this.getAllMenus();
                 this.getAllPages();
+                this.setTitle();
             }, (err) => {
                 this.errorMessage = `There was some problem when trying to delete data`;
             });
@@ -132,6 +135,7 @@ export class ArticleEditorComponent implements OnInit {
             this.currentMenu = {} as IMenu;
         }
         this.onChangingProgress = !this.onChangingProgress;
+        this.setTitle();
     }
 
     public templateSelected(template) {
@@ -143,7 +147,7 @@ export class ArticleEditorComponent implements OnInit {
     }
 
     public toggleSideBar() {
-        document.getElementById('mySidenav').style.width = this.sideBarExpanded ? '0' : '420px';
+        document.getElementById('mySidenav').style.width = this.sideBarExpanded ? '0' : '300px';
         this.sideBarExpanded = !this.sideBarExpanded;
     }
 
@@ -155,5 +159,13 @@ export class ArticleEditorComponent implements OnInit {
     }
     public showTableView(show) {
         this.tableView = show;
+    }
+
+    public setTitle() {
+        if (this.onChangingProgress) {
+            this.title = 'Add New Page';
+        } else {
+            this.title = 'All Pages';
+        }
     }
 }
