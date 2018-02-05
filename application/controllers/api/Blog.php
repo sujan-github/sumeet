@@ -17,7 +17,7 @@ require APPPATH . 'libraries/REST_Controller.php';
  * @license         MIT
  * @link            https://github.com/chriskacerguis/codeigniter-restserver
  */
-class Article extends REST_Controller
+class blog extends REST_Controller
 {
 
     public function __construct()
@@ -27,15 +27,15 @@ class Article extends REST_Controller
 
         // Configure limits on our controller methods
         // Ensure you have created the 'limits' table and enabled 'limits' within application/config/rest.php
-        $this->methods['article_get']['limit'] = 500; // 500 requests per hour per user/key
-        $this->methods['article_post']['limit'] = 100; // 100 requests per hour per user/key
-        $this->methods['article_delete']['limit'] = 50; // 50 requests per hour per user/key
+        $this->methods['blog_get']['limit'] = 500; // 500 requests per hour per user/key
+        $this->methods['blog_post']['limit'] = 100; // 100 requests per hour per user/key
+        $this->methods['blog_delete']['limit'] = 50; // 50 requests per hour per user/key
     }
 
-    public function article_get()
+    public function blog_get()
     {
         // Users from a data store e.g. database
-        $this->load->model('article_model');
+        $this->load->model('blog_model');
 
         $id = $this->get('id');
         // If the id parameter doesn't exist return all the users
@@ -73,17 +73,17 @@ class Article extends REST_Controller
         }
 
         if ($id === null) {
-            $articleArray = $this->article_model->get_all($query);
+            $blogArray = $this->blog_model->get_all($query);
 
             // Check if the users data store contains users (in case the database result returns NULL)
-            if ($articleArray) {
+            if ($blogArray) {
                 // Set the response and exit
-                $this->response($articleArray, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+                $this->response($blogArray, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
             } else {
                 // Set the response and exit
                 $this->response([
                     'status' => false,
-                    'message' => 'No article were found',
+                    'message' => 'No blog were found',
                 ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
             }
         }
@@ -97,38 +97,37 @@ class Article extends REST_Controller
             // Invalid id, set the response and exit.
             $this->response(null, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         }
-        $this->load->model('article_model');
+        $this->load->model('blog_model');
 
-        $articleObject = $this->article_model->get_by_id($id, $query);
+        $blogObject = $this->blog_model->get_by_id($id, $query);
 
-        if (!empty($articleObject)) {
-            $this->set_response($articleObject, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+        if (!empty($blogObject)) {
+            $this->set_response($blogObject, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
         } else {
             $this->set_response([
                 'status' => false,
-                'message' => 'article could not be found',
+                'message' => 'blog could not be found',
             ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
         }
     }
 
-    public function article_post()
+    public function blog_post()
     {
-        $this->load->model('article_model');
+        $this->load->model('blog_model');
 
         if ($this->post('Id')) {
             $data = [
                 'Id' => $this->post('Id'),
-                'Heading' => $this->post('Heading'),
+                'Title' => $this->post('Title'),
                 'Content' => $this->post('Content'),
-                'PageId' => $this->post('PageId'),
                 'UserId' => $this->post('UserId'),
                 'PostedBy' => $this->post('PostedBy'),
-                'CategoryId' => $this->post('CategoryId'),
-                'IsBlog' => $this->post('IsBlog'),
+                'Category' => $this->post('Category'),
+                'Image' => $this->post('Image'),
                 'PostedOn' => $this->post('PostedOn'),
             ];
 
-            if ($this->article_model->put($this->post('Id'), $data)) {
+            if ($this->blog_model->put($this->post('Id'), $data)) {
                 $message = [
                     'message' => 'The update request was completed successfully.',
 					'inserted_id' => $this->post('Id')
@@ -142,17 +141,17 @@ class Article extends REST_Controller
             }
         } else {
             $data = [
-                'Heading' => $this->post('Heading'),
+                'Id' => $this->post('Id'),
+                'Title' => $this->post('Title'),
                 'Content' => $this->post('Content'),
-                'PageId' => $this->post('PageId'),
                 'UserId' => $this->post('UserId'),
                 'PostedBy' => $this->post('PostedBy'),
-                'CategoryId' => $this->post('CategoryId'),
-                'IsBlog' => $this->post('IsBlog'),
+                'Category' => $this->post('Category'),
+                'Image' => $this->post('Image'),
                 'PostedOn' => $this->post('PostedOn'),
             ];
 
-            if ($this->article_model->post($data)) {
+            if ($this->blog_model->post($data)) {
                 $message = [
 					'message' => 'The insert request was completed successfully.',
 					'inserted_id' => $this->db->insert_id()
@@ -167,7 +166,7 @@ class Article extends REST_Controller
         }
     }
 
-    public function article_delete()
+    public function blog_delete()
     {
         $id = (int) $this->get('id');
 
@@ -177,8 +176,8 @@ class Article extends REST_Controller
             $this->response(null, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         }
 
-        $this->load->model('article_model');
-        $this->article_model->delete($id);
+        $this->load->model('blog_model');
+        $this->blog_model->delete($id);
 
         $message = [
             'id' => $id,

@@ -15,11 +15,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<link rel="stylesheet" href="angular/dist/assets/css/navmenu/styles.css">
   <link rel="stylesheet" href="angular/dist/assets/css/portfolio.jquery.css">
   <link rel="stylesheet" href="angular/dist/assets/css/fonticons.css">
-  <link rel="stylesheet" href="angular/dist/assets/css/style.css">
   <link rel="stylesheet" href="angular/dist/assets/fonts/stylesheet.css">
   <link rel="stylesheet" href="angular/dist/assets/css/font-awesome.min.css">
 	<link rel="stylesheet" href="angular/dist/assets/css/bootstrap.min.css">
 	
+  <link rel="stylesheet" href="angular/dist/assets/css/plugins.css">
+  <link rel="stylesheet" href="angular/dist/assets/css/style.css">
+  <link rel="stylesheet" href="angular/dist/assets/css/responsive.css">
 
 </head>
 <body>
@@ -35,7 +37,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
   <script src="angular/dist/assets/js/jquery.slicknav.min.js"></script>
   
 	<!--This is link only for gmaps-->
-  <script src="http://maps.google.com/maps/api/js"></script>
+  <!-- <script src="http://maps.google.com/maps/api/js"></script>
   <script src="angular/dist/assets/js/gmaps.min.js"></script>
   <script>
   	var map = new GMaps({
@@ -44,7 +46,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
       lat: -12.043333,
 			lng: -77.028333
     });
-  </script>
+  </script> -->
 
 	<script src="angular/dist/assets/js/plugins.js"></script>
   <script src="angular/dist/assets/js/main.js"></script>

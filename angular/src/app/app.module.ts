@@ -6,6 +6,10 @@ import { HttpModule } from '@angular/http';
 import { CKEditorModule } from 'ngx-ckeditor';
 
 import { AppComponent } from './app.component';
+
+import { AdminComponent } from '../pages/components/Admin/admin.component';
+import { LoginComponent } from '../pages/components/Admin/Login/login.component';
+
 import { HomeComponent } from '../pages/components/Home/home.component';
 import { BlogComponent } from '../pages/components/BlogComponent/blog.component';
 import { ArticleEditorComponent } from '../pages/components/ArticleEditor/articleEditor.component';
@@ -17,6 +21,13 @@ const appRoutes: Routes = [
   { path: 'article-editor', component: ArticleEditorComponent },
   { path: 'blog', component: BlogComponent },
   {
+    path: 'admin',
+    component: AdminComponent,
+    children: [
+      { path: 'login', component: LoginComponent }
+    ]
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -27,6 +38,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    AdminComponent,
+    LoginComponent,
     ArticleEditorComponent,
     ExampleArticleComponent,
     HomeComponent,
