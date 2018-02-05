@@ -7,6 +7,7 @@ export interface IArticle {
   PostedBy: string;
   CategoryId: number;
   Category: string;
+  Image?: string;
   IsBlog: boolean;
   PostedOn: Date;
   article_image?: IArticleImage[];
@@ -69,4 +70,9 @@ export interface IUser {
   Password: string;
   Email: string;
   article?: IArticle[];
+}
+
+export interface ICategoryViewModel {
+  Title: string;
+  Count: number;
 }

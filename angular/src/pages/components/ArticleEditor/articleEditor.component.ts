@@ -22,6 +22,7 @@ export class ArticleEditorComponent implements OnInit {
     public currentPage: IPage = {} as IPage;
     public sideBarExpanded: Boolean = false;
     public showPreview: Boolean = false;
+    public tableView: Boolean = false;
     constructor(public sanitizer: DomSanitizer, public menuService: MenuService, public pageService: PageService) { }
     public template = `
     <div class="iframe">
@@ -150,5 +151,8 @@ export class ArticleEditorComponent implements OnInit {
         if (this.sideBarExpanded) {
             this.toggleSideBar();
         }
+    }
+    public showTableView(show) {
+        this.tableView = show;
     }
 }

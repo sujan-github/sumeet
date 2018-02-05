@@ -1,66 +1,57 @@
 import { Component, OnInit } from '@angular/core';
-import { IPage, IMenu, IArticle, IBlogCategory } from '../../../models/models';
-import { ArticleService, BlogCategoryService } from '../../../services/base.service';
-import { DomSanitizer } from '@angular/platform-browser';
+import { IPage, IMenu, IArticle, ICategoryViewModel } from '../../../models/models';
+import { ArticleService } from '../../../services/base.service';
 @Component({
     moduleId: module.id,
     selector: 'app-blog',
     templateUrl: './blog.component.html',
-    providers: [ArticleService, BlogCategoryService],
+    providers: [ArticleService],
 })
 
 export class BlogComponent implements OnInit {
     title = 'Blog';
     public errorMessage: String = '';
     public blogs: IArticle[] = [];
-    public blogCategories: IBlogCategory[] = [];
-
     public onChangingProgress: Boolean = false;
     public currentBlog: IArticle = {} as IArticle;
-    // use to hold object of the page object that is currently in progress of adding or updating
-    public currentBlogCategory: IBlogCategory = {} as IBlogCategory;
     public isSelected: Boolean = false;
     public selectedBlog: IArticle = {} as IArticle;
-    constructor(public sanitizer: DomSanitizer, public blogService: ArticleService,
-        public blogCategoryService: BlogCategoryService) { }
+    public categories: ICategoryViewModel[] = [];
+    public expandedView: Boolean = false;
+    public selectedCategory: String = '';
+    public filteredBlogs: IArticle[] = [];
+    constructor(public blogService: ArticleService) { }
     ngOnInit() {
         this.getAllBlogs();
-        this.getAllBlogCategories();
     }
 
     public getAllBlogs() {
         this.blogService.getAll().subscribe((data: IArticle[]) => {
             this.blogs = data;
+            this.filteredBlogs = data;
+            data.forEach((blog) => {
+                const category = this.categories.filter(x => x.Title === blog.Category);
+                if (category.length < 1) {
+                    this.categories.push({
+                        Title: blog.Category,
+                        Count: category.length
+                    });
+                }
+            });
         }, (err) => {
             this.errorMessage = `There was some problem when trying to retrieve data.`;
         });
-    }
-
-    public getAllBlogCategories() {
-        this.blogCategoryService.getAll().subscribe((data: IBlogCategory[]) => {
-            this.blogCategories = data;
-        }, (err) => {
-            this.errorMessage = `There was some problem when trying to retrieve data.`;
-        });
-    }
-
-    public saveBlogCategory() {
-
     }
 
     public saveBlog() {
+        this.currentBlog.CategoryId = 1;
+        this.currentBlog.PageId = 1;
+        this.currentBlog.UserId = 1;
+        this.currentBlog.IsBlog = true;
+        this.currentBlog.PostedOn = new Date();
         this.blogService.post(this.currentBlog).subscribe((data: any) => {
             this.onChangingProgress = false;
             this.getAllBlogs();
-        });
-    }
-
-    public getBlogCategoryInfo(blogCategoryId: number, forEdit: boolean = false) {
-        this.blogCategoryService.get(blogCategoryId).subscribe((data: IBlogCategory) => {
-            this.onChangingProgress = true;
-            this.currentBlogCategory = data;
-        }, (err) => {
-            this.errorMessage = `There was some problem when trying to retrieve data.`;
         });
     }
 
@@ -85,7 +76,6 @@ export class BlogComponent implements OnInit {
     public toggleForm() {
         if (this.onChangingProgress) {
             this.currentBlog = {} as IArticle;
-            this.currentBlogCategory = {} as IBlogCategory;
         }
         this.onChangingProgress = !this.onChangingProgress;
     }
@@ -100,6 +90,14 @@ export class BlogComponent implements OnInit {
             this.isSelected = false;
             this.selectedBlog = {} as IArticle;
         }
+    }
 
+    public categorySelected(category) {
+        this.selectedCategory = category;
+        this.filteredBlogs = this.blogs.filter(x => x.Category === category);
+    }
+
+    public showExpandedView(show) {
+        this.expandedView = show;
     }
 }

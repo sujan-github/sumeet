@@ -213,7 +213,10 @@ Author URI: http://bootstrapthemes.co
    }
    
    .whiteSmokeBg {
-    background-color: whitesmoke;
+    background-color: whitesmoke !important;
+    }
+    .lightsteelblueBg {
+        background-color: lightsteelblue !important;
     }
 
    .lightbg {
@@ -1154,18 +1157,25 @@ Author URI: http://bootstrapthemes.co
     }
     .sidenav {
         height: 100%;
-        width: 0;
         position: fixed;
         z-index: 1;
         top: 0;
         right: -25px;
         background-color: whitesmoke;
+        
         overflow-x: hidden;
         transition: 0.5s;
         padding-left: 20px;
         padding-right: 20px;
     }
+    .left-sidenav {
+        box-shadow:1px 1px 5px 5px dimgrey;
+    }
     
+    .closedSidenav {
+        width: 0;
+    }
+   
     .sidenav a {
         padding: 8px 8px 8px 32px;
         text-decoration: none;
@@ -1174,17 +1184,58 @@ Author URI: http://bootstrapthemes.co
         display: block;
         transition: 0.3s;
     }
-    
     .sidenav a:hover {
         color: #f1f1f1;
     }
-    
-    .sidenav .closebtn {
+
+    .sidenav li:hover {
+        background: hsl(197, 49%, 45%);
+    }
+    .sidenav li:hover {
+        background: white;
+        opacity:.8;
+    }
+    .sidenav li {
+        margin-left:-20px;
+        padding:8px 20px 8px 20px;
+        color: white;
+        font-size: 20px;
+        -webkit-transition: background linear 0.5s;
+        transition: background linear 0.5s;
+    }
+    .left-sidenav .title {
+        font-size: 28px;
+        padding: 8px 20px 0 0;
+        color: white;
+        width: 100%;
+    }
+    .left-sidenav hr {
+        width:initial;
+        margin-left:-20px;
+        margin-bottom:0;
+    }
+   
+    .left-sidenav li:hover, .left-sidenav .active {
+        border-bottom: 2px solid #3a8bab;
+        color: black;
+        font-weight: 600;
+    }
+
+    .sidenav .closeBtn {
         top: 0;
-        margin-right: 25px;
         float: right;
-        font-size: 36px;
-        margin-left: 50px;
+        font-size: 28px;
+        color: white;
+        cursor: pointer;
+        border-radius: 50%;
+        border: white thin solid;
+        padding: 0 3px 0 3px;
+    }
+
+    .sidenav .closeBtn:hover {
+        background-color:white;
+        color: #f56363;
+        border-color:#f56363;
     }
     
     @media screen and (max-width: 450px) {
@@ -1227,7 +1278,7 @@ Author URI: http://bootstrapthemes.co
     }
 
     ul.post-grid li:hover {
-        background: #3a8bab;
+        background: hsl(197, 49%, 45%);
     }
     ul.pageList li:hover {
         background: #032f3e;
@@ -1237,7 +1288,6 @@ Author URI: http://bootstrapthemes.co
         border:none;
     }
     .content {
-        width: 100%;
         position: relative;
         padding: 20px 40px 20px;
     }
@@ -1301,4 +1351,39 @@ Author URI: http://bootstrapthemes.co
 
     img {
         max-width: 100%;
+    }
+
+    .iconized-link {
+        color: black;
+        font-size:32px;
+        padding:5px;
+        border-radius: 50%;
+        max-width: 50px;
+        max-height: 50px;
+    }
+    .iconized-link:hover {
+        color: white;
+    }
+
+    .dropdown-menu-top {
+        min-width: 350px;
+        padding: 20px;
+    }
+    .dropdown-iconized {
+        display: inline-block;
+        width: 100px;
+        padding: 5px;
+    }
+    .dropdown-iconized:hover {
+        border: thin whitesmoke solid;
+    }
+    
+    .dropdown-iconized a {
+        text-align: center !important;
+        padding:0 !important;
+    }
+
+    .dropdown-iconized i{
+        display:block;
+        font-size: 50px;
     }

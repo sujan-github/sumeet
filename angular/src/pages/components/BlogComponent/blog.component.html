@@ -1,22 +1,60 @@
-<div class="content">
-    <div class="container">
+<div class="container">
+    <div class="content" [ngClass]="{'col-md-12':onChangingProgress,'col-md-9': !onChangingProgress}">
+        <div class="row">
+            <h2>All Blogs
+                <div class="dropdown pull-right">
+                    <a href="javascript:void(0)" id="dropdownMenu" data-toggle="dropdown">
+                        <span class="fa fa-th"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-top" aria-labelledby="dropdownMenu">
+                        <li class="dropdown-iconized">
+                            <a href="javascript:void(0)" (click)="toggleForm()">
+                                <i class="fa fa-plus-circle"></i>
+                                Add new Post
+                            </a>
+                        </li>
+                        <li class="dropdown-iconized">
+                            <a href="javascript:void(0)" (click)="showExpandedView(false)">
+                                <i class="fa fa-th-list"></i>
+                                View List
+                            </a>
+                        </li>
+                        <li class="dropdown-iconized">
+                            <a href="javascript:void(0)" (click)="showExpandedView(true)">
+                                <i class="fa fa-table"></i>
+                                Show Expanded
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </h2>
+            <hr/>
+        </div>
         <div class="row" [hidden]="onChangingProgress||isSelected">
-            <ul class="post-grid">
-                <li *ngFor="let post of blogs" class="col-sm-4" (click)="blogSelected(post)">
+            <ul class="post-grid" [hidden]="expandedView">
+                <li *ngFor="let post of filteredBlogs" class="col-sm-4" (click)="blogSelected(post)">
                     <h3>{{post.Heading}}</h3>
                     <p>{{post.Content|slice:0:70}}...</p>
                     <p class="text-right">By {{post.PostedBy}}</p>
                     <p class="text-right">On {{post.PostedOn | date: 'MMM dd'}} at {{post.PostedOn | date: 'h:m a'}}</p>
                 </li>
             </ul>
-        </div>
-        <div class="row" [hidden]="isSelected">
-
-            <a href="javascript:void(0)" (click)="toggleForm()" class="btn btn-control">
-                <span [hidden]="!onChangingProgress">
-                    <span class="fa fa-angle-double-left"></span> Back to All Posts</span>
-                <span [hidden]="onChangingProgress">Add New Post</span>
-            </a>
+            <ul [hidden]="!expandedView">
+                <li *ngFor="let post of filteredBlogs" (click)="blogSelected(post)">
+                    <div class="post">
+                        <div>
+                            <h2>{{post.Heading}}</h2>
+                            <img [src]="selectedBlog.Category" [hidden]="!selectedBlog.Category" />
+                            <cite>by {{post.PostedBy}} on {{post.PostedOn}}</cite>
+                            <div class="post-body">
+                                <p>
+                                    {{post.Content}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
         <div class="row">
             <div class="post" [hidden]="!isSelected">
@@ -38,17 +76,28 @@
                 <h2>Add New Post</h2>
                 <form name="postForm" novalidate>
                     <h4>Title</h4>
-                    <input type="text" name="Heading" ng-model="currentBlog.Heading" />
+                    <input type="text" name="Heading" [(ngModel)]="currentBlog.Heading" />
                     <h4>Body</h4>
                     <textarea name="Content" [(ngModel)]="currentBlog.Content" ng-list="/\n/" rows="10"></textarea>
-                    <label for="">Featured Image URL</label>
-                    <input type="text" name="Category" [(ngModel)]="currentBlog.Category" placeholder="http://placekitten.com/g/2000/600" />
-                    <label for="">By:</label>
+                    <label for="Image">Featured Image URL</label>
+                    <input type="text" name="Image" [(ngModel)]="currentBlog.Image" placeholder="http://placekitten.com/g/2000/600" />
+                    <label for="PosteBy">By:</label>
                     <input type="text" name="PostedBy" [(ngModel)]="currentBlog.PostedBy" placeholder="Author Name" required/>
-                    <button type="button" class="btn btn-primary" (click)="addPost()">Submit</button>
+                    <label for="Category">Category</label>
+                    <input type="text" name="Category" [(ngModel)]="currentBlog.Category" placeholder="Eg: Cookie " />
+                    <button type="button" class="btn btn-primary" (click)="saveBlog()">Submit</button>
                 </form>
             </div>
         </div>
     </div>
 
+    <div id="mySidenav" class="sidenav col-md-3 left-sidenav lightsteelblueBg" [hidden]="onChangingProgress">
+        <label class="title">Categories<span (click)="toggleSideBar()" class="fa fa-close closeBtn"></span></label>
+        <hr/>
+        <ul class="list-unstyled">
+            <li *ngFor="let category of categories" (click)="categorySeleced(category.Title)" style="cursor: pointer;" [ngClass]="{'active':this.selectedCategory==category.Title}">
+                {{category.Title}} ({{category.Count}})
+            </li>
+        </ul>
+    </div>
 </div>
