@@ -27,15 +27,13 @@ class Authentication extends REST_Controller
 
         // Configure limits on our controller methods
         // Ensure you have created the 'limits' table and enabled 'limits' within application/config/rest.php
-        $this->methods['blog_get']['limit'] = 500; // 500 requests per hour per user/key
-        $this->methods['blog_post']['limit'] = 100; // 100 requests per hour per user/key
-        $this->methods['blog_delete']['limit'] = 50; // 50 requests per hour per user/key
+        $this->methods['authentication_post']['limit'] = 100; // 100 requests per hour per user/key
     }
 
     public function authentication_post()
     {
         $this->load->model('authentication_model');
-		$user = $this->blog_model->check_user_exist($this->post('UserName'), $this->post('Password'));
+		$user = $this->authentication_model->check_user_exist($this->post('UserName'), $this->post('Password'));
         if ($user != null) {
             $this->set_response($user, REST_Controller::HTTP_OK); // Ok (200) being the HTTP response code
         } else {
