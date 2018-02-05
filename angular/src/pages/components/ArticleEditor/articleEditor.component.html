@@ -32,7 +32,6 @@
         <section [hidden]="onChangingProgress">
             <div class="row">
                 <div class="col-md-12">
-
                     <ul class="pageList" [hidden]="tableView">
                         <li *ngFor="let post of pages" class="col-sm-4" (click)="getPageInfo(post.Id)">
                             <h3>{{post.PageTitle}}</h3>

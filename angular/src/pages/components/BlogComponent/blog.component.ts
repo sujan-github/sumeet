@@ -10,6 +10,7 @@ import { BlogService } from '../../../services/base.service';
 
 export class BlogComponent implements OnInit {
     title = 'All Posts';
+    private _sideBarWidth: Number = 0;
     public errorMessage: String = '';
     public blogs: IBlog[] = [];
     public onChangingProgress: Boolean = false;
@@ -19,9 +20,9 @@ export class BlogComponent implements OnInit {
     public categories: ICategoryViewModel[] = [];
     public expandedView: Boolean = false;
     public selectedCategory: String = '';
+    public filtered: Boolean = false;
     public filteredBlogs: IBlog[] = [];
     public sideBarExpanded: Boolean = true;
-    private _sideBarWidth: Number = 0;
     public sideBar: any = 'mySidenav';
     constructor(public blogService: BlogService) { }
     ngOnInit() {
@@ -34,11 +35,12 @@ export class BlogComponent implements OnInit {
             this.blogs = data;
             this.filteredBlogs = data;
             data.forEach((blog) => {
+                const categoryCount = data.filter(x => x.Category === blog.Category);
                 const category = this.categories.filter(x => x.Title === blog.Category);
                 if (category.length < 1) {
                     this.categories.push({
                         Title: blog.Category,
-                        Count: category.length
+                        Count: categoryCount.length,
                     });
                 }
             });
@@ -48,6 +50,7 @@ export class BlogComponent implements OnInit {
     }
 
     public saveBlog() {
+        this.currentBlog.Id = 0;
         this.currentBlog.UserId = 1;
         this.currentBlog.PostedOn = new Date();
         this.blogService.post(this.currentBlog).subscribe((data: any) => {
@@ -98,6 +101,7 @@ export class BlogComponent implements OnInit {
 
     public categorySelected(category) {
         this.selectedCategory = category;
+        this.filtered = true;
         this.filteredBlogs = this.blogs.filter(x => x.Category === category);
     }
 
@@ -112,6 +116,11 @@ export class BlogComponent implements OnInit {
         this.sideBarExpanded = !this.sideBarExpanded;
     }
 
+    public removeFilter() {
+        this.selectedCategory = '';
+        this.filtered = false;
+        this.getAllBlogs();
+    }
     public setTitle() {
         if (this.onChangingProgress) {
             this.title = 'Add New Post';

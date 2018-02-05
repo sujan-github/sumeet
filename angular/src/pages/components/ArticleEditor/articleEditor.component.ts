@@ -108,7 +108,7 @@ export class ArticleEditorComponent implements OnInit {
             this.onChangingProgress = true;
             this.currentPage = Array.isArray(data) ? data[0] : data;
             this.currentMenu = this.menus.filter(x => x.Id === this.currentPage.MenuId)[0];
-            this.setTitle();
+            this.setTitle(this.currentPage.PageTitle);
         }, (err) => {
             this.errorMessage = `There was some problem when trying to retrieve data.`;
         });
@@ -159,13 +159,19 @@ export class ArticleEditorComponent implements OnInit {
     }
     public showTableView(show) {
         this.tableView = show;
+        this.onChangingProgress = false;
+        this.setTitle();
     }
 
-    public setTitle() {
-        if (this.onChangingProgress) {
-            this.title = 'Add New Page';
+    public setTitle(editPageTitle?) {
+        if (editPageTitle) {
+            this.title = `Edit ${editPageTitle}`;
         } else {
-            this.title = 'All Pages';
+            if (this.onChangingProgress) {
+                this.title = 'Add New Page';
+            } else {
+                this.title = 'All Pages';
+            }
         }
     }
 }
