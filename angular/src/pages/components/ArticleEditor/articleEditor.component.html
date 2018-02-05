@@ -84,7 +84,6 @@
                 <form>
                     <div class="form-group">
                         <label for="Name" class="control-label">Menu Title
-                            {{currentPage.Id}}
                             <a *ngIf="currentPage.Id>0" href="javascript:void(0)" (click)="deletePage()" class="deleteLink pull-right">
                                 <span class="fa fa-close"></span>&nbsp;Delete</a>
                         </label>
@@ -133,7 +132,7 @@
             </section>
         </div>
     </div>
-    <div id="mySidenav" class="sidenav col-md-3 left-sidenav lightsteelblueBg" *ngIf="sideBarExpanded">
+    <div id="mySidenav" class="sidenav col-md-3 left-sidenav lightsteelblueBg" [hidden]="!sideBarExpanded">
         <label class="title">Templates
             <span (click)="toggleSideBar()" class="fa fa-close closeBtn"></span>
         </label>
@@ -147,7 +146,7 @@
         </ul>
     </div>
 
-    <div id="templates" *ngIf="templatesMenuActive">
+    <div id="templates" *ngIf="templatesMenuActive" [ngClass]="{'col-md-12':!sideBarExpanded,'col-md-9': sideBarExpanded}">
         <ul class="pageList" *ngIf="!templateFormOpen">
             <li *ngFor="let template of fetchedTemplates" class="col-sm-4" (click)="getTemplateInfo(template.Id)">
                 <h3>{{template.Name}}</h3>
@@ -156,8 +155,10 @@
         </ul>
         <form *ngIf="templateFormOpen">
             <div class="form-group">
-                <label for="Name" class="control-label">Name <a *ngIf="currentTemplate.Id>0" href="javascript:void(0)" (click)="deleteTemplate()" class="deleteLink pull-right">
-                        <span class="fa fa-close"></span>&nbsp;Delete</a></label>
+                <label for="Name" class="control-label">Name
+                    <a *ngIf="currentTemplate.Id>0" href="javascript:void(0)" (click)="deleteTemplate()" class="deleteLink pull-right">
+                        <span class="fa fa-close"></span>&nbsp;Delete</a>
+                </label>
                 <div class="row">
                     <div class="col-md-12">
                         <input type="text" class="form-control" name="Name" [(ngModel)]="currentTemplate.Name" />
