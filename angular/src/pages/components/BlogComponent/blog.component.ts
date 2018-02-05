@@ -87,12 +87,13 @@ export class BlogComponent implements OnInit {
         this.setTitle();
     }
 
-    public blogSelected(blog) {
+    public blogSelected(blog?) {
         if (blog) {
             this.isSelected = true;
             this.selectedBlog = blog;
-            this.onChangingProgress = true;
-            this.toggleForm();
+            this.onChangingProgress = false;
+            this.toggleSideBar();
+            this.setTitle();
         } else {
             this.isSelected = false;
             this.selectedBlog = {} as IBlog;
@@ -108,12 +109,18 @@ export class BlogComponent implements OnInit {
     public showExpandedView(show) {
         this.expandedView = show;
         this.onChangingProgress = false;
+        this.blogSelected();
         this.setTitle();
     }
 
-    public toggleSideBar() {
-        document.getElementById(this.sideBar).style.width = this.sideBarExpanded ? '0' : `${this._sideBarWidth}px`;
-        this.sideBarExpanded = !this.sideBarExpanded;
+    public toggleSideBar(expandSideBar?) {
+        if (expandSideBar != null) {
+            this.sideBarExpanded = expandSideBar;
+            document.getElementById(this.sideBar).style.width = this.sideBarExpanded ? '0' : `${this._sideBarWidth}px`;
+        } else {
+            document.getElementById(this.sideBar).style.width = this.sideBarExpanded ? '0' : `${this._sideBarWidth}px`;
+            this.sideBarExpanded = !this.sideBarExpanded;
+        }
     }
 
     public removeFilter() {
@@ -122,10 +129,14 @@ export class BlogComponent implements OnInit {
         this.getAllBlogs();
     }
     public setTitle() {
-        if (this.onChangingProgress) {
-            this.title = 'Add New Post';
+        if (this.isSelected) {
+            this.title = this.selectedBlog.Title;
         } else {
-            this.title = 'All Posts';
+            if (this.onChangingProgress) {
+                this.title = 'Add New Post';
+            } else {
+                this.title = 'All Posts';
+            }
         }
     }
 }

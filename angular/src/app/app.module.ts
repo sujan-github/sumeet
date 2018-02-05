@@ -25,7 +25,6 @@ const appRoutes: Routes = [
     component: AdminComponent,
     children: [
       { path: 'login', component: LoginComponent },
-      { path: 'article-editor', component: ArticleEditorComponent },
       {
         path: '',
         redirectTo: '/admin/login',

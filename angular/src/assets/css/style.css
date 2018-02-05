@@ -1302,7 +1302,24 @@ Author URI: http://bootstrapthemes.co
         -webkit-transition: 0.5s linear all;
         transition: 0.5s linear all;
         opacity: 1;
-        padding-bottom: 30px;
+        
+        width:85%;
+        margin:auto;
+        background-image: url('../images/testimonial-bg.png');
+    }
+
+    .post > div {
+        padding: 30px;
+        background:rgba(165, 164, 164, 0.1) none repeat scroll 0 0;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    .post img {
+        display: block;
+        margin: auto;
     }
 
     .post cite {
@@ -1350,9 +1367,7 @@ Author URI: http://bootstrapthemes.co
         border-color: green;
     }
 
-    img {
-        max-width: 100%;
-    }
+   
 
     .iconized-link {
         color: black;
@@ -1369,6 +1384,15 @@ Author URI: http://bootstrapthemes.co
     .dropdown-menu-top {
         min-width: 350px;
         padding: 20px;
+    }
+    @media (max-width: 400px) {
+        .dropdown-menu-top {
+            min-width: 250px;
+            padding: 20px;
+        }
+        .btn {
+            min-width: 180px;
+        }
     }
     .dropdown-iconized {
         display: inline-block;

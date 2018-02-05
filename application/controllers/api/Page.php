@@ -121,7 +121,7 @@ class Page extends REST_Controller
                 'MenuId' => $this->post('MenuId'),
                 'PageTitle' => $this->post('PageTitle'),
                 'Content' => $this->post('Content'),
-                'ShowPageTitle' => $this->post('ShowPageTitle') ? $this->post('ShowPageTitle') : false,
+                'Menu' => $this->post('Menu') ? $this->post('Menu') : false,
             ];
 
             if ($this->page_model->put($this->post('Id'), $data)) {
@@ -141,7 +141,7 @@ class Page extends REST_Controller
                 'MenuId' => $this->post('MenuId'),
                 'PageTitle' => $this->post('PageTitle'),
                 'Content' => $this->post('Content'),
-                'ShowPageTitle' => $this->post('ShowPageTitle') ? $this->post('ShowPageTitle') : false,
+                'Menu' => $this->post('Menu') ? $this->post('Menu') : false,
             ];
 
             if ($this->page_model->post($data)) {

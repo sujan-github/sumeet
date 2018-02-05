@@ -139,7 +139,6 @@ export class AuthenticationService extends Service<IAuthentication> {
 
   logout(): void {
     localStorage.clear();
-    window.location.reload();
   }
 
 }

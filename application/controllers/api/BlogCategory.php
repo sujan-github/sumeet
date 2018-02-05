@@ -17,7 +17,7 @@ require APPPATH . 'libraries/REST_Controller.php';
  * @license         MIT
  * @link            https://github.com/chriskacerguis/codeigniter-restserver
  */
-class Template extends REST_Controller
+class BlogCategory extends REST_Controller
 {
 
     public function __construct()
@@ -27,15 +27,15 @@ class Template extends REST_Controller
 
         // Configure limits on our controller methods
         // Ensure you have created the 'limits' table and enabled 'limits' within application/config/rest.php
-        $this->methods['template_get']['limit'] = 500; // 500 requests per hour per user/key
-        $this->methods['template_post']['limit'] = 100; // 100 requests per hour per user/key
-        $this->methods['template_delete']['limit'] = 50; // 50 requests per hour per user/key
+        $this->methods['blogCategory_get']['limit'] = 500; // 500 requests per hour per user/key
+        $this->methods['blogCategory_post']['limit'] = 100; // 100 requests per hour per user/key
+        $this->methods['blogCategory_delete']['limit'] = 50; // 50 requests per hour per user/key
     }
 
-    public function template_get()
+    public function blogCategory_get()
     {
         // Users from a data store e.g. database
-        $this->load->model('template_model');
+        $this->load->model('blogCategory_model');
 
         $id = $this->get('id');
         // If the id parameter doesn't exist return all the users
@@ -73,17 +73,17 @@ class Template extends REST_Controller
         }
 
         if ($id === null) {
-            $templateArray = $this->template_model->get_all($query);
+            $blogCategoryArray = $this->blogCategory_model->get_all($query);
 
             // Check if the users data store contains users (in case the database result returns NULL)
-            if ($templateArray) {
+            if ($blogCategoryArray) {
                 // Set the response and exit
-                $this->response($templateArray, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+                $this->response($blogCategoryArray, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
             } else {
                 // Set the response and exit
                 $this->response([
                     'status' => false,
-                    'message' => 'No template were found',
+                    'message' => 'No blogCategory were found',
                 ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
             }
         }
@@ -97,33 +97,31 @@ class Template extends REST_Controller
             // Invalid id, set the response and exit.
             $this->response(null, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         }
-        $this->load->model('template_model');
+        $this->load->model('blogCategory_model');
 
-        $templateObject = $this->template_model->get_by_id($id, $query);
+        $blogCategoryObject = $this->blogCategory_model->get_by_id($id, $query);
 
-        if (!empty($templateObject)) {
-            $this->set_response($templateObject, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
+        if (!empty($blogCategoryObject)) {
+            $this->set_response($blogCategoryObject, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
         } else {
             $this->set_response([
                 'status' => false,
-                'message' => 'template could not be found',
+                'message' => 'blogCategory could not be found',
             ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
         }
     }
 
-    public function template_post()
+    public function blogCategory_post()
     {
-        $this->load->model('template_model');
+        $this->load->model('blogCategory_model');
 
         if ($this->post('Id')) {
             $data = [
                 'Id' => $this->post('Id'),
-                'Name' => $this->post('Name'),
-                'InnerHtml' => $this->post('InnerHtml'),
-                'IsBlog' => $this->post('IsBlog'),
+                'Category' => $this->post('Category'),
             ];
 
-            if ($this->template_model->put($this->post('Id'), $data)) {
+            if ($this->blogCategory_model->put($this->post('Id'), $data)) {
                 $message = [
                     'message' => 'The update request was completed successfully.',
 					'inserted_id' => $this->post('Id')
@@ -137,12 +135,10 @@ class Template extends REST_Controller
             }
         } else {
             $data = [
-                'Name' => $this->post('Name'),
-                'InnerHtml' => $this->post('InnerHtml'),
-                'IsBlog' => $this->post('IsBlog'),
+                'Category' => $this->post('Category'),
             ];
 
-            if ($this->template_model->post($data)) {
+            if ($this->blogCategory_model->post($data)) {
                 $message = [
                     'message' => 'The insert request was completed successfully.',
 					'inserted_id' => $this->db->insert_id()
@@ -157,7 +153,7 @@ class Template extends REST_Controller
         }
     }
 
-    public function template_delete()
+    public function blogCategory_delete()
     {
         $id = (int) $this->get('id');
 
@@ -167,8 +163,8 @@ class Template extends REST_Controller
             $this->response(null, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         }
 
-        $this->load->model('template_model');
-        $this->template_model->delete($id);
+        $this->load->model('blogCategory_model');
+        $this->blogCategory_model->delete($id);
 
         $message = [
             'id' => $id,

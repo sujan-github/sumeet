@@ -52,7 +52,7 @@
                     <div class="post">
                         <div>
                             <h2>{{post.Title}}</h2>
-                            <img [src]="selectedBlog.Category" [hidden]="!selectedBlog.Category" />
+                            <img [src]="post.Image" [hidden]="!post.Image" />
                             <cite>by {{post.PostedBy}} on {{post.PostedOn}}</cite>
                             <div class="post-body">
                                 <p>
@@ -66,12 +66,8 @@
         </div>
         <div class="row">
             <div class="post" [hidden]="!isSelected">
-                <a href="javascript:void(0)" (click)="blogSelected()" class="btn btn-control">
-                    <span class="fa fa-angle-double-left"></span> Back to All Posts
-                </a>
                 <div>
-                    <h2>{{selectedBlog.Title}}</h2>
-                    <img [src]="selectedBlog.Category" [hidden]="!selectedBlog.Category" />
+                    <img [src]="selectedBlog.Image" [hidden]="!selectedBlog.Image" />
                     <cite>by {{selectedBlog.PostedBy}} on {{selectedBlog.PostedOn}}</cite>
                     <div class="post-body">
                         <p>
