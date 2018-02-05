@@ -24,15 +24,20 @@ const appRoutes: Routes = [
     path: 'admin',
     component: AdminComponent,
     children: [
-      { path: 'login', component: LoginComponent }
+      { path: 'login', component: LoginComponent },
+      {
+        path: '',
+        redirectTo: '/admin/login',
+        pathMatch: 'full'
+      },
     ]
   },
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/admin/login',
     pathMatch: 'full'
-  },
-  { path: '**', component: ExampleArticleComponent }
+  }
+  // { path: '**', component: HomeComponent }
 ];
 
 @NgModule({

@@ -52,3 +52,8 @@ export interface ICategoryViewModel {
   Title: string;
   Count: number;
 }
+
+export interface IAuthentication {
+  UserName: string;
+  Password: string;
+}
