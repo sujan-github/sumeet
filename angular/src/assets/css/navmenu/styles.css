@@ -322,3 +322,21 @@ nav.small .minilogo {
     color: #333;
     background-color: white;
 }
+.main-nav ul li ul {
+    padding-top:0;
+    padding-bottom:0;
+    margin-top:0;
+    border-radius: 0;
+}
+.main-nav ul li ul li {
+    border-bottom:1px dimgray solid;
+}
+.main-nav ul li ul li {
+    font-size: 17px;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    padding-right: 30px;
+}
+.main-nav ul li ul li a:hover {
+    color: #1aa3b5 !important;
+}
