@@ -81,10 +81,8 @@ class Page extends REST_Controller
                 $this->response($pageArray, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
             } else {
                 // Set the response and exit
-                $this->response([
-                    'status' => false,
-                    'message' => 'No page were found',
-                ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
+                $this->response(null, REST_Controller::HTTP_OK); // NOT_FOUND (404) being the HTTP response code
+
             }
         }
 
@@ -104,10 +102,8 @@ class Page extends REST_Controller
         if (!empty($pageObject)) {
             $this->set_response($pageObject, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
         } else {
-            $this->set_response([
-                'status' => false,
-                'message' => 'page could not be found',
-            ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
+            $this->response(null, REST_Controller::HTTP_OK); // NOT_FOUND (404) being the HTTP response code
+
         }
     }
 
@@ -127,8 +123,8 @@ class Page extends REST_Controller
             if ($this->page_model->put($this->post('Id'), $data)) {
                 $message = [
                     'message' => 'The update request was completed successfully.',
-					'inserted_id' => $this->post('Id')
-				];
+                    'inserted_id' => $this->post('Id'),
+                ];
                 $this->set_response($message, REST_Controller::HTTP_OK); // CREATED (200) being the HTTP response code
             } else {
                 $message = [
@@ -147,8 +143,8 @@ class Page extends REST_Controller
             if ($this->page_model->post($data)) {
                 $message = [
                     'message' => 'The insert request was completed successfully.',
-					'inserted_id' => $this->db->insert_id()
-				];
+                    'inserted_id' => $this->db->insert_id(),
+                ];
                 $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
             } else {
                 $message = [

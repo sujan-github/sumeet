@@ -81,10 +81,8 @@ class Image extends REST_Controller
                 $this->response($imageArray, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
             } else {
                 // Set the response and exit
-                $this->response([
-                    'status' => false,
-                    'message' => 'No image were found',
-                ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
+                $this->response(null, REST_Controller::HTTP_OK); // NOT_FOUND (404) being the HTTP response code
+
             }
         }
 
@@ -104,10 +102,8 @@ class Image extends REST_Controller
         if (!empty($imageObject)) {
             $this->set_response($imageObject, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
         } else {
-            $this->set_response([
-                'status' => false,
-                'message' => 'image could not be found',
-            ], REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404) being the HTTP response code
+            $this->response(null, REST_Controller::HTTP_OK); // NOT_FOUND (404) being the HTTP response code
+
         }
     }
 
