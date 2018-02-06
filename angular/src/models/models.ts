@@ -57,3 +57,9 @@ export interface IAuthentication {
   UserName: string;
   Password: string;
 }
+
+export interface IBlogCategoryViewModel {
+  category: string;
+  count: number;
+  blogs: IBlog[];
+}

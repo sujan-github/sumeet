@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogService } from '../../../services/base.service';
+import { IBlog, IBlogCategoryViewModel } from '../../../models/models';
 
 @Component({
   moduleId: module.id,
@@ -10,12 +11,16 @@ import { BlogService } from '../../../services/base.service';
 
 export class BlogNewsComponent implements OnInit {
   title = 'Blog News';
-  constructor(
-    public blogService: BlogService
-  ) {
-    console.log(window.location.host);
-    console.log(window.location.protocol);
-  }
+  public blogs: IBlogCategoryViewModel[] = [];
+  constructor(public blogService: BlogService) { }
   ngOnInit() {
+    this._getAllBlogs();
   }
-}
+  private _getAllBlogs() {
+    this.blogService.getAll().subscribe((data: IBlog[]) => {
+      const tempBlogs = data;
+      data.forEach((blog: IBlog) => {
+        const categoryCount = data.filter(x => x.Category === blog.Category);
+        const category: IBlog[] = tempBlogs.filter(x => x.category === blog.Category);
+
+      }); }); } }
