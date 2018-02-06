@@ -35,7 +35,7 @@ class User extends REST_Controller
     public function user_get()
     {
         // Users from a data store e.g. database
-        $this->load->model('user_model');
+        $this->load->model('User_model');
 
         $id = $this->get('id');
         // If the id parameter doesn't exist return all the users
@@ -73,7 +73,7 @@ class User extends REST_Controller
         }
 
         if ($id === null) {
-            $userArray = $this->user_model->get_all($query);
+            $userArray = $this->User_model->get_all($query);
 
             // Check if the users data store contains users (in case the database result returns NULL)
             if ($userArray) {
@@ -95,9 +95,9 @@ class User extends REST_Controller
             // Invalid id, set the response and exit.
             $this->response(null, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         }
-        $this->load->model('user_model');
+        $this->load->model('User_model');
 
-        $userObject = $this->user_model->get_by_id($id, $query);
+        $userObject = $this->User_model->get_by_id($id, $query);
 
         if (!empty($userObject)) {
             $this->set_response($userObject, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
@@ -109,7 +109,7 @@ class User extends REST_Controller
 
     public function user_post()
     {
-        $this->load->model('user_model');
+        $this->load->model('User_model');
 
         if ($this->post('Id')) {
             $data = [
@@ -120,7 +120,7 @@ class User extends REST_Controller
                 'Email' => $this->post('Email'),
             ];
 
-            if ($this->user_model->put($this->post('Id'), $data)) {
+            if ($this->User_model->put($this->post('Id'), $data)) {
                 $message = [
                     'message' => 'The update request was completed successfully.',
                     'inserted_id' => $this->post('Id'),
@@ -140,7 +140,7 @@ class User extends REST_Controller
                 'Email' => $this->post('Email'),
             ];
 
-            if ($this->user_model->post($data)) {
+            if ($this->User_model->post($data)) {
                 $message = [
                     'message' => 'The insert request was completed successfully.',
                     'inserted_id' => $this->db->insert_id(),
@@ -165,8 +165,8 @@ class User extends REST_Controller
             $this->response(null, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         }
 
-        $this->load->model('user_model');
-        $this->user_model->delete($id);
+        $this->load->model('User_model');
+        $this->User_model->delete($id);
 
         $message = [
             'id' => $id,

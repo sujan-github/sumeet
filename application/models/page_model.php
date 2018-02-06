@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class page_model extends CI_Model
+class Page_model extends CI_Model
 {
     public function get_all($query = null)
     {

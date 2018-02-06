@@ -35,7 +35,7 @@ class Image extends REST_Controller
     public function image_get()
     {
         // Users from a data store e.g. database
-        $this->load->model('image_model');
+        $this->load->model('Image_model');
 
         $id = $this->get('id');
         // If the id parameter doesn't exist return all the users
@@ -73,7 +73,7 @@ class Image extends REST_Controller
         }
 
         if ($id === null) {
-            $imageArray = $this->image_model->get_all($query);
+            $imageArray = $this->Image_model->get_all($query);
 
             // Check if the users data store contains users (in case the database result returns NULL)
             if ($imageArray) {
@@ -95,9 +95,9 @@ class Image extends REST_Controller
             // Invalid id, set the response and exit.
             $this->response(null, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         }
-        $this->load->model('image_model');
+        $this->load->model('Image_model');
 
-        $imageObject = $this->image_model->get_by_id($id, $query);
+        $imageObject = $this->Image_model->get_by_id($id, $query);
 
         if (!empty($imageObject)) {
             $this->set_response($imageObject, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
@@ -109,7 +109,7 @@ class Image extends REST_Controller
 
     public function image_post()
     {
-        $this->load->model('image_model');
+        $this->load->model('Image_model');
 
         if ($this->post('Id')) {
             $data = [
@@ -117,7 +117,7 @@ class Image extends REST_Controller
                 'ImagePath' => $this->post('ImagePath'),
             ];
 
-            if ($this->image_model->put($this->post('Id'), $data)) {
+            if ($this->Image_model->put($this->post('Id'), $data)) {
                 $message = [
                     'message' => 'The update request was completed successfully.',
 					'inserted_id' => $this->post('Id')
@@ -133,7 +133,7 @@ class Image extends REST_Controller
             $data = [
                 'ImagePath' => $this->post('ImagePath'),
             ];
-            if ($this->image_model->post($data)) {
+            if ($this->Image_model->post($data)) {
                 $message = [
                     'message' => 'The insert request was completed successfully.',
 					'inserted_id' => $this->db->insert_id()
@@ -158,8 +158,8 @@ class Image extends REST_Controller
             $this->response(null, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         }
 
-        $this->load->model('image_model');
-        $this->image_model->delete($id);
+        $this->load->model('Image_model');
+        $this->Image_model->delete($id);
 
         $message = [
             'id' => $id,

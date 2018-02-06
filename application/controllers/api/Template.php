@@ -35,7 +35,7 @@ class Template extends REST_Controller
     public function template_get()
     {
         // Users from a data store e.g. database
-        $this->load->model('template_model');
+        $this->load->model('Template_model');
 
         $id = $this->get('id');
         // If the id parameter doesn't exist return all the users
@@ -73,7 +73,7 @@ class Template extends REST_Controller
         }
 
         if ($id === null) {
-            $templateArray = $this->template_model->get_all($query);
+            $templateArray = $this->Template_model->get_all($query);
 
             // Check if the users data store contains users (in case the database result returns NULL)
             if ($templateArray) {
@@ -95,9 +95,9 @@ class Template extends REST_Controller
             // Invalid id, set the response and exit.
             $this->response(null, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         }
-        $this->load->model('template_model');
+        $this->load->model('Template_model');
 
-        $templateObject = $this->template_model->get_by_id($id, $query);
+        $templateObject = $this->Template_model->get_by_id($id, $query);
 
         if (!empty($templateObject)) {
             $this->set_response($templateObject, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
@@ -109,7 +109,7 @@ class Template extends REST_Controller
 
     public function template_post()
     {
-        $this->load->model('template_model');
+        $this->load->model('Template_model');
 
         if ($this->post('Id')) {
             $data = [
@@ -119,7 +119,7 @@ class Template extends REST_Controller
                 'IsBlog' => $this->post('IsBlog'),
             ];
 
-            if ($this->template_model->put($this->post('Id'), $data)) {
+            if ($this->Template_model->put($this->post('Id'), $data)) {
                 $message = [
                     'message' => 'The update request was completed successfully.',
 					'inserted_id' => $this->post('Id')
@@ -138,7 +138,7 @@ class Template extends REST_Controller
                 'IsBlog' => $this->post('IsBlog'),
             ];
 
-            if ($this->template_model->post($data)) {
+            if ($this->Template_model->post($data)) {
                 $message = [
                     'message' => 'The insert request was completed successfully.',
 					'inserted_id' => $this->db->insert_id()
@@ -163,8 +163,8 @@ class Template extends REST_Controller
             $this->response(null, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         }
 
-        $this->load->model('template_model');
-        $this->template_model->delete($id);
+        $this->load->model('Template_model');
+        $this->Template_model->delete($id);
 
         $message = [
             'id' => $id,

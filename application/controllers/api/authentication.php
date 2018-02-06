@@ -32,8 +32,8 @@ class Authentication extends REST_Controller
 
     public function authentication_post()
     {
-        $this->load->model('authentication_model');
-        $user = $this->authentication_model->check_user_exist($this->post('UserName'), $this->post('Password'));
+        $this->load->model('Authentication_model');
+        $user = $this->Authentication_model->check_user_exist($this->post('UserName'), $this->post('Password'));
         if ($user != null) {
             $this->set_response($user, REST_Controller::HTTP_OK); // Ok (200) being the HTTP response code
         } else {

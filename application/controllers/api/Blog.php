@@ -35,7 +35,7 @@ class Blog extends REST_Controller
     public function blog_get()
     {
         // Users from a data store e.g. database
-        $this->load->model('blog_model');
+        $this->load->model('Blog_model');
 
         $id = $this->get('id');
         // If the id parameter doesn't exist return all the users
@@ -73,7 +73,7 @@ class Blog extends REST_Controller
         }
 
         if ($id === null) {
-            $blogArray = $this->blog_model->get_all($query);
+            $blogArray = $this->Blog_model->get_all($query);
 
             // Check if the users data store contains users (in case the database result returns NULL)
             if ($blogArray) {
@@ -94,9 +94,9 @@ class Blog extends REST_Controller
             // Invalid id, set the response and exit.
             $this->response(null, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         }
-        $this->load->model('blog_model');
+        $this->load->model('Blog_model');
 
-        $blogObject = $this->blog_model->get_by_id($id, $query);
+        $blogObject = $this->Blog_model->get_by_id($id, $query);
 
         if (!empty($blogObject)) {
             $this->set_response($blogObject, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
@@ -107,7 +107,7 @@ class Blog extends REST_Controller
 
     public function blog_post()
     {
-        $this->load->model('blog_model');
+        $this->load->model('Blog_model');
 
         if ($this->post('Id')) {
             $data = [
@@ -121,7 +121,7 @@ class Blog extends REST_Controller
                 'PostedOn' => $this->post('PostedOn'),
             ];
 
-            if ($this->blog_model->put($this->post('Id'), $data)) {
+            if ($this->Blog_model->put($this->post('Id'), $data)) {
                 $message = [
                     'message' => 'The update request was completed successfully.',
                     'inserted_id' => $this->post('Id'),
@@ -145,7 +145,7 @@ class Blog extends REST_Controller
                 'PostedOn' => $this->post('PostedOn'),
             ];
 
-            if ($this->blog_model->post($data)) {
+            if ($this->Blog_model->post($data)) {
                 $message = [
                     'message' => 'The insert request was completed successfully.',
                     'inserted_id' => $this->db->insert_id(),
@@ -170,8 +170,8 @@ class Blog extends REST_Controller
             $this->response(null, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         }
 
-        $this->load->model('blog_model');
-        $this->blog_model->delete($id);
+        $this->load->model('Blog_model');
+        $this->Blog_model->delete($id);
 
         $message = [
             'id' => $id,

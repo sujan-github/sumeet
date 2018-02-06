@@ -35,7 +35,7 @@ class Menu extends REST_Controller
     public function menu_get()
     {
         // Users from a data store e.g. database
-        $this->load->model('menu_model');
+        $this->load->model('Menu_model');
 
         $id = $this->get('id');
         // If the id parameter doesn't exist return all the users
@@ -73,7 +73,7 @@ class Menu extends REST_Controller
         }
 
         if ($id === null) {
-            $menuArray = $this->menu_model->get_all($query);
+            $menuArray = $this->Menu_model->get_all($query);
 
             // Check if the users data store contains users (in case the database result returns NULL)
             if ($menuArray) {
@@ -95,9 +95,9 @@ class Menu extends REST_Controller
             // Invalid id, set the response and exit.
             $this->response(null, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         }
-        $this->load->model('menu_model');
+        $this->load->model('Menu_model');
 
-        $menuObject = $this->menu_model->get_by_id($id, $query);
+        $menuObject = $this->Menu_model->get_by_id($id, $query);
 
         if (!empty($menuObject)) {
             $this->set_response($menuObject, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
@@ -109,7 +109,7 @@ class Menu extends REST_Controller
 
     public function menu_post()
     {
-        $this->load->model('menu_model');
+        $this->load->model('Menu_model');
 
         if ($this->post('Id')) {
             $data = [
@@ -119,7 +119,7 @@ class Menu extends REST_Controller
                 'ParentId' => $this->post('ParentId'),
             ];
 
-            if ($this->menu_model->put($this->post('Id'), $data)) {
+            if ($this->Menu_model->put($this->post('Id'), $data)) {
                 $message = [
                     'message' => 'The update request was completed successfully.',
                     'inserted_id' => $this->post('Id'),
@@ -137,7 +137,7 @@ class Menu extends REST_Controller
                 'Url' => $this->post('Url'),
                 'ParentId' => $this->post('ParentId'),
             ];
-            if ($this->menu_model->post($data)) {
+            if ($this->Menu_model->post($data)) {
                 $message = [
                     'message' => 'The insert request was completed successfully.',
                     'inserted_id' => $this->db->insert_id(),
@@ -163,8 +163,8 @@ class Menu extends REST_Controller
             $this->response(null, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         }
 
-        $this->load->model('menu_model');
-        $this->menu_model->delete($id);
+        $this->load->model('Menu_model');
+        $this->Menu_model->delete($id);
 
         $message = [
             'id' => $id,

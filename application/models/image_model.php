@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class image_model extends CI_Model
+class Image_model extends CI_Model
 {
     public function get_all($query = null)
     {
@@ -21,15 +21,15 @@ class image_model extends CI_Model
 
             if ($query['where']) {
                 $this->db->where($query['where']);
-			}
-			
-			if ($query['join']) {
+            }
+
+            if ($query['join']) {
                 $this->db->join($query['join']);
             }
         }
 
         $query = $this->db->get('image');
-        echo $this->db->last_query() ;
+        echo $this->db->last_query();
         // return $query->result_array();
     }
 
@@ -53,9 +53,9 @@ class image_model extends CI_Model
 
             if ($query['where']) {
                 $this->db->where($query['where']);
-			}
-			
-			if ($query['join']) {
+            }
+
+            if ($query['join']) {
                 $this->db->join($query['join']);
             }
         }

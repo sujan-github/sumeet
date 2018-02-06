@@ -35,7 +35,7 @@ class Page extends REST_Controller
     public function page_get()
     {
         // Users from a data store e.g. database
-        $this->load->model('page_model');
+        $this->load->model('Page_model');
 
         $id = $this->get('id');
         // If the id parameter doesn't exist return all the users
@@ -73,7 +73,7 @@ class Page extends REST_Controller
         }
 
         if ($id === null) {
-            $pageArray = $this->page_model->get_all($query);
+            $pageArray = $this->Page_model->get_all($query);
 
             // Check if the users data store contains users (in case the database result returns NULL)
             if ($pageArray) {
@@ -95,9 +95,9 @@ class Page extends REST_Controller
             // Invalid id, set the response and exit.
             $this->response(null, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         }
-        $this->load->model('page_model');
+        $this->load->model('Page_model');
 
-        $pageObject = $this->page_model->get_by_id($id, $query);
+        $pageObject = $this->Page_model->get_by_id($id, $query);
 
         if (!empty($pageObject)) {
             $this->set_response($pageObject, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
@@ -109,7 +109,7 @@ class Page extends REST_Controller
 
     public function page_post()
     {
-        $this->load->model('page_model');
+        $this->load->model('Page_model');
 
         if ($this->post('Id')) {
             $data = [
@@ -120,7 +120,7 @@ class Page extends REST_Controller
                 'Menu' => $this->post('Menu') ? $this->post('Menu') : false,
             ];
 
-            if ($this->page_model->put($this->post('Id'), $data)) {
+            if ($this->Page_model->put($this->post('Id'), $data)) {
                 $message = [
                     'message' => 'The update request was completed successfully.',
                     'inserted_id' => $this->post('Id'),
@@ -140,7 +140,7 @@ class Page extends REST_Controller
                 'Menu' => $this->post('Menu') ? $this->post('Menu') : false,
             ];
 
-            if ($this->page_model->post($data)) {
+            if ($this->Page_model->post($data)) {
                 $message = [
                     'message' => 'The insert request was completed successfully.',
                     'inserted_id' => $this->db->insert_id(),
@@ -165,8 +165,8 @@ class Page extends REST_Controller
             $this->response(null, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         }
 
-        $this->load->model('page_model');
-        $this->page_model->delete($id);
+        $this->load->model('Page_model');
+        $this->Page_model->delete($id);
 
         $message = [
             'id' => $id,
