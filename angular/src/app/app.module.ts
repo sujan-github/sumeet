@@ -12,12 +12,14 @@ import { LoginComponent } from '../pages/components/Admin/Login/login.component'
 
 import { HomeComponent } from '../pages/components/Home/home.component';
 import { AboutPracticeComponent } from '../pages/components/PageComponent/aboutOurPractice.component';
+import { OurTeamComponent } from '../pages/components/PageComponent/ourTeam.component';
 import { BlogComponent } from '../pages/components/BlogComponent/blog.component';
 import { ArticleEditorComponent } from '../pages/components/ArticleEditor/articleEditor.component';
 import { ExampleArticleComponent } from '../pages/components/ExampleArticleComponent/example-article.component';
 
 const appRoutes: Routes = [
   { path: 'our-practice', component: AboutPracticeComponent },
+  { path: 'our-team', component: OurTeamComponent },
   { path: 'example-article', component: ExampleArticleComponent },
   {
     path: 'home',
@@ -62,7 +64,8 @@ const appRoutes: Routes = [
     ExampleArticleComponent,
     HomeComponent,
     AboutPracticeComponent,
-    BlogComponent
+    BlogComponent,
+    OurTeamComponent
   ],
   imports: [
     BrowserModule,
