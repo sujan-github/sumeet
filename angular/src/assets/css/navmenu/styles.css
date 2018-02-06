@@ -290,3 +290,35 @@ nav.small .minilogo {
         display:none
     }
 }
+.main-nav ul.nav > li > ul {
+    background-color: #fff;
+    color: #555555;
+}
+.main-nav ul.nav > li > ul {
+    min-height: 0 !important;
+}
+.main-nav ul.nav > li > ul li {
+    vertical-align: top;
+    height: auto;
+    width: auto; min-height: 0;
+    max-height: none;
+    overflow: visible;
+    line-height: 1.3em;
+}
+
+.main-nav ul.nav > li > ul li a {
+    font-size: 17px;
+    color: #333 !important;
+    cursor: pointer;
+    display:block;
+    position: relative;
+    padding: 11px 20px;
+}
+
+.main-nav ul li.open a { 
+    color: #333;
+}
+.main-nav ul li:hover {
+    color: #333;
+    background-color: white;
+}

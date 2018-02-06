@@ -18,12 +18,6 @@ export class AdminComponent implements OnInit {
     public authenticationService: AuthenticationService
   ) {
     this.userInfo = <IUser>(JSON.parse(localStorage.getItem('UserInfo')));
-
-    // if (this.userInfo == null) {
-    //   // this.router.navigateByUrl('admin/article-editor');
-    //   // window.location.href = window.location.hash;
-    
-    // }
     if (this.userInfo == null) {
       this.router.navigateByUrl('admin/login');
     }
@@ -34,7 +28,6 @@ export class AdminComponent implements OnInit {
     window.addEventListener('hashchange', function () {
       if (that.userInfo != null && window.location.hash === '#/login') {
         window.location.href = window.location.hash;
-        // that.router.navigateByUrl('admin/article-editor');
       } else {
         window.location.reload();
       }

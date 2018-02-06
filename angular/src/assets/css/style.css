@@ -1416,3 +1416,40 @@ Author URI: http://bootstrapthemes.co
         display:block;
         font-size: 50px;
     }
+
+    img.alignleft {
+        float: left;
+        display: block;
+        margin:10px 20px 10px 0;
+    }
+        img.alignright {
+            float: right;
+            margin: 10px 0 10px 20px;
+            display: inline;
+            height: auto;
+        }
+        .header {
+            background: #eee5e4;
+            padding: 15px 0 15px;
+            text-align: center;
+    }
+    h1.entry-title {
+        font-size: 40px;
+        color: #0f616e;
+        margin: 0;
+        font-weight: 600;
+        font-family: 'PT Sans Narrow', sans-serif !important;
+        text-transform: uppercase;
+    }
+    .entry {
+        padding: 60px 0;
+        min-height: 120px;
+    }
+    .entry p {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 17px;
+        color:#1c1c1c;
+    }
+    .page {
+        background-image: url('../images/testimonial-bg.png');
+    }
