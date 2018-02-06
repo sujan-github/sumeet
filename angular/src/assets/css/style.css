@@ -1551,3 +1551,40 @@ img.aligncenter {
     margin: 10px auto;
     text-align: center;
 }
+
+div.categories {
+    margin: 0 0 15px;
+}
+div.categories header, div.archives header {
+    background: #fb7d4a none repeat scroll 0 0;
+    padding: 12px 20px;
+}
+.categories h3, .archives h3 {
+    color: #fff;
+    margin: 0;
+}
+.bsb_content {
+    background: #fff none repeat scroll 0 0;
+    padding: 20px 20px 12px;
+}
+.categories ul, .archives ul {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+}
+
+.categories ul li, .archives ul li {
+    background: rgba(0, 0, 0, 0) url(../images/blog-bullet.png) no-repeat scroll 0 4px/16px auto;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    margin: 0 0 12px;
+    padding: 0 0 0 27px;
+}
+
+.categories ul li a, .archives ul li a {
+    color: #000;
+    word-wrap: break-word;
+    text-decoration: underline;
+    font-weight: 600;
+}

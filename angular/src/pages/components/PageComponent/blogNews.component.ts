@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogService } from '../../../services/base.service';
-import { IBlog, IBlogCategoryViewModel } from '../../../models/models';
+import { IBlog, ICategoryViewModel } from '../../../models/models';
 
 @Component({
   moduleId: module.id,
@@ -10,17 +10,48 @@ import { IBlog, IBlogCategoryViewModel } from '../../../models/models';
 })
 
 export class BlogNewsComponent implements OnInit {
-  title = 'Blog News';
-  public blogs: IBlogCategoryViewModel[] = [];
+  title = 'All Posts';
+  public errorMessage: String = '';
+  public blogs: IBlog[] = [];
+  public isSelected: Boolean = false;
+  public categories: ICategoryViewModel[] = [];
+  public expandedView: Boolean = false;
+  public selectedCategory: String = '';
+  public filtered: Boolean = false;
+  public filteredBlogs: IBlog[] = [];
   constructor(public blogService: BlogService) { }
   ngOnInit() {
-    this._getAllBlogs();
+    this.getAllBlogs();
   }
-  private _getAllBlogs() {
-    this.blogService.getAll().subscribe((data: IBlog[]) => {
-      const tempBlogs = data;
-      data.forEach((blog: IBlog) => {
-        const categoryCount = data.filter(x => x.Category === blog.Category);
-        const category: IBlog[] = tempBlogs.filter(x => x.category === blog.Category);
 
-      }); }); } }
+  public getAllBlogs() {
+    this.blogService.getAll().subscribe((data: IBlog[]) => {
+      this.blogs = data;
+      this.filteredBlogs = data;
+      data.forEach((blog) => {
+        const categoryCount = data.filter(x => x.Category === blog.Category);
+        const category = this.categories.filter(x => x.Title === blog.Category);
+        if (category.length < 1) {
+          this.categories.push({
+            Title: blog.Category,
+            Count: categoryCount.length,
+          });
+        }
+      });
+    }, (err) => {
+      this.errorMessage = `There was some problem when trying to retrieve data.`;
+    });
+  }
+
+  public categorySelected(category) {
+    this.selectedCategory = category;
+    this.filtered = true;
+    this.filteredBlogs = this.blogs.filter(x => x.Category === category);
+  }
+
+  public removeFilter() {
+    this.selectedCategory = '';
+    this.filtered = false;
+    this.getAllBlogs();
+  }
+}
