@@ -13,6 +13,7 @@ import { LoginComponent } from '../pages/components/Admin/Login/login.component'
 import { HomeComponent } from '../pages/components/PageComponent/home.component';
 import { AboutComponent } from '../pages/components/Home/about.component';
 import { AboutPracticeComponent } from '../pages/components/PageComponent/aboutOurPractice.component';
+import { BlogNewsComponent } from '../pages/components/PageComponent/blognews.component';
 import { OurTeamComponent } from '../pages/components/PageComponent/ourTeam.component';
 import { BlogComponent } from '../pages/components/BlogComponent/blog.component';
 import { ArticleEditorComponent } from '../pages/components/ArticleEditor/articleEditor.component';
@@ -22,6 +23,10 @@ const appRoutes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+  },
+  {
+    path: 'blognews',
+    component: BlogNewsComponent,
   },
   {
     path: 'about',
@@ -68,7 +73,8 @@ const appRoutes: Routes = [
     HomeComponent,
     AboutPracticeComponent,
     OurTeamComponent,
-    BlogComponent
+    BlogComponent,
+    BlogNewsComponent
   ],
   imports: [
     BrowserModule,
