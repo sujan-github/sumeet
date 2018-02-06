@@ -6,7 +6,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Angular</title>
+  <title>Venus IVF Center</title>
   <base href="/sumeet/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
