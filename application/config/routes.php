@@ -61,26 +61,28 @@ $route['translate_uri_dashes'] = true;
 $route['api/example/users/(:num)'] = 'api/example/users/id/$1'; // Example 4
 $route['api/example/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/example/users/id/$1/format/$3$4'; // Example 8
 
+$route['api/menu'] = 'api/menu/menu'; // Example 4
 $route['api/menu/(:num)'] = 'api/menu/menu/id/$1'; // Example 4
 $route['api/menu/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/menu/menu/id/$1/format/$3$4'; // Example 8
 
-$route['api/article/(:num)'] = 'api/article/article/id/$1'; // Example 4
-$route['api/article/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/article/article/id/$1/format/$3$4'; // Example 8
+$route['api/blog'] = 'api/blog/blog'; // Example 4
+$route['api/blog/(:num)'] = 'api/blog/blog/id/$1'; // Example 4
+$route['api/blog/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/blog/blog/id/$1/format/$3$4'; // Example 8
 
-$route['api/articleImage/(:num)'] = 'api/articleImage/articleImage/id/$1'; // Example 4
-$route['api/articleImage/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/articleImage/articleImage/id/$1/format/$3$4'; // Example 8
+$route['api/image'] = 'api/image/image'; // Example 4
+$route['api/image/(:num)'] = 'api/image/image/id/$1'; // Example 4
+$route['api/image/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/image/image/id/$1/format/$3$4'; // Example 8
 
-$route['api/blogCategory/(:num)'] = 'api/blogCategory/blogCategory/id/$1'; // Example 4
-$route['api/blogCategory/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/blogCategory/blogCategory/id/$1/format/$3$4'; // Example 8
-
-$route['api/image/(:num)'] = 'api/blogCategory/blogCategory/id/$1'; // Example 4
-$route['api/image/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/blogCategory/blogCategory/id/$1/format/$3$4'; // Example 8
-
+$route['api/page'] = 'api/page/page'; // Example 4
 $route['api/page/(:num)'] = 'api/page/page/id/$1'; // Example 4
 $route['api/page/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/page/page/id/$1/format/$3$4'; // Example 8
 
+$route['api/template'] = 'api/template/template'; // Example 4
 $route['api/template/(:num)'] = 'api/template/template/id/$1'; // Example 4
 $route['api/template/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/template/template/id/$1/format/$3$4'; // Example 8
 
+$route['api/user'] = 'api/user/user'; // Example 4
 $route['api/user/(:num)'] = 'api/user/user/id/$1'; // Example 4
 $route['api/user/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/user/user/id/$1/format/$3$4'; // Example 8
+
+$route['api/authentication'] = 'api/authentication/authentication'; // Example 4

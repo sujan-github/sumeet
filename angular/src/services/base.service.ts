@@ -90,36 +90,36 @@ export class Service<T> implements IService {
 
 @Injectable()
 export class BlogService extends Service<IBlog> {
-  public baseUrl = domain + 'api/blog/blog';
+  public baseUrl = domain + 'api/blog';
 }
 
 @Injectable()
 export class PageService extends Service<IPage> {
-  public baseUrl = domain + 'api/page/page';
+  public baseUrl = domain + 'api/page';
 }
 
 @Injectable()
 export class MenuService extends Service<IMenu> {
-  public baseUrl = domain + 'api/menu/menu';
+  public baseUrl = domain + 'api/menu';
 }
 
 @Injectable()
 export class ImageService extends Service<IImage> {
-  public baseUrl = domain + 'api/image/image';
+  public baseUrl = domain + 'api/image';
 }
 
 @Injectable()
 export class TemplateService extends Service<ITemplate> {
-  public baseUrl = domain + 'api/template/template';
+  public baseUrl = domain + 'api/template';
 }
 @Injectable()
 export class UserService extends Service<IUser> {
-  public baseUrl = domain + 'api/user/user';
+  public baseUrl = domain + 'api/user';
 }
 
 @Injectable()
 export class AuthenticationService extends Service<IAuthentication> {
-  public baseUrl = domain + 'api/authentication/authentication';
+  public baseUrl = domain + 'api/authentication';
 
   login(username: string, password: string): Observable<IUser> {
     const headers = new Headers();
