@@ -17,9 +17,20 @@ import { ArticleEditorComponent } from '../pages/components/ArticleEditor/articl
 import { ExampleArticleComponent } from '../pages/components/ExampleArticleComponent/example-article.component';
 
 const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent },
   { path: 'our-practice', component: AboutPracticeComponent },
   { path: 'example-article', component: ExampleArticleComponent },
+  {
+    path: 'home',
+    component: HomeComponent,
+    children: [
+      { path: 'our-practice', component: AboutPracticeComponent },
+      {
+        path: '',
+        redirectTo: '/home/our-practice',
+        pathMatch: 'full'
+      },
+    ]
+  },
   {
     path: 'admin',
     component: AdminComponent,
