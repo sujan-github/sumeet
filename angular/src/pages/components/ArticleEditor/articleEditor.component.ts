@@ -131,6 +131,7 @@ export class ArticleEditorComponent implements OnInit {
     }
 
     public togglePreview() {
+        debugger;
         this.showPreview = !this.showPreview;
         this.currentPreview = this.templateFormOpen ? this.currentTemplate.InnerHtml : this.currentPage.Content;
         if (this.sideBarExpanded) {
@@ -140,6 +141,9 @@ export class ArticleEditorComponent implements OnInit {
 
     public showTableView(show) {
         this.tableView = show;
+        this.currentPage = {} as IPage;
+        this.currentTemplate = {} as ITemplate;
+        this.currentMenu = {} as IMenu;
         this.onChangingProgress = false;
         this.setTitle();
         this.templateMenuSelected(false);
@@ -198,6 +202,5 @@ export class ArticleEditorComponent implements OnInit {
         }, (err) => {
             this.errorMessage = `There was some problem when trying to delete data`;
         });
-
     }
 }

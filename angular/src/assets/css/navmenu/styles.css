@@ -61,8 +61,8 @@ nav h1 {
 }
 
 .nav-top {
-    height:90px;
-    padding-top:25px;
+    height:70px;
+    padding-top:35px;
     margin-top:0;
     -webkit-transition:all .3s;
     -moz-transition:all .3s;
@@ -174,8 +174,8 @@ nav h1 {
 
 .main-nav ul.nav > li > a {
     border-top:2px solid #000;
-    height:80px;
-    line-height:80px;
+    height:60px;
+    line-height:60px;
     font-size:16px;
     background-color:transparent;
     padding:0;
