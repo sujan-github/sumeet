@@ -41,7 +41,7 @@
                 </div>
             </h2>
         </div>
-        <div *ngIf="!templatesMenuActive">
+        <div [hidden]="templatesMenuActive">
             <section *ngIf="!onChangingProgress">
                 <div class="row">
                     <div class="col-md-12">
@@ -80,7 +80,7 @@
                     </div>
                 </div>
             </section>
-            <section *ngIf="onChangingProgress">
+            <section [hidden]="!onChangingProgress">
                 <form>
                     <div class="form-group">
                         <label for="Name" class="control-label">Menu Title
@@ -146,14 +146,14 @@
         </ul>
     </div>
 
-    <div id="templates" *ngIf="templatesMenuActive" [ngClass]="{'col-md-12':!sideBarExpanded,'col-md-9': sideBarExpanded}">
+    <div id="templates" [hidden]="!templatesMenuActive" [ngClass]="{'col-md-12':!sideBarExpanded,'col-md-9': sideBarExpanded}">
         <ul class="pageList" *ngIf="!templateFormOpen">
             <li *ngFor="let template of fetchedTemplates" class="col-sm-4" (click)="getTemplateInfo(template.Id)">
                 <h3>{{template.Name}}</h3>
                 <iframe class="img-responsive" [srcdoc]="template.InnerHtml"></iframe>
             </li>
         </ul>
-        <form *ngIf="templateFormOpen">
+        <form [hidden]="!templateFormOpen">
             <div class="form-group">
                 <label for="Name" class="control-label">Name
                     <a *ngIf="currentTemplate.Id>0" href="javascript:void(0)" (click)="deleteTemplate()" class="deleteLink pull-right">
