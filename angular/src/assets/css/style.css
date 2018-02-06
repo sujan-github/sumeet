@@ -1468,5 +1468,43 @@ Author URI: http://bootstrapthemes.co
     b, strong {
         font-weight: 700;
     }
-
+.main-content {
+    margin-top:140px;
+}
     
+.section1 {
+    background-image: url(images/welcome-bg.jpg);
+    background-repeat: repeat;
+    padding: 80px 0 60px;
+}
+.section1 h1 {
+    text-align: left;
+    margin-bottom: 21px;
+    font-weight: 400;
+    font-size: 40px;
+    text-transform: uppercase;
+    color: #1aa3b5;
+}
+.section1 h1 span {
+    color: #393939;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1em;
+    margin: 0 0 20px;
+    text-align: center;
+}
+.sec1 p {
+    margin-bottom: 25px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 30px;
+    color: #1c1c1c;
+    font-family: 'Open Sans', sans-serif;
+}
+.col-sm-6.hright {
+    padding-left: 21px;
+    padding-right: 0px;
+}
+.wel-sec {
+    box-shadow: 0px 0px 26px #9a9a9a;
+}

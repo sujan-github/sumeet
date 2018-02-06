@@ -10,7 +10,8 @@ import { AppComponent } from './app.component';
 import { AdminComponent } from '../pages/components/Admin/admin.component';
 import { LoginComponent } from '../pages/components/Admin/Login/login.component';
 
-import { HomeComponent } from '../pages/components/Home/home.component';
+import { HomeComponent } from '../pages/components/PageComponent/home.component';
+import { AboutComponent } from '../pages/components/Home/about.component';
 import { AboutPracticeComponent } from '../pages/components/PageComponent/aboutOurPractice.component';
 import { OurTeamComponent } from '../pages/components/PageComponent/ourTeam.component';
 import { BlogComponent } from '../pages/components/BlogComponent/blog.component';
@@ -21,12 +22,16 @@ const appRoutes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
     children: [
       { path: 'our-practice', component: AboutPracticeComponent },
       { path: 'our-team', component: OurTeamComponent },
       {
         path: '',
-        redirectTo: '/home/our-practice',
+        redirectTo: '/about/our-practice',
         pathMatch: 'full'
       },
     ]
@@ -47,10 +52,9 @@ const appRoutes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/home/our-practice',
+    redirectTo: '/home',
     pathMatch: 'full'
   }
-  // { path: '**', component: HomeComponent }
 ];
 
 @NgModule({
@@ -60,6 +64,7 @@ const appRoutes: Routes = [
     LoginComponent,
     ArticleEditorComponent,
     ExampleArticleComponent,
+    AboutComponent,
     HomeComponent,
     AboutPracticeComponent,
     OurTeamComponent,
