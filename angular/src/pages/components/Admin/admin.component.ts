@@ -26,10 +26,12 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     const that = this;
     window.addEventListener('hashchange', function () {
-      if (that.userInfo != null && window.location.hash === '#/login') {
+      if (that.userInfo != null) {
         window.location.href = window.location.hash;
       } else {
-        window.location.reload();
+        if(window.location.hash !== '#/login'){
+          window.location.reload();
+        }
       }
     });
   }
