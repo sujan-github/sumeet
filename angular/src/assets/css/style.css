@@ -1453,3 +1453,18 @@ Author URI: http://bootstrapthemes.co
     .page {
         background-image: url('../images/testimonial-bg.png');
     }
+
+    .drbios {
+        background: #eeeeee;
+        padding: 1px 15px 5px 15px;
+        border: 1px solid #e0e0e0;
+        margin-bottom: 20px
+    }
+
+    .tealcolor {
+        color: #1aa3b5 !important;
+    }
+
+    b, strong {
+        font-weight: 700;
+    }
