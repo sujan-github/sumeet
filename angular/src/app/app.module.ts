@@ -18,14 +18,12 @@ import { ArticleEditorComponent } from '../pages/components/ArticleEditor/articl
 import { ExampleArticleComponent } from '../pages/components/ExampleArticleComponent/example-article.component';
 
 const appRoutes: Routes = [
-  { path: 'our-practice', component: AboutPracticeComponent },
-  { path: 'our-team', component: OurTeamComponent },
-  { path: 'example-article', component: ExampleArticleComponent },
   {
     path: 'home',
     component: HomeComponent,
     children: [
       { path: 'our-practice', component: AboutPracticeComponent },
+      { path: 'our-team', component: OurTeamComponent },
       {
         path: '',
         redirectTo: '/home/our-practice',
@@ -49,7 +47,7 @@ const appRoutes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/admin/login',
+    redirectTo: '/home/our-practice',
     pathMatch: 'full'
   }
   // { path: '**', component: HomeComponent }
@@ -64,8 +62,8 @@ const appRoutes: Routes = [
     ExampleArticleComponent,
     HomeComponent,
     AboutPracticeComponent,
-    BlogComponent,
-    OurTeamComponent
+    OurTeamComponent,
+    BlogComponent
   ],
   imports: [
     BrowserModule,

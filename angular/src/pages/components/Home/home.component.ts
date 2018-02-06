@@ -19,5 +19,10 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.addEventListener('hashchange', function () {
+      if (window.location.hash === '#/home') {
+        window.location.href = '#/home/our-practice';
+      }
+    });
   }
 }
