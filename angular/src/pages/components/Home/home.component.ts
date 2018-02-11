@@ -1,27 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { BlogService } from '../../../services/base.service';
 
 @Component({
   moduleId: module.id,
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  providers: [BlogService]
+  templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
   title = 'Article Editor';
   public editorValue = '';
+  public display = true;
 
-  constructor(
-    public articleService: BlogService
-  ) {
-    console.log(window.location.host);
-    console.log(window.location.protocol);
+  constructor() {
+    const that = this;
+    if (window.location.hash !== '#/home') {
+      that.display = false;
+    } else {
+      that.display = true;
+    }
   }
 
   ngOnInit() {
+    const that = this;
     window.addEventListener('hashchange', function () {
-      if (window.location.hash === '#/home') {
-        window.location.href = '#/about/our-practice';
+      if (window.location.hash !== '#/home') {
+        that.display = false;
+      } else {
+        that.display = true;
       }
     });
   }

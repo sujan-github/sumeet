@@ -11,15 +11,8 @@ export class AboutComponent implements OnInit {
 
   constructor(
   ) {
-    console.log(window.location.host);
-    console.log(window.location.protocol);
   }
 
   ngOnInit() {
-    window.addEventListener('hashchange', function () {
-      if (window.location.hash === '#/about') {
-        window.location.href = '#/about/our-practice';
-      }
-    });
   }
 }
