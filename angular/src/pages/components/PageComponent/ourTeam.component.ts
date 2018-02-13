@@ -9,6 +9,8 @@ import { Links } from '../../../assets/links';
 export class OurTeamComponent implements OnInit {
     title = 'Our Medical Team';
     swastiSharmaImage = Links.ImageLinks.SwastiSharma;
+    VishnukanthDeeneImage = Links.ImageLinks.VishnukanthDeene;
+    anupamaGurungImage = Links.ImageLinks.AnupamaGurung;
     public editorValue = '';
 
     constructor(
