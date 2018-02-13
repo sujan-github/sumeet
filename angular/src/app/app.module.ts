@@ -11,7 +11,6 @@ import { AdminComponent } from '../pages/components/Admin/admin.component';
 import { LoginComponent } from '../pages/components/Admin/Login/login.component';
 
 import { HomeComponent } from '../pages/components/Home/home.component';
-import { AboutComponent } from '../pages/components/Home/about.component';
 import { AboutUsComponent } from '../pages/components/PageComponent/about-us.component';
 import { AboutPracticeComponent } from '../pages/components/PageComponent/aboutOurPractice.component';
 import { BlogNewsComponent } from '../pages/components/PageComponent/blognews.component';
@@ -22,29 +21,18 @@ import { ExampleArticleComponent } from '../pages/components/ExampleArticleCompo
 
 const appRoutes: Routes = [
   {
-    path: 'home',
+    path: 'venus',
     component: HomeComponent,
     children: [
-      {
-        path: 'about-us',
-        component: AboutComponent,
-        children: [
-          { path: 'our-practice', component: AboutPracticeComponent },
-          { path: 'our-team', component: OurTeamComponent },
-          {
-            path: '',
-            redirectTo: '/home/about-us/our-practice',
-            pathMatch: 'full'
-          }
-        ]
-      },
+      { path: 'our-practice', component: AboutPracticeComponent },
+      { path: 'our-team', component: OurTeamComponent },
       {
         path: 'blog-and-news',
         component: BlogNewsComponent,
       },
       {
         path: '',
-        redirectTo: '/home',
+        redirectTo: '/venus/our-practice',
         pathMatch: 'full'
       },
     ]
@@ -65,7 +53,7 @@ const appRoutes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/venus',
     pathMatch: 'full'
   },
   {
@@ -81,7 +69,6 @@ const appRoutes: Routes = [
     LoginComponent,
     ArticleEditorComponent,
     ExampleArticleComponent,
-    AboutComponent,
     AboutUsComponent,
     HomeComponent,
     AboutPracticeComponent,

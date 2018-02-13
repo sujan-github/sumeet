@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
 
   constructor() {
     const that = this;
-    if (window.location.hash !== '#/home') {
+    if (window.location.hash !== '#/venus') {
       that.display = false;
     } else {
       that.display = true;
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     const that = this;
     window.addEventListener('hashchange', function () {
-      if (window.location.hash !== '#/home') {
+      if (window.location.hash !== '#/venus') {
         that.display = false;
       } else {
         that.display = true;
