@@ -6,6 +6,7 @@ import { IBlog, ICategoryViewModel } from '../../../models/models';
   moduleId: module.id,
   selector: 'app-blog-news',
   templateUrl: './blognews.component.html',
+  styleUrls: ['./blognews.component.css'],
   providers: [BlogService]
 })
 

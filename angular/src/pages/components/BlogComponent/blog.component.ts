@@ -5,6 +5,7 @@ import { BlogService } from '../../../services/base.service';
     moduleId: module.id,
     selector: 'app-blog',
     templateUrl: './blog.component.html',
+    styles: ['p {color: darkslategray;}'],
     providers: [BlogService],
 })
 

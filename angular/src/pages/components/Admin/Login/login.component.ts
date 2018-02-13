@@ -7,6 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   moduleId: module.id,
   selector: 'app-admin',
   templateUrl: './login.component.html',
+  styles: ['p {color: darkslategray;}'],
   providers: [AuthenticationService],
 })
 export class LoginComponent {

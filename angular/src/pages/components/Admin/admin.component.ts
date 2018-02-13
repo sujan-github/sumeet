@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   moduleId: module.id,
   selector: 'app-admin',
   templateUrl: './admin.component.html',
+  styles: ['p {color: darkslategray;}'],
   providers: [AuthenticationService]
 })
 
