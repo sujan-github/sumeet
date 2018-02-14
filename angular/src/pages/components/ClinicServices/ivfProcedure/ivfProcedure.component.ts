@@ -4,7 +4,10 @@ import { Component, OnInit } from '@angular/core';
     moduleId: module.id,
     selector: 'app-ivf-procedure',
     templateUrl: './ivfProcedure.component.html',
-    styles: ['section p {color: darkslategray;}'],
+    styles: [
+        'section p {color: darkslategray;}',
+        '.article-header {text-align: center;}',
+    ],
 })
 export class IvfProcedureComponent implements OnInit {
     constructor() { }
