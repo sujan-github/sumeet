@@ -74,11 +74,7 @@ jQuery(document).ready(function ($) {
             "<i class='lnr lnr-chevron-right'></i>"
         ],
         autoplayHoverPause: true
-
     });
-
-
-
 
 // main-menu-scroll
 

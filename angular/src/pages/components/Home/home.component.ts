@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Links } from '../../../assets/links';
-
+import { footer } from './home.constants';
 @Component({
   moduleId: module.id,
   selector: 'app-home',
@@ -19,7 +19,8 @@ export class HomeComponent implements OnInit {
   logoLink = Links.ImageLinks.Logo;
   public editorValue = '';
   public display = true;
-
+  public footer;
+  public eachFooterSize: string;
   constructor() {
     const that = this;
     if (window.location.hash !== '#/venus') {
@@ -27,6 +28,8 @@ export class HomeComponent implements OnInit {
     } else {
       that.display = true;
     }
+    this.footer = footer;
+    this.eachFooterSize = `col-sm-${12 / footer.contentCount}`;
   }
 
   ngOnInit() {
