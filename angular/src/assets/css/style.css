@@ -587,7 +587,7 @@ Author URI: http://bootstrapthemes.co
 
    /*home section*/
    .home{
-       background: url('angular/dist/assets/images/carousel1.JPG') no-repeat 100% 100%;
+       background: url('../images/carousel1.JPG') no-repeat 100% 100%;
        background-size: cover;
     
    }
