@@ -1,6 +1,10 @@
 <style>
-  .nav-justified li a {
+  .nav li a {
     border: 0px;
+  }
+  li.dropdown {
+    padding-left:50px;
+    padding-right:50px;
   }
 </style>
 <nav>
@@ -48,7 +52,7 @@
           <img src={{logoLink}} alt="Logo" />
         </a>
       </div>
-      <ul class="nav navbar-nav">
+      <ul class="nav" style="display:flex;justify-content: center;">
         <li class="dropdown">
           <a href="#/home" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About
             <span class="caret"></span>
@@ -101,7 +105,7 @@
             </li>
           </ul>
         </li>
-        <li>
+        <li class="dropdown">
           <a href="#/venus/blog-and-news">BLOG & News</a>
         </li>
       </ul>
