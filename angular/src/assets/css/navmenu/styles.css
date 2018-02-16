@@ -368,3 +368,11 @@ nav.small .minilogo {
         margin-right: 25px;
     }
 }
+
+@media (min-width: 768px) {
+    .nav-ivf {
+        display: flex;
+        justify-content: center;
+        float: none;
+    }
+}
