@@ -1,4 +1,4 @@
-import { IMenu } from "../../../models/models";
+import { IMenu } from '../../../models/models';
 
 export const footer: any = {
   contentCount: 2,
@@ -30,97 +30,104 @@ export const footer: any = {
 
 export const sampleMenus: IMenu[] = [
   {
-    Id : 1,
-    Name : 'About',
-    Url : '#/about',
+    Id: 1,
+    Name: 'About',
+    Url: '#/',
     ParentId: 0,
     children: [
       {
         Id: 4,
         Name: 'About our practices',
-        Url: '#/about/practices',
+        Url: '#/venus/our-practice',
         ParentId: 1,
       },
       {
         Id: 5,
         Name: 'Our Medical Team',
-        Url: '#/about/team',
+        Url: '#/venus/our-team',
         ParentId: 1,
       }
     ],
   },
   {
-    Id : 2,
-    Name : 'Services',
-    Url : '#/about',
+    Id: 2,
+    Name: 'Services',
+    Url: '#/',
     ParentId: 0,
     children: [
       {
         Id: 6,
         Name: 'Initial Diagnosis',
-        Url: '#/about/practices',
+        Url: '#/venus/services/initial-diagnosis',
         ParentId: 2,
+        children: [
+          {
+            Id: 8,
+            Name: 'Initial Diagnosis',
+            Url: '#/venus/services/initial-diagnosis',
+            ParentId: 6,
+          }],
       },
       {
         Id: 7,
         Name: 'ART Procedure',
-        Url: '#/about/team',
+        Url: '#/venus/services/art-procedure',
         ParentId: 2,
       },
       {
         Id: 8,
         Name: 'IVF Procedure',
-        Url: '#/about/practices',
+        Url: '#/venus/services/ivf-procedure',
         ParentId: 2,
       },
       {
         Id: 9,
         Name: 'Intra Cyto Sperm Injection',
-        Url: '#/about/team',
+        Url: '#/venus/services/icsi',
         ParentId: 2,
       },
       {
         Id: 10,
         Name: 'IUI Procedure',
-        Url: '#/about/practices',
+        Url: '#/venus/services/iui-procedure',
         ParentId: 2,
       },
       {
         Id: 11,
         Name: 'Blastocyst Culture',
-        Url: '#/about/team',
+        Url: '#/venus/services/blastocyst-culture',
         ParentId: 2,
       },
       {
         Id: 12,
         Name: 'Cryopreservation',
-        Url: '#/about/practices',
+        Url: '#/venus/services/cryopreservation',
         ParentId: 2,
       },
       {
         Id: 13,
         Name: 'Advanced Hysteroscopic Surgery',
-        Url: '#/about/team',
+        Url: '#/venus/services/advanced-hysteroscopic-surgery',
         ParentId: 2,
       },
       {
         Id: 14,
         Name: 'Operative Video Laparoscopy',
-        Url: '#/about/practices',
+        Url: '#/venus/services/operative-video-laparoscopy',
         ParentId: 2,
       },
       {
         Id: 15,
         Name: 'Pre Implantation Genetic Screening',
-        Url: '#/about/team',
+        Url: '#/venus/services/pre-implantation-genetic-screening',
         ParentId: 2,
       },
     ],
   },
   {
-    Id : 3,
-    Name : 'BLOG & News',
-    Url : '#/venus/blog-and-news',
+    Id: 3,
+    Name: 'BLOG & News',
+    Url: '#/venus/blog-and-news',
     ParentId: 0,
   },
 ];

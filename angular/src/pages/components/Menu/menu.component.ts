@@ -17,8 +17,8 @@ export class MenuComponent implements OnInit {
             this.isRoot = false;
         } else {
             if (this.menus.length > 0) {
-                        this.isRoot = this.menus[0].ParentId === 0;
-                    }
+                this.isRoot = this.menus[0].ParentId === 0;
+            }
         }
     }
 
@@ -27,5 +27,11 @@ export class MenuComponent implements OnInit {
             return false;
         }
         return menu.children.length > 0;
+    }
+    go(menu: IMenu) {
+        debugger;
+        if (!this.hasChildren(menu)) {
+            window.location.href = menu.Url;
+        }
     }
 }
