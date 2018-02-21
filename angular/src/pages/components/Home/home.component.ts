@@ -42,4 +42,12 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+
+  toggleMenu() {
+    if (document.getElementsByClassName('.navbar-collapse.in')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }
 }

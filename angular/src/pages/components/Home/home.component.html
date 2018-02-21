@@ -1,11 +1,11 @@
 <style>
-  .nav li a {
+  /* .nav li a {
     border: 0px;
   }
   li.dropdown a {
     padding-left:50px;
     padding-right:50px;
-  }
+  } */
 </style>
 <nav>
   <div class="container">
@@ -30,29 +30,23 @@
             <a href="https://www.facebook.com/venusisishospital.com.np/" target="_blank">
               <i class="fa fa-facebook"></i>
             </a>
-            <!-- <a href="">
-                <i class="fa fa-twitter"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-google-plus"></i>
-              </a> -->
           </li>
         </ul>
       </div>
-      <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
+      <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button" (click)="toggleMenu()">
         <span class="sr-only">Toggle navigation</span>
         <i class="fa fa-bars"></i>
       </button>
     </div>
   </div>
-  <div class="main-nav navbar-collapse collapse" style="overflow:visible;">
-    <div class="container" style="overflow:visible;">
+  <div class="main-nav navbar-collapse collapse">
+    <div class="container">
       <div class="minilogo">
         <a href="#home" class="navbar-brand">
           <img src={{logoLink}} alt="Logo" />
         </a>
       </div>
-      <ul class="nav nav-ivf">
+      <ul class="nav nav-ivf navbar-nav">
         <li class="dropdown">
           <a href="#/home" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About
             <span class="caret"></span>
@@ -121,7 +115,7 @@
 </section>
 <section id="footer_widget" class="footer_widget">
   <a href="#footer" class="service_border_raund text-center">
-    <img src="angular/dist/assets/images/contacticon.png" alt="">
+    <img src="assets/images/contacticon.png" alt="">
   </a>
   <div>
     <div class="container">
