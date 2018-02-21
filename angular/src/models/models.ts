@@ -21,6 +21,7 @@ export interface IMenu {
   Url: string;
   ParentId: number;
   menu?: IMenu;
+  children?: IMenu[];
   page?: IPage[];
 }
 

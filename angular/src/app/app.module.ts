@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AdminComponent } from '../pages/components/Admin/admin.component';
 import { LoginComponent } from '../pages/components/Admin/Login/login.component';
 
+import { MenuComponent } from '../pages/components/Menu/menu.component';
 import { HomeComponent } from '../pages/components/Home/home.component';
 import { AboutUsComponent } from '../pages/components/PageComponent/about-us.component';
 import { AboutPracticeComponent } from '../pages/components/PageComponent/aboutOurPractice.component';
@@ -89,6 +90,7 @@ const appRoutes: Routes = [
     AppComponent,
     AdminComponent,
     LoginComponent,
+    MenuComponent,
     ArticleEditorComponent,
     ExampleArticleComponent,
     AboutUsComponent,
@@ -115,7 +117,6 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes, { useHash: true })
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
