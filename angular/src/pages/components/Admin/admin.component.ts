@@ -30,7 +30,7 @@ export class AdminComponent implements OnInit {
       if (that.userInfo != null) {
         window.location.href = window.location.hash;
       } else {
-        if(window.location.hash !== '#/login'){
+        if (window.location.hash !== '#/login') {
           window.location.reload();
         }
       }

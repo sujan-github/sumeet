@@ -37,20 +37,20 @@
           <img src={{logoLink}} alt="Logo" />
         </a>
       </div>
-      <app-menu [menus]="arrangedMenus"></app-menu>
+      <app-menu [menus]="_allMenus" [isRoot]="true"></app-menu>
     </div>
   </div>
 </nav>
   
   <app-about-us *ngIf="display"></app-about-us>
 
-<section class="main-content">
-  <router-outlet>
-  </router-outlet>
+<section class="main-content" [innerHTML]="pageLayout">
+  <!-- <router-outlet>
+  </router-outlet> -->
 </section>
 <section id="footer_widget" class="footer_widget">
   <a href="#footer" class="service_border_raund text-center">
-    <img src="assets/images/contacticon.png" alt="">
+    <img src="angular/src/assets/images/contacticon.png" alt="">
   </a>
   <div>
     <div class="container">

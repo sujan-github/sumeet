@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 
 import { AdminComponent } from '../pages/components/Admin/admin.component';
 import { LoginComponent } from '../pages/components/Admin/Login/login.component';
-
+import { PageComponent } from '../pages/components/Page/page.component';
 import { MenuComponent } from '../pages/components/Menu/menu.component';
 import { HomeComponent } from '../pages/components/Home/home.component';
 import { AboutUsComponent } from '../pages/components/PageComponent/about-us.component';
@@ -29,44 +29,25 @@ import { BlastocystCultureComponent } from '../pages/components/ClinicServices/b
 import { CryoPreservationComponent } from '../pages/components/ClinicServices/cryoPreservation/cryoPreservation.component';
 import { AhtComponent } from '../pages/components/ClinicServices/aht/aht.component';
 import { OvlComponent } from '../pages/components/ClinicServices/operativeVideoLaparoscopy/ovl.component';
+import { SetupComponent } from '../pages/components/Admin/Setup/setup.component';
+
 import {
   PreImplantationGeneticScreeningComponent
 } from '../pages/components/ClinicServices/preImplantationGeneticScreening/pigs.component';
 
 const appRoutes: Routes = [
   {
-    path: 'venus',
-    component: HomeComponent,
-    children: [
-      { path: 'our-practice', component: AboutPracticeComponent },
-      { path: 'our-team', component: OurTeamComponent },
-      { path: 'blog-and-news', component: BlogNewsComponent },
-      {
-        path: 'services', component: ServicesComponent,
-        children: [
-          { path: 'initial-diagnosis', component: InitialDiagnosisComponent },
-          { path: 'art-procedure', component: ArtProcedureComponent },
-          { path: 'ivf-procedure', component: IvfProcedureComponent },
-          { path: 'icsi', component: IcsiComponent },
-          { path: 'iui-procedure', component: IuiProcedureComponent },
-          { path: 'blastocyst-culture', component: BlastocystCultureComponent },
-          { path: 'cryopreservation', component: CryoPreservationComponent },
-          { path: 'advanced-hysteroscopic-surgery', component: AhtComponent },
-          { path: 'operative-video-laparoscopy', component: OvlComponent },
-          { path: 'pre-implantation-genetic-screening', component: PreImplantationGeneticScreeningComponent },
-          { path: '', redirectTo: '/venus/services/initial-diagnosis', pathMatch: 'full' },
-        ]
-      },
-      { path: '', redirectTo: '/venus/our-practice', pathMatch: 'full' },
-    ]
+    path: 'venus/:page',
+    component: PageComponent,
   },
   {
     path: 'admin',
     component: AdminComponent,
     children: [
       { path: 'login', component: LoginComponent },
-      { path: 'article-editor', component: ArticleEditorComponent },
+      { path: 'page-editor', component: ArticleEditorComponent },
       { path: 'blog', component: BlogComponent },
+      { path: 'setup', component: SetupComponent },
       {
         path: '',
         redirectTo: '/admin/login',
@@ -90,7 +71,9 @@ const appRoutes: Routes = [
     AppComponent,
     AdminComponent,
     LoginComponent,
+    SetupComponent,
     MenuComponent,
+    PageComponent,
     ArticleEditorComponent,
     ExampleArticleComponent,
     AboutUsComponent,

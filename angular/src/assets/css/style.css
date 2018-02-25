@@ -239,7 +239,6 @@ Author URI: http://bootstrapthemes.co
    */
    .sections {
        padding-top:85px;
-       padding-bottom: 105px;
        overflow: hidden;
    }
    .sections.footer {
@@ -1190,6 +1189,7 @@ Author URI: http://bootstrapthemes.co
         transition: 0.5s;
         padding-left: 20px;
         padding-right: 20px;
+        padding-bottom: 50px;
     }
     .left-sidenav {
         box-shadow:1px 1px 5px 5px dimgrey;
@@ -1285,6 +1285,7 @@ Author URI: http://bootstrapthemes.co
         list-style-type: none;
     }
 
+
     ul.post-grid li, ul.pageList li {
         padding: 20px;
         cursor: pointer;
@@ -1293,6 +1294,9 @@ Author URI: http://bootstrapthemes.co
         border-bottom: 1px solid rgb(85,85,150);
     }
 
+    ul.post-grid li > p:first-of-type {
+        min-height: 84px;
+    }
 
     ul.post-grid li:hover,
     ul.post-grid li:hover h3,
@@ -1493,7 +1497,8 @@ Author URI: http://bootstrapthemes.co
         font-weight: 700;
     }
 .main-content {
-    margin-top:140px;
+    margin-top:150px;
+    margin-bottom: 80px;
 }
 @media (max-width: 767px) {
     .main-content {

@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import {
-  IBlog, IPage, IMenu, ITemplate, IUser, IImage, IAuthentication
+  IBlog, IPage, IMenu, ITemplate, IUser, IImage, IAuthentication, ISetup
 } from '../models/models';
 
 export interface IService {
@@ -115,6 +115,11 @@ export class TemplateService extends Service<ITemplate> {
 @Injectable()
 export class UserService extends Service<IUser> {
   public baseUrl = domain + 'api/user';
+}
+
+@Injectable()
+export class SetupService extends Service<ISetup> {
+  public baseUrl = domain + 'api/setup';
 }
 
 @Injectable()

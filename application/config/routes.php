@@ -85,4 +85,8 @@ $route['api/user'] = 'api/user/user'; // Example 4
 $route['api/user/(:num)'] = 'api/user/user/id/$1'; // Example 4
 $route['api/user/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/user/user/id/$1/format/$3$4'; // Example 8
 
+$route['api/setup'] = 'api/setup/setup'; // Example 4
+$route['api/setup/(:num)'] = 'api/setup/setup/id/$1'; // Example 4
+$route['api/setup/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/setup/setup/id/$1/format/$3$4'; // Example 8
+
 $route['api/authentication'] = 'api/authentication/authentication'; // Example 4

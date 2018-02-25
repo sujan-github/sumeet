@@ -1,0 +1,96 @@
+<nav>
+    <div class="container">
+        <div class="nav-top clearfix">
+            <div class="logo" style="margin-top: -5px;">
+                <a href="">
+                    <img src={{logoLink}} style="height: 80px;padding-bottom:20px;margin-top:-15px;margin-bottom:-5px;" alt="Logo" />
+                </a>
+            </div>
+
+            <div class="head_top_social pull-right">
+                <ul class="list-inline">
+                    <li>
+                        <a href="" title="Phone">
+                            <i class="fa fa-phone"></i> 01-4490333</a>
+                    </li>
+                    <li>
+                        <a href="" title="Whatsapp">
+                            <i class="fa fa-mobile-phone"></i> +977 980-838-3703 , +977 980-408-5955 </a>
+                    </li>
+                    <li class="top_socail">
+                        <a href="https://www.facebook.com/venusisishospital.com.np/" target="_blank">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button" (click)="toggleMenu()">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    <div class="main-nav navbar-collapse collapse">
+        <div class="container">
+            <div class="minilogo">
+                <a href="#home" class="navbar-brand">
+                    <img src={{logoLink}} alt="Logo" />
+                </a>
+            </div>
+            <app-menu [menus]="_allMenus" [isRoot]="true"></app-menu>
+        </div>
+    </div>
+</nav>
+
+<app-about-us *ngIf="display"></app-about-us>
+
+<section class="main-content" [innerHTML]="pageLayout">
+</section>
+
+<section id="footer_widget" class="footer_widget">
+    <a href="#footer" class="service_border_raund text-center">
+        <img src="angular/src/assets/images/contacticon.png" alt="">
+    </a>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="main_widget">
+                    <div class="row">
+                        <div *ngFor="let part of footer.content" [ngClass]="eachFooterSize">
+                            <div class="single_widget wow fadeIn animated" data-wow-duration="800ms" style="visibility: visible; animation-duration: 800ms; animation-name: fadeIn;">
+                                <h4 class="footer_title">{{part.name}}</h4>
+                                <div class="separator3">
+                                </div>
+                                <ul [innerHtml]="part.body"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12">
+                <div class="copyright_text text-center">
+                    <p class=" wow fadeInRight" data-wow-duration="1s">Made with
+                        <i class="fa fa-heart"></i> by Solstice IT Solutions 2018. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+<!-- START SCROLL TO TOP  -->
+
+<div class="scrollup">
+    <a href="#">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</div>

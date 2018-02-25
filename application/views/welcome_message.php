@@ -27,7 +27,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 </head>
 <body>
-	<!-- <app-root></app-root> -->
+	<app-root></app-root>
 
 	<script src="angular/dist/assets/js/vendor/jquery-1.11.2.min.js"></script>
   <script src="angular/dist/assets/js/vendor/bootstrap.min.js"></script>

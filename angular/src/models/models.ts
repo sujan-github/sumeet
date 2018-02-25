@@ -64,3 +64,24 @@ export interface IBlogCategoryViewModel {
   count: number;
   blogs: IBlog[];
 }
+
+export interface ISetup {
+  Id: number;
+  Logo: string;
+  ContactNumbers: string;
+  SocialLinks: string;
+  BodyBgColor: string;
+  MenuBgColor: string;
+  TextColor: string;
+  MenuTextColor: string;
+  HeadingTextColor: string;
+  TopHeaderBgColor: string;
+  FooterBgColor: string;
+  FooterTextColor: string;
+  CarouselImage: string;
+  CarouselText: string;
+  ContactSection: string;
+  TopHeaderSection: string;
+  HomeSection: string;
+  Active: boolean;
+}

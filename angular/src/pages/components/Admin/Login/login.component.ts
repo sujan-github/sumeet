@@ -26,7 +26,6 @@ export class LoginComponent {
       this.isLoading = false;
       localStorage.setItem('UserInfo', JSON.stringify(data));
       this.errMessage = null;
-      debugger;
       window.location.href = '#/admin/blog';
       // window.location.reload();
     }, (err) => {

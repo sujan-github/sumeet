@@ -18,7 +18,7 @@ export class ArticleEditorComponent implements OnInit {
     public menus: IMenu[] = [];
 
     public onChangingProgress: Boolean = false;
-    public currentMenu: IMenu = {} as IMenu;
+    public currentMenu: IMenu = { ParentId: 0 } as IMenu;
     // use to hold object of the page object that is currently in progress of adding or updating
     public currentPage: IPage = {} as IPage;
     public sideBarExpanded: Boolean = false;
@@ -66,8 +66,12 @@ export class ArticleEditorComponent implements OnInit {
     }
 
     public savePage() {
-        this.currentMenu.Url = ``;
-        this.currentMenu.ParentId = this.currentMenu.ParentId > 0 ? this.currentMenu.ParentId : 0;
+        if (this.currentMenu.ParentId > 0) {
+            this.currentMenu.Url = `${this.menus.filter(x => x.Id === this.currentMenu.ParentId)[0].Url}/${this.currentMenu.Name}`;
+        } else {
+            this.currentMenu.ParentId = 0;
+            this.currentMenu.Url = `#/venus/${this.currentMenu.Name}`;
+        }
         this.menuService.post(this.currentMenu).subscribe((data: any) => {
             this.currentPage.MenuId = data.inserted_id;
             this.currentPage.Menu = this.currentMenu.Name;
@@ -131,7 +135,6 @@ export class ArticleEditorComponent implements OnInit {
     }
 
     public togglePreview() {
-        debugger;
         this.showPreview = !this.showPreview;
         this.currentPreview = this.templateFormOpen ? this.currentTemplate.InnerHtml : this.currentPage.Content;
         if (this.sideBarExpanded) {
