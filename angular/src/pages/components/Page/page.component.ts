@@ -1,45 +1,71 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Route } from '@angular/router';
-import { MenuService, PageService } from '../../../services/base.service';
-import { IPage, ITemplate } from '../../../models/models';
+import { MenuService, PageService, SetupService } from '../../../services/base.service';
+import { IPage, ITemplate, ISetup } from '../../../models/models';
 import { Links } from '../../../assets/links';
-import { templates } from '../../constants/templates';
 import { IMenu } from '../../../models/models';
+import { DomGenerator } from '../../../constants/templates';
 
 @Component({
     selector: 'app-page',
     templateUrl: './page.component.html',
-    providers: [MenuService, PageService]
+    providers: [MenuService, PageService, SetupService]
 })
 export class PageComponent implements OnInit {
     logoLink = Links.ImageLinks.Logo;
     public editorValue = '';
-    public display = true;
+    public isHomePage = true;
     public footer;
     public eachFooterSize: string;
     private _allMenus: IMenu[] = [];
     public pageLayout: string;
-    constructor(private _menuService: MenuService, private _pageService: PageService) {
+    public setup: ISetup;
+    public homeStyle = '';
+    public menuBackground = '';
+    constructor(private _menuService: MenuService, private _pageService: PageService, private _setupService: SetupService) {
         const that = this;
-        // this.footer = footer;
-        // this.eachFooterSize = `col-sm-${12 / footer.contentCount}`;
     }
 
     ngOnInit() {
         const that = this;
         that.handlePageLoad();
+        this.loadSetup();
         window.addEventListener('hashchange', function () {
             that.handlePageLoad();
         });
     }
 
+    loadSetup() {
+        if (localStorage.length <= 1) {
+            this._setupService.getAll().subscribe((data) => {
+                if (data.length > 0) {
+                    this.setup = data[0];
+                    for (const key in this.setup) {
+                        localStorage.setItem(key, this.setup[key]);
+                    }
+                    this._setupComponents();
+                }
+            });
+        } else {
+            this._setupComponents();
+        }
+    }
+
+    private _setupComponents() {
+        this.footer = DomGenerator.GenerateFooter(localStorage.getItem('ContactSection'));
+    }
     handlePageLoad() {
-        if (window.location.hash !== '#/venus') {
-            this.display = false;
+        if (window.location.hash !== '#/venus' && window.location.hash !== '#/venus/home') {
+            this.isHomePage = false;
             this.getPage();
         } else {
-            this.display = true;
-            this.pageLayout = templates[0].content;
+            this.isHomePage = true;
+            if (localStorage.getItem('ContactSection')) {
+                this.footer = DomGenerator.GenerateFooter(localStorage.getItem('ContactSection'));
+                this.pageLayout = localStorage.getItem('HomeSection');
+                this.homeStyle = `url(${localStorage.getItem('CarouselImage')})`;
+                this.menuBackground = localStorage.getItem('MenuBgColor');
+            }
         }
     }
 

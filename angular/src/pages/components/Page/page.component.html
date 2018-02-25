@@ -30,7 +30,7 @@
             </button>
         </div>
     </div>
-    <div class="main-nav navbar-collapse collapse">
+    <div class="main-nav navbar-collapse collapse" [style.background]="menuBackground">
         <div class="container">
             <div class="minilogo">
                 <a href="#home" class="navbar-brand">
@@ -41,27 +41,31 @@
         </div>
     </div>
 </nav>
-
-<app-about-us *ngIf="display"></app-about-us>
-
-<section class="main-content" [innerHTML]="pageLayout">
-</section>
-
-<section id="footer_widget" class="footer_widget">
-    <a href="#footer" class="service_border_raund text-center">
-        <img src="angular/src/assets/images/contacticon.png" alt="">
-    </a>
-    <div>
+<section id="home" class="home text-right" [style.background]="homeStyle" *ngIf="isHomePage">
+    <div class="overlay">
         <div class="container">
             <div class="row">
-                <div class="main_widget">
-                    <div class="row">
-                        <div *ngFor="let part of footer.content" [ngClass]="eachFooterSize">
-                            <div class="single_widget wow fadeIn animated" data-wow-duration="800ms" style="visibility: visible; animation-duration: 800ms; animation-name: fadeIn;">
-                                <h4 class="footer_title">{{part.name}}</h4>
-                                <div class="separator3">
+                <div class="col-lg-8 col-lg-offset-4">
+                    <div class="main_home_content owl-carousel owl-theme owl-responsive--1 owl-loaded">
+                        <div class="owl-item active" style="width: 750px; margin-right: 0px;">
+                            <div>
+                                <div class="main_home wow fadeInUp animated" data-wow-duration="700ms" style="visibility: visible; animation-duration: 700ms; animation-name: fadeInUp;">
+                                    <h1>VENUS IVF CENTRE</h1>
+                                    <h2 class="subtitle">ALL YOUR FERTILITY NEEDS UNDER ONE ROOF</h2>
                                 </div>
-                                <ul [innerHtml]="part.body"></ul>
+                            </div>
+                        </div>
+                        <div class="owl-controls">
+                            <div class="owl-dots" style="">
+                                <div class="owl-dot active">
+                                    <span></span>
+                                </div>
+                                <div class="owl-dot">
+                                    <span></span>
+                                </div>
+                                <div class="owl-dot">
+                                    <span></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -70,6 +74,11 @@
         </div>
     </div>
 </section>
+<div *ngIf="isHomePage" [innerHTML]="pageLayout"></div>
+<section class="main-content" *ngIf="!isHomePage" [innerHTML]="pageLayout">
+</section>
+
+<div [innerHTML]="footer"></div>
 
 <footer id="footer" class="footer">
     <div class="container">

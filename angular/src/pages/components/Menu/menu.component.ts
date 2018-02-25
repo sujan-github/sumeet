@@ -11,11 +11,13 @@ export class MenuComponent implements OnInit {
     @Input() menus: IMenu[];
     @Input() isRoot: boolean;
     private _allMenus: IMenu[];
+    linkColor: string;
     constructor(private _menuService: MenuService) {
         this.isRoot = true;
     }
 
     ngOnInit() {
+        this.linkColor = localStorage.getItem('MenuTextColor');
         if (typeof (this.menus) === 'undefined' || this.isRoot) {
             this.getMenus();
         } else {

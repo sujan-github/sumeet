@@ -664,6 +664,7 @@ Author URI: http://bootstrapthemes.co
    .service{
        position: relative;
        background: #F8F9FB;
+       padding-bottom: 80px;
    }
    .main_service_area{}
    .single_service{

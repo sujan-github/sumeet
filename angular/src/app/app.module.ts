@@ -57,12 +57,12 @@ const appRoutes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/venus',
+    redirectTo: '/venus/home',
     pathMatch: 'full'
   },
   {
     path: '**',
-    component: HomeComponent
+    component: PageComponent
   }
 ];
 

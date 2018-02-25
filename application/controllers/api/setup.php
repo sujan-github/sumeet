@@ -114,9 +114,23 @@ class Setup extends REST_Controller
         if ($this->post('Id')) {
             $data = [
                 'Id' => $this->post('Id'),
-                'Name' => $this->post('Name'),
-                'InnerHtml' => $this->post('InnerHtml'),
-                'IsBlog' => $this->post('IsBlog'),
+                'Logo' => $this->post('Logo'),
+                'ContactNumbers' => $this->post('ContactNumbers'),
+                'SocialLinks' => $this->post('SocialLinks'),
+                'BodyBgColor' => $this->post('BodyBgColor'),
+                'MenuBgColor' => $this->post('MenuBgColor'),
+                'TextColor' => $this->post('TextColor'),
+                'MenuTextColor' => $this->post('MenuTextColor'),
+                'HeadingTextColor' => $this->post('HeadingTextColor'),
+                'TopHeaderBgColor' => $this->post('TopHeaderBgColor'),
+                'FooterBgColor' => $this->post('FooterBgColor'),
+                'FooterTextColor' => $this->post('FooterTextColor'),
+                'CarouselImage' => $this->post('CarouselImage'),
+                'CarouselText' => $this->post('CarouselText'),
+                'ContactSection' => $this->post('ContactSection'),
+                'TopHeaderSection' => $this->post('TopHeaderSection'),
+                'Active' => true,
+                'HomeSection' => $this->post('HomeSection'),
             ];
 
             if ($this->setup_model->put($this->post('Id'), $data)) {
@@ -133,9 +147,23 @@ class Setup extends REST_Controller
             }
         } else {
             $data = [
-                'Name' => $this->post('Name'),
-                'InnerHtml' => $this->post('InnerHtml'),
-                'IsBlog' => $this->post('IsBlog'),
+                'Logo' => $this->post('Logo'),
+                'ContactNumbers' => $this->post('ContactNumbers'),
+                'SocialLinks' => $this->post('SocialLinks'),
+                'BodyBgColor' => $this->post('BodyBgColor'),
+                'MenuBgColor' => $this->post('MenuBgColor'),
+                'TextColor' => $this->post('TextColor'),
+                'MenuTextColor' => $this->post('MenuTextColor'),
+                'HeadingTextColor' => $this->post('HeadingTextColor'),
+                'TopHeaderBgColor' => $this->post('TopHeaderBgColor'),
+                'FooterBgColor' => $this->post('FooterBgColor'),
+                'FooterTextColor' => $this->post('FooterTextColor'),
+                'CarouselImage' => $this->post('CarouselImage'),
+                'CarouselText' => $this->post('CarouselText'),
+                'ContactSection' => $this->post('ContactSection'),
+                'TopHeaderSection' => $this->post('TopHeaderSection'),
+                'Active' => true,
+                'HomeSection' => $this->post('HomeSection'),
             ];
 
             if ($this->setup_model->post($data)) {

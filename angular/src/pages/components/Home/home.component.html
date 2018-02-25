@@ -42,7 +42,8 @@
   </div>
 </nav>
   
-  <app-about-us *ngIf="display"></app-about-us>
+  <!-- <app-about-us *ngIf="display"></app-about-us> -->
+<div [innerHtml]="homeLayout"></div>
 
 <section class="main-content" [innerHTML]="pageLayout">
   <!-- <router-outlet>

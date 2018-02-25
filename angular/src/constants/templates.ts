@@ -58,40 +58,7 @@ export const starterTemplates: ITemplate[] = [
     Id: 0,
     Name: 'Home',
     IsBlog: false,
-    InnerHtml: `<section id="home" class="home text-right">
-    <div class="overlay">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-lg-offset-4">
-            <div class="main_home_content owl-carousel owl-theme owl-responsive--1 owl-loaded">
-              <div class="owl-item active" style="width: 750px; margin-right: 0px;">
-                <div>
-                  <div class="main_home wow fadeInUp animated" data-wow-duration="700ms" style="visibility: visible; animation-duration: 700ms; animation-name: fadeInUp;">
-                    <h1>VENUS IVF CENTRE</h1>
-                    <h2 class="subtitle">ALL YOUR FERTILITY NEEDS UNDER ONE ROOF</h2>
-                  </div>
-                </div>
-              </div>
-              <div class="owl-controls">
-                <div class="owl-dots" style="">
-                  <div class="owl-dot active">
-                    <span></span>
-                  </div>
-                  <div class="owl-dot">
-                    <span></span>
-                  </div>
-                  <div class="owl-dot">
-                    <span></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section id="service" class="service">
+    InnerHtml: `<section id="service" class="service">
     <div class="container">
       <div class="row">
         <a href="" class="service_border_raund text-center">
@@ -338,39 +305,33 @@ export const starterTemplates: ITemplate[] = [
           </div>
         </div>
       </section>`,
+  },
+  {
+    Id: 5,
+    Name: 'Footer',
+    IsBlog: false,
+    InnerHtml: `<div class="col-sm-6" ng-reflect-ng-class="col-sm-6">
+    <div class="single_widget wow fadeIn animated animated" data-wow-duration="800ms" style="visibility: visible; animation-duration: 800ms; animation-name: fadeIn;">
+      <h4 _ngcontent-c1="" class="footer_title">CONTACT</h4>
+      <div _ngcontent-c1="" class="separator3">
+      </div>
+      <ul _ngcontent-c1="">
+<li class="single_latest_news">
+
+<p class="details">
+  <i class="fa fa-envelope"></i> info@venusivfcenter.com</p>
+  <p class="details">
+  <i class="fa fa-phone"></i> 01-4490333</p>
+<p class="details">
+  <i class="fa fa-mobile-phone"></i> +977 980-408-5955 , +977 980-838-3703</p>
+<p class="details">
+  <i class="fa fa-map-marker"></i> Mid Baneshwor, Kathmandu</p>
+</li></ul>
+    </div>
+  </div>`
   }
 ];
 
-export const footer: IFooter = {
-  sectionCount: 2,
-  sectionContent: [{
-    Id: 1,
-    IsBlog: false,
-    Name: `CONTACT`,
-    InnerHtml: `
-            <li class="single_latest_news">
-              <!-- <p class="latest_date">02.08.2015</p> -->
-              <p class="details">
-                <i class="fa fa-envelope"></i> info@venusivfcenter.com</p>
-                <p class="details">
-                <i class="fa fa-phone"></i> 01-4490333</p>
-              <p class="details">
-                <i class="fa fa-mobile-phone"></i> +977 980-408-5955 , +977 980-838-3703</p>
-              <p class="details">
-                <i class="fa fa-map-marker"></i> Mid Baneshwor, Kathmandu</p>
-            </li>`
-  },
-  {
-    Id: 2,
-    Name: `LOCATIONS`,
-    IsBlog: false,
-    InnerHtml: `
-    <li class="single_latest_news">
-      <p class="subtitle">Venus IVF Center</p>
-      <p class="details">Third Floor, Venus Hospital,</p>
-      <p class="details">Mid Baneshwor, Kathmandu,</p>
-      <p class="details">Nepal</p>
-    </li>`}]
-};
+
 
 
