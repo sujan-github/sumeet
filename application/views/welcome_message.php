@@ -24,6 +24,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<link rel="stylesheet" href="angular/dist/assets/css/responsive.css">
 
 	<link rek="manifest" href="angular/dist/manifest.json">
+	<style>
+		iframe{
+			pointer-events: all !important;
+		}
+	</style>
+
 
 </head>
 <body>
