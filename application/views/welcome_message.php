@@ -22,7 +22,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
   <link rel="stylesheet" href="angular/dist/assets/css/plugins.css">
   <link rel="stylesheet" href="angular/dist/assets/css/style.css">
 	<link rel="stylesheet" href="angular/dist/assets/css/responsive.css">
-	
+
 	<link rek="manifest" href="angular/dist/manifest.json">
 
 </head>
@@ -50,20 +50,27 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<script type="text/javascript" src="angular/dist/vendor.bundle.js"></script>
 	<script type="text/javascript" src="angular/dist/main.bundle.js"></script>
 
-	<!-- <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-	<script>
-		// Initialize Firebase
-		// TODO: Replace with your project's customized code snippet
-		var config = {
-			apiKey: "AIzaSyBxIniIwi8MHP_o_CPGEn-Pc_31qIFBldU",
-			authDomain: "venus-ivf-center.firebaseapp.com",
-			databaseURL: "https://venus-ivf-center.firebaseio.com/",
-			storageBucket: "gs://venus-ivf-center.appspot.com",
-			messagingSenderId: "913795820782",
-		};
-		firebase.initializeApp(config);
-	</script>
-	<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-firestore.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-messaging.js"></script> -->
+
+  <script>
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '828549413998823',
+        autoLogAppEvents: true,
+        xfbml: true,
+        version: 'v2.12'
+      });
+    };
+
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+<div class="fb-customerchat"
+page_id="178339749561721">
+</div>
 </body>
 </html>
