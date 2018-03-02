@@ -13,7 +13,7 @@ export class DomGenerator {
             </div></div></div></div></div></section>`;
   }
 
-  public static GenerateTopHeader(bgColor: string, logo: string, contactNumbers: string, socialLinks: string) {
+  public static GenerateTopHeader(bgColor: string = '', logo: string = '', contactNumbers: string = '', socialLinks: string = '') {
     const numbers = contactNumbers.split(',');
     const links = socialLinks.split(',');
     const hasPhoneNumber = /pn./gi.test(contactNumbers);

@@ -65,6 +65,7 @@ export class PageComponent implements OnInit {
                 this.pageLayout = localStorage.getItem('HomeSection');
                 this.homeStyle = `url(${localStorage.getItem('CarouselImage')})`;
                 this.menuBackground = localStorage.getItem('MenuBgColor');
+                this.logoLink = localStorage.getItem('Logo');
             }
         }
     }
