@@ -109,6 +109,7 @@ class User extends REST_Controller
 
     public function user_post()
     {
+        $this->load->library('bcrypt');
         $this->load->model('User_model');
 
         if ($this->post('Id')) {
@@ -116,7 +117,7 @@ class User extends REST_Controller
                 'Id' => $this->post('Id'),
                 'FullName' => $this->post('FullName'),
                 'UserName' => $this->post('UserName'),
-                'Password' => $this->post('Password'),
+                'Password' => $this->bcrypt->hash_password($this->post('Password')),
                 'Email' => $this->post('Email'),
             ];
 
@@ -136,7 +137,7 @@ class User extends REST_Controller
             $data = [
                 'FullName' => $this->post('FullName'),
                 'UserName' => $this->post('UserName'),
-                'Password' => $this->post('Password'),
+                'Password' => $this->bcrypt->hash_password($this->post('Password')),
                 'Email' => $this->post('Email'),
             ];
 
@@ -152,6 +153,37 @@ class User extends REST_Controller
                 ];
                 $this->set_response($message, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
             }
+        }
+    }
+
+    public function changePassword_post()
+    {
+        $this->load->library('bcrypt');
+        $this->load->model('User_model');
+
+        if ($this->post('Id')) {
+            $newUser = $this->User_model->changeOldPassword($this->post('Id'), $this->post('OldPassword'));
+            if ($newUser != false) {
+                $newUser['Password'] = $this->bcrypt->hash_password($this->post('NewPassword'));
+            }
+
+            if ($this->User_model->put($this->post('Id'), $newUser)) {
+                $message = [
+                    'message' => 'The update request was completed successfully.',
+                    'inserted_id' => $this->post('Id'),
+                ];
+                $this->set_response($message, REST_Controller::HTTP_OK); // CREATED (200) being the HTTP response code
+            } else {
+                $message = [
+                    'message' => 'The update request could not be completed successfully.',
+                ];
+                $this->set_response($message, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
+            }
+        } else {
+            $message = [
+                'message' => 'The update request could not be completed successfully.',
+            ];
+            $this->set_response($message, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         }
     }
 

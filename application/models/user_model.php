@@ -104,5 +104,24 @@ class User_model extends CI_Model
         } else {
             return false;
         }
-    }
+	}
+	
+	public function changeOldPassword($id, $oldPasswordHash){
+		$this->load->library('bcrypt');
+
+        $this->db->where('Id =', $id);
+		$query = $this->db->get('user');
+
+        $result = $query->row_array();
+
+        // print_r($result);
+        // echo $this->bcrypt->hash_password($password);
+
+        if ($this->bcrypt->check_password($oldPasswordHash, $result['Password'])) {
+            //We're good
+            return $result;
+        }else{
+			return false;
+		}
+	}
 }

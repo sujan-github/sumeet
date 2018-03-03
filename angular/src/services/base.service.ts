@@ -80,7 +80,7 @@ export class Service<T> implements IService {
   }
 
   delete(id: number): Observable<T> {
-    return this.http.delete(this.baseUrl + `(${id})`).map((res: Response) => {
+    return this.http.delete(this.baseUrl + `/${id}`).map((res: Response) => {
       return res.json();
     }).catch((err) => {
       return Observable.throw(err);
