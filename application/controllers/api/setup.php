@@ -131,6 +131,7 @@ class Setup extends REST_Controller
                 'TopHeaderSection' => $this->post('TopHeaderSection'),
                 'Active' => true,
                 'HomeSection' => $this->post('HomeSection'),
+                'ModifiedCount' => $this->post('ModifiedCount'),
             ];
 
             if ($this->setup_model->put($this->post('Id'), $data)) {
@@ -164,6 +165,7 @@ class Setup extends REST_Controller
                 'TopHeaderSection' => $this->post('TopHeaderSection'),
                 'Active' => true,
                 'HomeSection' => $this->post('HomeSection'),
+                'ModifiedCount' => $this->post('ModifiedCount'),
             ];
 
             if ($this->setup_model->post($data)) {

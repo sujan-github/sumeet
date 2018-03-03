@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IPage, IMenu, ITemplate } from '../../../models/models';
 import { PageService, MenuService, TemplateService } from '../../../services/base.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { starterTemplates } from '../../../constants/templates';
 @Component({
     moduleId: module.id,
     selector: 'app-article-editor',
@@ -30,7 +31,7 @@ export class ArticleEditorComponent implements OnInit {
     public currentTemplate: ITemplate = {} as ITemplate;
     public currentPreview: String = '';
     public fetchedTemplates: ITemplate[] = [];
-
+    public defaultTemplates: ITemplate[] = starterTemplates;
     constructor(public sanitizer: DomSanitizer, public menuService: MenuService, public pageService: PageService,
         public templateService: TemplateService) { }
     ngOnInit() {
@@ -122,6 +123,7 @@ export class ArticleEditorComponent implements OnInit {
     }
 
     public templateSelected(template) {
+        debugger;
         this.templateFormOpen ? this.currentTemplate.InnerHtml = template : this.currentPage.Content = template;
     }
 

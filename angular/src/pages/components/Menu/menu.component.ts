@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IMenu } from '../../../models/models';
 import { MenuService } from '../../../services/base.service';
+import { Constants } from '../../../constants/constants';
 
 @Component({
     selector: 'app-menu',
@@ -17,7 +18,12 @@ export class MenuComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.linkColor = localStorage.getItem('MenuTextColor');
+        if (Constants.LocalStorage.hasSetup()) {
+            const setup = Constants.LocalStorage.getSetup();
+            if (setup.MenuTextColor !== null && setup.MenuTextColor !== '' && typeof (setup.MenuTextColor) !== 'undefined') {
+                this.linkColor = setup.MenuTextColor;
+            }
+        }
         if (typeof (this.menus) === 'undefined' || this.isRoot) {
             this.getMenus();
         } else {

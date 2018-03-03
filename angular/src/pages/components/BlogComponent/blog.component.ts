@@ -72,6 +72,7 @@ export class BlogComponent implements OnInit {
     }
 
     public deleteBlog() {
+        console.log(this.selectedBlog);
         this.blogService.delete(this.selectedBlog.Id).subscribe(() => {
             this.onChangingProgress = false;
             this.isSelected = false;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IAuthentication, IUser } from '../../../../models/models';
 import { AuthenticationService, MenuService } from '../../../../services/base.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Constants } from '../../../../constants/constants';
 
 @Component({
   moduleId: module.id,
@@ -18,7 +19,11 @@ export class LoginComponent {
 
   constructor(
     public authenticationService: AuthenticationService
-  ) { }
+  ) {
+    if (Constants.LocalStorage.isUserLoggedIn()) {
+      window.location.href = '#/admin/blog';
+    }
+  }
 
   submitLoginForm() {
     this.isLoading = true;

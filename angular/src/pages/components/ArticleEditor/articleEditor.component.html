@@ -138,7 +138,22 @@
         </label>
         <hr/>
         <ul class="list-unstyled">
+            <li class="divider">
+                Default templates
+                <hr/>
+            </li>
+            <li *ngFor="let template of defaultTemplates" (click)=templateSelected(template.InnerHtml) style="cursor: pointer">
+                {{template.Name}}
+                <figure class="figure thumbnail" style="cursor: pointer">
+                    <iframe class="img-responsive" [srcdoc]="template.InnerHtml"></iframe>
+                </figure>
+            </li>
+            <li class="divider">
+                User Custom
+                <hr/>
+            </li>
             <li *ngFor="let template of fetchedTemplates" (click)="templateSelected(template.InnerHtml)" style="cursor: pointer;">
+                {{template.Name}}
                 <figure class="figure thumbnail" style="cursor: pointer">
                     <iframe class="img-responsive" [srcdoc]="template.InnerHtml"></iframe>
                 </figure>

@@ -41,7 +41,7 @@
         </div>
     </div>
 </nav>
-<section id="home" class="home text-right" [style.background]="homeStyle" *ngIf="isHomePage">
+<section id="home" class="home text-right" [style.background]="homeStyle" *ngIf="isPage('home')">
     <div class="overlay">
         <div class="container">
             <div class="row">
@@ -50,8 +50,8 @@
                         <div class="owl-item active" style="width: 750px; margin-right: 0px;">
                             <div>
                                 <div class="main_home wow fadeInUp animated" data-wow-duration="700ms" style="visibility: visible; animation-duration: 700ms; animation-name: fadeInUp;">
-                                    <h1>VENUS IVF CENTRE</h1>
-                                    <h2 class="subtitle">ALL YOUR FERTILITY NEEDS UNDER ONE ROOF</h2>
+                                    <h1>{{carouselHeader1}}</h1>
+                                    <h2 class="subtitle">carouselHeader2</h2>
                                 </div>
                             </div>
                         </div>
@@ -74,10 +74,12 @@
         </div>
     </div>
 </section>
-<div *ngIf="isHomePage" [innerHTML]="pageLayout"></div>
-<section class="main-content" *ngIf="!isHomePage" [innerHTML]="pageLayout">
+<div *ngIf="isPage('home')" [innerHTML]="pageLayout"></div>
+<section class="main-content" *ngIf="isPage('other')" [innerHTML]="pageLayout">
 </section>
-
+<section class="main-content" *ngIf="isPage('blog-and-news')">
+    <app-blog-news></app-blog-news>
+</section>
 <div [innerHTML]="footer"></div>
 
 <footer id="footer" class="footer">

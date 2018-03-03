@@ -1462,7 +1462,10 @@ Author URI: http://bootstrapthemes.co
             padding: 15px 0 15px;
             text-align: center;
     }
-    h1.entry-title {
+    .team-img {
+        max-width: 300px;
+    }
+    h1.entry-title, .header h1 {
         font-size: 40px;
         color: rgb(55,55,110);
         margin: 0;

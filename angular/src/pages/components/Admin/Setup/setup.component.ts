@@ -22,7 +22,6 @@ export class SetupComponent implements OnInit {
     }
 
     public getExistingSetups() {
-        debugger;
         this._service.getAll().subscribe((data: ISetup[]) => {
             if (data.length > 0) {
                 this.setupObj = data[0];
@@ -41,6 +40,11 @@ export class SetupComponent implements OnInit {
     public save() {
         this.setupObj.TopHeaderSection = DomGenerator.GenerateTopHeader(this.setupObj.TopHeaderBgColor,
             this.setupObj.Logo, this.setupObj.ContactNumbers, this.setupObj.SocialLinks);
+        if (this.setupObj.ModifiedCount != null) {
+            this.setupObj.ModifiedCount = this.setupObj.ModifiedCount + 1;
+        } else {
+            this.setupObj.ModifiedCount = 0;
+        }
         this._service.post(this.setupObj).subscribe((success) => {
         }, err => { this.errorMessage = err; });
     }

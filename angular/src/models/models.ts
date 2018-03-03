@@ -84,4 +84,5 @@ export interface ISetup {
   TopHeaderSection: string;
   HomeSection: string;
   Active: boolean;
+  ModifiedCount: number;
 }
