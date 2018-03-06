@@ -59,6 +59,9 @@ export class PageComponent implements OnInit {
     private _setupComponents() {
         const setup = Constants.LocalStorage.getSetup();
         this.footer = DomGenerator.GenerateFooter(setup.ContactSection);
+        if (setup.Logo !== '') {
+            this.logoLink = setup.Logo;
+        }
         if (setup.CarouselImage !== null && setup.CarouselImage !== '' && typeof (setup.CarouselImage) !== 'undefined') {
             this.homeStyle = `url('${setup.CarouselImage}') no-repeat 100% 100%`;
         }
