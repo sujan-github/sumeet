@@ -64,6 +64,8 @@ export class PageComponent implements OnInit {
         }
         if (setup.CarouselImage !== null && setup.CarouselImage !== '' && typeof (setup.CarouselImage) !== 'undefined') {
             this.homeStyle = `url('${setup.CarouselImage}') no-repeat 100% 100%`;
+            document.getElementById('home').style.background = this.homeStyle;
+            document.getElementById('home').style.backgroundSize = 'cover';
         }
         if (setup.CarouselText !== null && setup.CarouselText !== '' && typeof (setup.CarouselText) !== 'undefined') {
             const text = DomGenerator.GenerateCarouselText(setup.CarouselText);

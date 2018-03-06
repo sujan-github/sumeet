@@ -41,7 +41,7 @@
         </div>
     </div>
 </nav>
-<section id="home" class="home text-right" [style.background]="homeStyle" *ngIf="isPage('home')">
+<section id="home" class="home text-right" *ngIf="isPage('home')">
     <div class="overlay">
         <div class="container">
             <div class="row">
@@ -51,7 +51,7 @@
                             <div>
                                 <div class="main_home wow fadeInUp animated" data-wow-duration="700ms" style="visibility: visible; animation-duration: 700ms; animation-name: fadeInUp;">
                                     <h1>{{carouselHeader1}}</h1>
-                                    <h2 class="subtitle">carouselHeader2</h2>
+                                    <h2 class="subtitle">{{carouselHeader2}}</h2>
                                 </div>
                             </div>
                         </div>

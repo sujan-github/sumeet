@@ -52,6 +52,7 @@ export class DomGenerator {
   }
 
   public static GenerateCarouselText(carouselText: string) {
+    debugger;
     const h1 = carouselText.split('h1.');
     if (h1.length > 1) {
       const h2 = h1[1].split('h2.');
