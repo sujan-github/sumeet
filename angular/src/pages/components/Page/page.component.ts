@@ -46,9 +46,9 @@ export class PageComponent implements OnInit {
             // if (!Constants.LocalStorage.hasSetup()) {
             this._setupService.getAll().subscribe((data) => {
                 if (data.length > 0) {
-                    const setup = data[data.length - 1];
+                    const setup = data[0];
                     if (!Constants.LocalStorage.hasSetup() || Constants.LocalStorage.getSetup().ModifiedCount !== setup.ModifiedCount) {
-                        Constants.LocalStorage.setSetup(data[data.length - 1]);
+                        Constants.LocalStorage.setSetup(data[0]);
                     }
                 }
                 this._setupComponents();
@@ -62,6 +62,18 @@ export class PageComponent implements OnInit {
         this.footer = DomGenerator.GenerateFooter(setup.ContactSection);
         if (setup.Logo !== '') {
             this.logoLink = setup.Logo;
+        }
+        if (setup.BodyBgColor !== '') {
+            // tslint:disable-next-line:no-unused-expression
+            document.getElementsByTagName('body')[0].style.backgroundColor = setup.BodyBgColor;
+        }
+        if (setup.TopHeaderBgColor !== '') {
+            if (document.getElementById('top-header')) {
+                document.getElementById('top-header').style.backgroundColor = setup.TopHeaderBgColor;
+            }
+        }
+        if (setup.FooterBgColor !== '') {
+            document.getElementById('footer_widget').style.backgroundColor = setup.FooterBgColor;
         }
         this.topHeader = DomGenerator.GenerateTopHeader(setup.TopHeaderBgColor, setup.ContactNumbers, setup.SocialLinks);
         if (setup.CarouselImage !== null && setup.CarouselImage !== '' && typeof (setup.CarouselImage) !== 'undefined') {

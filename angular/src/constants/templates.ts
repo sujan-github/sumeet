@@ -5,12 +5,12 @@ export interface IFooter {
   sectionContent: ITemplate[];
 }
 export class DomGenerator {
-  public static GenerateFooter(contactSection: string, bgColor: string = 'rgb(128,128,192)', textColor: string = '#e8e8e8'): string {
-    return `<section class="footer_widget" id="footer_widget">
+  public static GenerateFooter(contactSection: string): string {
+    return `
     <a class="service_border_raund text-center" href="#footer"><img alt="" src="angular/src/assets/images/contacticon.png"></a>
     <div><div class="container"><div class="row"><div class="main_widget"><div class="row">
               ${contactSection}
-            </div></div></div></div></div></section>`;
+            </div></div></div></div></div>`;
   }
 
   public static GenerateTopHeader(bgColor: string = '', contactNumbers: string = '', socialLinks: string = '') {

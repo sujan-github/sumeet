@@ -47,7 +47,7 @@ export class SetupComponent implements OnInit {
         this.setupObj.TopHeaderSection = DomGenerator.GenerateTopHeader(this.setupObj.TopHeaderBgColor,
             this.setupObj.ContactNumbers, this.setupObj.SocialLinks);
         if (this.setupObj.ModifiedCount != null) {
-            this.setupObj.ModifiedCount = (<number>this.setupObj.ModifiedCount) + 1;
+            this.setupObj.ModifiedCount = (parseInt(this.setupObj.ModifiedCount.toString(), 10)) + 1;
         } else {
             this.setupObj.ModifiedCount = 0;
         }
