@@ -272,7 +272,7 @@ export const starterTemplates: ITemplate[] = [
     Id: 5,
     Name: 'Footer',
     IsBlog: false,
-    InnerHtml: `<div class="col-sm-6" ng-reflect-ng-class="col-sm-6">
+    InnerHtml: `<div><div class="col-sm-6">
     <div class="single_widget wow fadeIn animated animated" data-wow-duration="800ms" style="visibility: visible; animation-duration: 800ms; animation-name: fadeIn;">
       <h4 _ngcontent-c1="" class="footer_title">CONTACT</h4>
       <div _ngcontent-c1="" class="separator3">
@@ -289,7 +289,7 @@ export const starterTemplates: ITemplate[] = [
   <i class="fa fa-map-marker"></i> Mid Baneshwor, Kathmandu</p>
 </li></ul>
     </div>
-  </div>`
+  </div></div>`
   },
   {
     Id: 6,
