@@ -25,6 +25,7 @@ export class PageComponent implements OnInit {
     public carouselHeader1 = 'VENUS IVF CENTER';
     public carouselHeader2 = 'ALL YOUR FERTILITY NEEDS UNDER ONE ROOF';
     public menuBackground = '';
+    topHeader = '';
     constructor(private _menuService: MenuService, private _pageService: PageService, private _setupService: SetupService) {
         const that = this;
     }
@@ -62,6 +63,7 @@ export class PageComponent implements OnInit {
         if (setup.Logo !== '') {
             this.logoLink = setup.Logo;
         }
+        this.topHeader = DomGenerator.GenerateTopHeader(setup.TopHeaderBgColor, setup.ContactNumbers, setup.SocialLinks);
         if (setup.CarouselImage !== null && setup.CarouselImage !== '' && typeof (setup.CarouselImage) !== 'undefined') {
             this.homeStyle = `url('${setup.CarouselImage}') no-repeat 100% 100%`;
             document.getElementById('home').style.background = this.homeStyle;

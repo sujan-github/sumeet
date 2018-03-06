@@ -13,7 +13,7 @@ export class DomGenerator {
             </div></div></div></div></div></section>`;
   }
 
-  public static GenerateTopHeader(bgColor: string = '', logo: string = '', contactNumbers: string = '', socialLinks: string = '') {
+  public static GenerateTopHeader(bgColor: string = '', contactNumbers: string = '', socialLinks: string = '') {
     const numbers = contactNumbers != null ? contactNumbers.split(',') : [''];
     const links = socialLinks != null ? socialLinks.split(',') : [''];
     const hasPhoneNumber = /pn./gi.test(contactNumbers);
@@ -22,37 +22,30 @@ export class DomGenerator {
     let dom = '';
     let phoneNumbers = '';
     numbers.filter(x => /pn./gi.test(x)).forEach((number: string) => {
-      phoneNumbers += `<a title="Phone"><i class="fa fa-phone">${number}</i></a>  `;
+      phoneNumbers += `<a title="Phone"><i class="fa fa-phone"></i>${number.split('pn')[1]}</a>  `;
     });
     if (hasPhoneNumber) {
       dom += `<li>${phoneNumbers}</li>`;
     }
     let mobileNumbers = '';
-    numbers.filter(x => /mn./gi.test(x)).forEach((number: string) => {
-      mobileNumbers += `<a title="MobileNumber">${number}</a>`;
+    numbers.filter(x => /mn./gi.test(x)).forEach((number: string, index: number) => {
+      const count = numbers.filter(x => /mn./gi.test(x)).length;
+      mobileNumbers += `${(index > 0 && index < count) ? ',' : ''}${number.split('mn.')[1]}`;
     });
     if (hasMobileNumber) {
-      dom += `<li><i class="fa fa-mobile-phone"><i>${mobileNumbers}</li>`;
+      dom += `<li><a title="Whatsapp"><i class="fa fa-mobile-phone"></i>${mobileNumbers}</li>`;
     }
     let facebook = '';
     links.filter(x => /fbLink./gi.test(x)).forEach(link => {
-      facebook += `<a href="${link}" target="_blank"><i class="fa fa-facebook"></i></a>`;
+      facebook += `<a href="${link.split('fbLink.')[1]}" target="_blank"><i class="fa fa-facebook"></i></a>`;
     });
     if (hasFbLink) {
       dom += `<li class="top_socail">${facebook}</li>`;
     }
-    return `<div class="logo" style="margin-top: -5px;">
-      <a href=""><img alt="Logo" style="height: 80px;padding-bottom:20px;margin-top:-15px;margin-bottom:-5px;" src="${logo}"></a>
-    </div><div class="head_top_social pull-right"><ul class="list-inline">${dom}</ul></div>
-    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
-      <span class="sr-only">Toggle navigation</span>
-      <i class="fa fa-bars"></i>
-    </button>
-  </div>`;
+    return `<ul class="list-inline">${dom}</ul>`;
   }
 
   public static GenerateCarouselText(carouselText: string) {
-    debugger;
     const h1 = carouselText.split('h1.');
     if (h1.length > 1) {
       const h2 = h1[1].split('h2.');

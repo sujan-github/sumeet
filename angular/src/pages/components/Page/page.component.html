@@ -8,7 +8,8 @@
             </div>
 
             <div class="head_top_social pull-right">
-                <ul class="list-inline">
+                <div [innerHtml]="topHeader"></div>
+                <!-- <ul class="list-inline">
                     <li>
                         <a href="" title="Phone">
                             <i class="fa fa-phone"></i> 01-4490333</a>
@@ -22,8 +23,9 @@
                             <i class="fa fa-facebook"></i>
                         </a>
                     </li>
-                </ul>
+                </ul> -->
             </div>
+
             <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button" (click)="toggleMenu()">
                 <span class="sr-only">Toggle navigation</span>
                 <i class="fa fa-bars"></i>

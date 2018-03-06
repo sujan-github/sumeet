@@ -45,19 +45,19 @@ export class SetupComponent implements OnInit {
 
     public save() {
         this.setupObj.TopHeaderSection = DomGenerator.GenerateTopHeader(this.setupObj.TopHeaderBgColor,
-            this.setupObj.Logo, this.setupObj.ContactNumbers, this.setupObj.SocialLinks);
+            this.setupObj.ContactNumbers, this.setupObj.SocialLinks);
         if (this.setupObj.ModifiedCount != null) {
-            this.setupObj.ModifiedCount = this.setupObj.ModifiedCount + 1;
+            this.setupObj.ModifiedCount = (<number>this.setupObj.ModifiedCount) + 1;
         } else {
             this.setupObj.ModifiedCount = 0;
         }
         this._service.post(this.setupObj).subscribe((success) => {
+            location.reload();
         }, err => { this.errorMessage = err; });
     }
 
     editPassword() {
         this._userService.post(this._user).subscribe((data) => {
-            debugger;
             Constants.LocalStorage.addUserInfo(data);
             location.reload();
         });
