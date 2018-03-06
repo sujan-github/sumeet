@@ -1,0 +1,226 @@
+<style>
+    .pageList>li {
+        min-height: 280px;
+        margin-right: 15px;
+        margin-bottom: 15px;
+    }
+
+    .post-container {
+        position: relative;
+    }
+
+    .post-info {
+        opacity: 1;
+        display: block;
+        height: auto;
+        transition: .5s ease;
+        backface-visibility: hidden;
+    }
+
+    .post-buttons {
+        transition: .5s ease;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .post-container:hover .post-info {
+        opacity: 0.3;
+    }
+
+    .post-container:hover .post-buttons {
+        opacity: 1;
+    }
+
+    .post-buttons .btn {
+        display: inline;
+        min-width: 50px;
+        height: 50px;
+        padding: 0;
+    }
+</style>
+<div [hidden]="_showPreview">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <h5 class="pull-right text-info">Total: {{_defaultTemplates.length}}</h5>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>Default Templates
+                        <button class="pull-right" (click)="_togglePanel('default')">
+                            <i class="fa" [ngClass]="{'fa-minus': _templatePanel.isDefaultPanelOpen,'fa-plus':!_templatePanel.isDefaultPanelOpen}"></i>
+                        </button>
+                    </strong>
+                </div>
+                <div class="panel-body" [hidden]="!_templatePanel.isDefaultPanelOpen">
+                    <ul class="pageList" style="overflow-x:auto;width: 100%;white-space:nowrap">
+                        <li *ngFor="let template of _defaultTemplates" class="post-container" style="max-width:300px; display: inline-block;">
+                            <div class="post-info">
+                                <h3>{{template.Name}}</h3>
+                                <iframe class="img-responsive" [srcdoc]="template.InnerHtml"></iframe>
+                            </div>
+                            <div class="post-buttons">
+                                <button class="btn" title="Preview" (click)="_preview(template)">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12" style="margin-top: 20px">
+            <div class="row">
+                <div class="col-md-12">
+                    <h5 class="pull-right text-info">Total: {{_templates.length}}</h5>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>Custom Templates
+                        <button class="pull-right" (click)="_togglePanel('custom')">
+                            <i class="fa" [ngClass]="{'fa-minus': _templatePanel.isCustomPanelOpen,'fa-plus':!_templatePanel.isCustomPanelOpen}"></i>
+                        </button>
+                        <button class="pull-right" *ngIf="!_showForm" (click)="_toggleForm()">Add new</button>
+                    </strong>
+                </div>
+                <div class="panel-body" [hidden]="!_templatePanel.isCustomPanelOpen">
+                    <ul class="pageList" style="overflow-x:auto;width: 100%;white-space:nowrap">
+                        <li class="post-container" *ngFor="let template of _templates" style="max-width:300px; display: inline-block;">
+                            <div class="post-info">
+                                <h3>{{template.Name}}</h3>
+                                <iframe class="img-responsive" [srcdoc]="template.InnerHtml"></iframe>
+                            </div>
+                            <div class="post-buttons">
+                                <button class="btn" title="Preview" (click)="_preview(template)">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                                <button class="btn" title="Edit" (click)="_editTemplate(template)">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button class="btn" title="Delete" (click)="_deleteTemplate(template)">
+                                    <i class="fa fa-close"></i>
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                    <h4 class="text-danger" *ngIf="_templates.length < 1">
+                        <i class="fa fa-info-circle"></i> No templates has been added yet.</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" [hidden]="!_showForm">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>
+                        {{_currentTemplate.Name}} Template
+                    </strong>
+                    <button class="pull-right" (click)="_togglePanel()">
+                        <i class="fa" [ngClass]="{'fa-minus': _templatePanel.isFormPanelOpen,'fa-plus':!_templatePanel.isFormPanelOpen}"></i>
+                    </button>
+                    <button class="pull-right" (click)="_toggleForm()">
+                        Close
+                    </button>
+                </div>
+                <div class="panel-body" [hidden]="!_templatePanel.isFormPanelOpen">
+                    <form>
+                        <div class="form-group">
+                            <label for="Name" class="control-label">Name
+                            </label>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control" name="Name" [(ngModel)]="_currentTemplate.Name" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                    Pick a Template
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <app-ckeditor [(html)]="_currentTemplate.InnerHtml" (htmlChanged)="htmlChanged($event)"></app-ckeditor>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <button type="button" (click)="save()" class="btn btn-primary right">
+                                    <span class="fa fa-check-circle"></span>&nbsp;&nbsp;Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div [hidden]="!_showPreview">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="javascript:void(0)" (click)="_preview()" class="btn btn-control pull-right">
+                    <span class="fa fa-angle-double-left"></span> Close Preview
+                </a>
+            </div>
+        </div>
+        <div [innerHtml]="_previewHtml"></div>
+    </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Select a template</h4>
+            </div>
+            <div class="modal-body">
+                <h4>Default Templates</h4>
+                <ul class="pageList" style="overflow-x:auto;width: 100%;white-space:nowrap">
+                    <li *ngFor="let template of _defaultTemplates" class="post-container" style="max-width:300px; display: inline-block;">
+                        <div class="post-info">
+                            <h3>{{template.Name}}</h3>
+                            <iframe class="img-responsive" [srcdoc]="template.InnerHtml"></iframe>
+                        </div>
+                        <div class="post-buttons">
+                            <button class="btn" title="Select" (click)="_selectTemplate(template)">
+                                <i class="fa fa-hand-pointer-o"></i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+                <h4>Custom Templates</h4>
+                <ul class="pageList" style="overflow-x:auto;width: 100%;white-space:nowrap">
+                    <li *ngFor="let template of _templates" class="post-container" style="max-width:300px; display: inline-block;">
+                        <div class="post-info">
+                            <h3>{{template.Name}}</h3>
+                            <iframe class="img-responsive" [srcdoc]="template.InnerHtml"></iframe>
+                        </div>
+                        <div class="post-buttons">
+                            <button class="btn" title="Select" (click)="_selectTemplate(template)">
+                                <i class="fa fa-hand-pointer-o"></i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

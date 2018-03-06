@@ -1,23 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { ISetup } from '../../../../models/models';
-import { SetupService } from '../../../../services/base.service';
+import { ISetup, IUser } from '../../../../models/models';
+import { SetupService, UserService } from '../../../../services/base.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { starterTemplates } from '../../../../constants/templates';
 import { DomGenerator } from '../../../../constants/templates';
+import { Constants } from '../../../../constants/constants';
 @Component({
     moduleId: module.id,
     selector: 'app-setup',
     templateUrl: './setup.component.html',
-    providers: [SetupService],
+    providers: [SetupService, UserService],
 })
 
 export class SetupComponent implements OnInit {
     public errorMessage: String = '';
     public setupObj: ISetup = {} as ISetup;
     private _noData: Boolean = false;
-    constructor(public sanitizer: DomSanitizer, public _service: SetupService) { }
+    private _user: IUser;
+    constructor(public sanitizer: DomSanitizer, public _service: SetupService, public _userService: UserService) { }
 
     ngOnInit() {
+        this._user = Constants.LocalStorage.getUserInfo();
+        if (this._user === null) {
+            location.href = '#/admin/login';
+        }
         this.getExistingSetups();
     }
 
@@ -47,5 +53,13 @@ export class SetupComponent implements OnInit {
         }
         this._service.post(this.setupObj).subscribe((success) => {
         }, err => { this.errorMessage = err; });
+    }
+
+    editPassword() {
+        this._userService.post(this._user).subscribe((data) => {
+            debugger;
+            Constants.LocalStorage.addUserInfo(data);
+            location.reload();
+        });
     }
 }

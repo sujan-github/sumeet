@@ -1,91 +1,139 @@
-<div class="header">
-    <header class="entry-header">
-        <h2 class="entry-title" style="margin: 0">Layout Setup</h2>
-    </header>
-</div>
-<div class="container" [hidden]="showPreview">
-    <form>
-        <div class="row">
-            <div class="col-md-6">
-                <fieldset>
-                    <legend>
-                        <strong>Header</strong>
-                    </legend>
-                    <div class="row">
-                        <div class="col-md-12">Logo
-                            <input type="text" placeholder="http://abc.png" name="Logo" [(ngModel)]="setupObj.Logo" />
-                        </div>
-                        <div class="col-md-12">Contact Numbers
-                            <input type="text" placeholder="pn.014410404,mn.9860595959" name="ContactNumbers" [(ngModel)]="setupObj.ContactNumbers" />
-                        </div>
-                        <div class="col-md-12">Social Links
-                            <input type="text" placeholder="fbLink.http://fb.com" name="SocialLinks" [(ngModel)]="setupObj.SocialLinks" />
-                        </div>
+<style>
+    .tab-pane {
+        margin-top: 30px;
+    }
+</style>
+<ul class="nav nav-tabs">
+    <li class="active">
+        <a href="#layout" data-toggle="tab">Layout Setup</a>
+    </li>
+    <li>
+        <a href="#user" data-toggle="tab">User Setup</a>
+    </li>
+</ul>
+
+<div class="tab-content clearfix">
+    <div class="tab-pane active" id="layout">
+        <div class="container" [hidden]="showPreview">
+            <form>
+                <div class="row">
+                    <div class="col-md-6">
+                        <fieldset>
+                            <legend>
+                                <strong>Header</strong>
+                            </legend>
+                            <div class="row">
+                                <div class="col-md-12">Logo
+                                    <input type="text" placeholder="http://abc.png" name="Logo" [(ngModel)]="setupObj.Logo" />
+                                </div>
+                                <div class="col-md-12">Contact Numbers
+                                    <input type="text" placeholder="pn.014410404,mn.9860595959" name="ContactNumbers" [(ngModel)]="setupObj.ContactNumbers" />
+                                </div>
+                                <div class="col-md-12">Social Links
+                                    <input type="text" placeholder="fbLink.http://fb.com" name="SocialLinks" [(ngModel)]="setupObj.SocialLinks" />
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>
+                                <strong>Carousel</strong>
+                            </legend>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    Image Link
+                                    <input type="text" name="CarouselImage" [(ngModel)]="setupObj.CarouselImage" /> Text
+                                    <input type="text" name="CarouselText" [(ngModel)]="setupObj.CarouselText" />
+                                </div>
+                            </div>
+                        </fieldset>
                     </div>
-                </fieldset>
-                <fieldset>
-                    <legend>
-                        <strong>Carousel</strong>
-                    </legend>
-                    <div class="row">
-                        <div class="col-md-12">
-                            Image Link
-                            <input type="text" name="CarouselImage" [(ngModel)]="setupObj.CarouselImage" /> Text
-                            <input type="text" name="CarouselText" [(ngModel)]="setupObj.CarouselText" />
-                        </div>
+                    <div class="col-md-6">
+                        <fieldset>
+                            <legend>
+                                <strong>Design</strong>
+                            </legend>
+                            <div class="row">
+                                <div class="col-sm-6">Body Background
+                                    <input type="text" name="BodyBgColor" [(ngModel)]="setupObj.BodyBgColor" /> Top Header Background
+                                    <input type="text" name="TopHeaderBgColor" [(ngModel)]="setupObj.TopHeaderBgColor" /> Menu Background:
+                                    <input type="text" name="MenuBgColor" [(ngModel)]="setupObj.MenuBgColor" /> Footer Background:
+                                    <input type="text" name="FooterBgColor" [(ngModel)]="setupObj.FooterBgColor" />
+                                </div>
+                                <div class="col-sm-6">
+                                    Text Color
+                                    <input type="text" name="TextColor" [(ngModel)]="setupObj.TextColor" /> Menu Text Color
+                                    <input type="text" name="MenuTextColor" [(ngModel)]="setupObj.MenuTextColor" /> Footer Text Color:
+                                    <input type="text" name="FooterTextColor" [(ngModel)]="setupObj.FooterTextColor" />Heading Text Color:
+                                    <input type="text" name="HeadingTextColor" [(ngModel)]="setupObj.HeadingTextColor" />
+                                </div>
+                            </div>
+                        </fieldset>
                     </div>
-                </fieldset>
-            </div>
-            <div class="col-md-6">
-                <fieldset>
-                    <legend>
-                        <strong>Design</strong>
-                    </legend>
-                    <div class="row">
-                        <div class="col-sm-6">Body Background
-                            <input type="text" name="BodyBgColor" [(ngModel)]="setupObj.BodyBgColor" /> Top Header Background
-                            <input type="text" name="TopHeaderBgColor" [(ngModel)]="setupObj.TopHeaderBgColor" /> Menu Background:
-                            <input type="text" name="MenuBgColor" [(ngModel)]="setupObj.MenuBgColor" /> Footer Background:
-                            <input type="text" name="FooterBgColor" [(ngModel)]="setupObj.FooterBgColor" />
-                        </div>
-                        <div class="col-sm-6">
-                            Text Color
-                            <input type="text" name="TextColor" [(ngModel)]="setupObj.TextColor" /> Menu Text Color
-                            <input type="text" name="MenuTextColor" [(ngModel)]="setupObj.MenuTextColor" /> Footer Text Color:
-                            <input type="text" name="FooterTextColor" [(ngModel)]="setupObj.FooterTextColor" />Heading Text Color:
-                            <input type="text" name="HeadingTextColor" [(ngModel)]="setupObj.HeadingTextColor" />
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Home Page Design</h3>
+                        <ck-editor name="HomeSection" [(ngModel)]="setupObj.HomeSection" skin="moono-lisa" lang="en" [fullPage]="true">
+                        </ck-editor>
                     </div>
-                </fieldset>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Contact Section Design</h3>
+                        <ck-editor name="ContactSection" [(ngModel)]="setupObj.ContactSection" skin="moono-lisa" lang="en" [fullPage]="true">
+                        </ck-editor>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" (click)="save()" class="btn btn-primary right">
+                            <span class="fa fa-check-circle"></span>&nbsp;&nbsp;Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="container">
+            <div [hidden]="!showPreview">
+                <a href="javascript:void(0)" (click)="togglePreview()" class="btn btn-control">
+                    <span class="fa fa-angle-double-left"></span> Close Preview
+                </a>
+                <div [innerHtml]="currentPreview"></div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h3>Home Page Design</h3>
-                <ck-editor name="HomeSection" [(ngModel)]="setupObj.HomeSection" skin="moono-lisa" lang="en" [fullPage]="true">
-                </ck-editor>
+    </div>
+    <div class="tab-pane" id="user">
+        <form>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="Name" class="control-label">FullName</label>
+                        <input type="text" class="form-control" name="FullName" [(ngModel)]="_user.FullName" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="Name" class="control-label">UserName</label>
+                        <input type="text" class="form-control" name="UserName" [(ngModel)]="_user.UserName" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="Name" class="control-label">Password</label>
+                        <input type="text" class="form-control" name="Password" [(ngModel)]="_user.Password" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="Name" class="control-label">Password</label>
+                        <input type="text" class="form-control" name="Email" [(ngModel)]="_user.Email" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="btn" (click)="editPassword()">Update Password</button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h3>Contact Section Design</h3>
-                <ck-editor name="ContactSection" [(ngModel)]="setupObj.ContactSection" skin="moono-lisa" lang="en" [fullPage]="true">
-                </ck-editor>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <button type="button" (click)="save()" class="btn btn-primary right">
-                    <span class="fa fa-check-circle"></span>&nbsp;&nbsp;Save</button>
-            </div>
-        </div>
-    </form>
-</div>
-<div class="container">
-    <div [hidden]="!showPreview">
-        <a href="javascript:void(0)" (click)="togglePreview()" class="btn btn-control">
-            <span class="fa fa-angle-double-left"></span> Close Preview
-        </a>
-        <div [innerHtml]="currentPreview"></div>
+        </form>
     </div>
 </div>

@@ -93,7 +93,7 @@ export class BlogComponent implements OnInit {
         this.setTitle();
     }
 
-    public blogSelected(blog?) {
+    public blogSelected(blog?: IBlog) {
         if (blog) {
             this.isSelected = true;
             this.selectedBlog = blog;

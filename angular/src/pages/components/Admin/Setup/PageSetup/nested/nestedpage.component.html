@@ -1,0 +1,39 @@
+<style>
+    ul ul {
+        padding-left: 10px;
+    }
+
+    ul ul>li {
+        margin-bottom: -1px;
+    }
+
+    li {
+        cursor: pointer;
+        border-bottom: gray solid 1px;
+        border-left: 2px solid teal;
+    }
+
+    li:hover {
+        border-left: 3px solid red;
+    }
+
+    .root {
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .root:hover {
+        background-color: whitesmoke;
+        border-left: 2px solid red;
+    }
+</style>
+<div *ngIf="isRoot">
+    <h4 class="root" (click)="selected()">Root</h4>
+    <hr/>
+</div>
+<ul class="nav">
+    <li *ngFor="let menu of menus">
+        <a (click)="selected(menu)">{{menu.Name}}</a>
+        <app-nested-page [menus]="menu.children" (childSelected)='menuSelected($event)' [isRoot]="false"></app-nested-page>
+    </li>
+</ul>

@@ -1,0 +1,146 @@
+<style>
+    .post-container {
+        position: relative;
+    }
+
+    .post-info {
+        opacity: 1;
+        display: block;
+        height: auto;
+        transition: .5s ease;
+        backface-visibility: hidden;
+    }
+
+    .post-buttons {
+        transition: .5s ease;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .post-container:hover .post-info {
+        opacity: 0.3;
+    }
+
+    .post-container:hover .post-buttons {
+        opacity: 1;
+    }
+
+    .post-buttons .btn {
+        display: inline;
+        min-width: 50px;
+        height: 50px;
+        padding: 0;
+    }
+</style>
+<div class="row">
+    <div class="col-md-9">
+        <div class="panel panel-default" [hidden]="_showForm">
+            <div class="panel-heading">
+                <strong>All Blogs
+                    <button class="pull-right" (click)="_togglePanel('blog')">
+                        <i class="fa" [ngClass]="{'fa-minus': _panelSetup.isBlogPanelOpen,'fa-plus':!_panelSetup.isBlogPanelOpen}"></i>
+                    </button>
+                    <button class="pull-right" *ngIf="!_showForm" (click)="_toggleForm()">Add new</button>
+                </strong>
+            </div>
+            <div class="panel-body" [hidden]="!_panelSetup.isBlogPanelOpen">
+                <div class="text-right">
+                    <a href="javascript:void(0)" (click)="removeFilter()" *ngIf="_filter.isFiltered">{{_filter.filterText}}
+                        <i class="fa fa-close"></i>
+                    </a>
+                    <a title="Toggle View" href="javascript:void(0)" (click)="_togglePanel()">
+                        <i class="fa" [ngClass]="{'fa-th-list':!_panelSetup.isExpandedView,'fa-table':_panelSetup.isExpandedView}"></i>
+                    </a>
+                </div>
+                <ul class="post-grid" *ngIf="!_panelSetup.isExpandedView">
+                    <li *ngFor="let post of _blogs" class="col-sm-4 post-container">
+                        <div class="post-info">
+                            <h3>{{post.Title}}</h3>
+                            <p>{{post.Content|slice:0:70}}...</p>
+                            <p class="text-right">By {{post.PostedBy}}</p>
+                            <p class="text-right">On {{post.PostedOn | date: 'MMM dd'}} at {{post.PostedOn | date: 'h:m a'}}</p>
+                        </div>
+                        <div class="post-buttons">
+                            <button class="btn" title="Edit" (click)="_editBlog(post)">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <button class="btn" title="Delete" (click)="_deleteBlog(post)">
+                                <i class="fa fa-close"></i>
+                            </button>
+                        </div>
+                    </li>
+
+                </ul>
+                <ul *ngIf="_panelSetup.isExpandedView">
+                    <li *ngFor="let post of _blogs" (click)="blogSelected(post)">
+                        <div class="post" style="width:100%;border:whitesmoke 2px solid;margin-bottom: 20px;background: white;">
+                            <div>
+                                <h2>{{post.Title}}</h2>
+                                <img [src]=" post.Image " style="max-height: 300px; " [hidden]="!post.Image " />
+                                <cite>by {{post.PostedBy}} on {{post.PostedOn}}</cite>
+                                <div class="post-body ">
+                                    <p>
+                                        {{post.Content}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <h4 class="text-danger " *ngIf="_blogs.length < 1 ">
+                    <i class="fa fa-info-circle "></i> No Blogs has been added yet.</h4>
+            </div>
+        </div>
+
+        <div class="panel panel-default " [hidden]="!_showForm">
+            <div class="panel-heading ">
+                Form
+                <button class="pull-right " (click)="_togglePanel( 'form') ">
+                    <i class="fa " [ngClass]="{ 'fa-minus': _panelSetup.isFormPanelOpen, 'fa-plus':!_panelSetup.isFormPanelOpen} "></i>
+                </button>
+                <button class="pull-right " (click)="_toggleForm() ">
+                    Close
+                </button>
+            </div>
+            <div class="panel-body " [hidden]="!_panelSetup.isFormPanelOpen ">
+                <form name="postForm " novalidate>
+                    <h4>Title</h4>
+                    <input type="text " name="Title " [(ngModel)]="_currentBlog.Title " />
+                    <h4>Body</h4>
+                    <textarea name="Content " [(ngModel)]="_currentBlog.Content " ng-list="/\n/ " rows="10 "></textarea>
+                    <label for="Image ">Featured Image URL</label>
+                    <input type="text " name="Image " [(ngModel)]="_currentBlog.Image " placeholder="http://placekitten.com/g/2000/600 " />
+                    <label for="PosteBy ">By:</label>
+                    <input type="text " name="PostedBy " [(ngModel)]="_currentBlog.PostedBy " placeholder="Author Name " required/>
+                    <label for="Category ">Category</label>
+                    <input type="text " name="Category " [(ngModel)]="_currentBlog.Category " placeholder="Eg: Cookie " />
+                    <button type="button " class="pull-right btn btn-primary" (click)="saveBlog() ">
+                        <span class="fa fa-check-circle "></span>&nbsp;&nbsp;Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 ">
+        <aside id="secondary " class="sidebar blog_sidebar widget-area " role="complementary ">
+            <div class="categories ">
+                <header>
+                    <h3>Blog Categories</h3>
+                </header>
+                <div class="bsb_content ">
+                    <ul>
+                        <li *ngFor="let category of _categories" (click)="filterByCategory(category.Title)" style="cursor: pointer;" [ngClass]="{ 'active':this._filter.category==category.Title}"
+                            class="cat-item cat-item-281">
+                            <a>{{category.Title}} ({{category.Count}})</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clearfix "></div>
+        </aside>
+    </div>
+</div>

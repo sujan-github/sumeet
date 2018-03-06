@@ -3,28 +3,29 @@
     <div class="container">
       <div class="minilogo">
         <div class="navbar-brand">
-          CMS
+          <h2 style="color: white;">CMS</h2>
         </div>
       </div>
       <ul class="nav navbar-nav">
         <li>
-          <a href="#/admin/setup"><span class="fa fa-gear"></span></a>
+          <a href="#/admin/template">Template</a>
         </li>
         <li>
-          <a href="#/admin/page-editor">Page Editor</a>
+          <a href="#/admin/page">Page</a>
         </li>
         <li>
-          <a href="#/admin/blog">BLOG Editor</a>
+          <a href="#/admin/blog">Blog</a>
         </li>
       </ul>
     </div>
   </div>
-  <button class="btn" (click)="logout()" *ngIf="userInfo != null" style="position: fixed; top: 0; right: 0; height: 60px; padding: 0; margin: 0; min-width: 80px !important;">
+  <a href="#/admin/setup" class="btn" style="max-width:80px;min-width:80px;right:0;position:fixed;top:40px;color:teal;">
+    <span class="fa fa-gear"></span>
+  </a>
+  <button class="btn" title="Logout" (click)="logout()" *ngIf="userInfo != null" style="position: fixed; top: 0; right: 0; height: 60px; padding: 0; margin: 0; min-width: 80px !important;">
     <span class="fa fa-sign-out"></span>
   </button>
-
   <div class="main-nav navbar-collapse collapse" *ngIf="userInfo == null">
-
     <div class="minilogo">
       <h1 class="navbar-brand" style="line-height: 40px;">
         CMS

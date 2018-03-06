@@ -1,4 +1,4 @@
-import { ISetup } from '../models/models';
+import { ISetup, IUser } from '../models/models';
 
 export namespace Constants {
     export const localStorageSetupKey = 'setup';
@@ -13,6 +13,18 @@ export namespace Constants {
                 return false;
             }
         }
+
+        public static getUserInfo(): IUser {
+            if (this.isUserLoggedIn()) {
+                return JSON.parse(localStorage.getItem(localStorageUserInfo));
+            }
+            return null;
+        }
+
+        public static addUserInfo(userInfo): void {
+            localStorage.setItem('UserInfo', JSON.stringify(userInfo));
+        }
+
         public static isSetupLoaded(): boolean {
             if (localStorage.getItem(localStorageSetupLoadedKey)) {
                 return true;

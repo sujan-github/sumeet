@@ -14,8 +14,8 @@ export class DomGenerator {
   }
 
   public static GenerateTopHeader(bgColor: string = '', logo: string = '', contactNumbers: string = '', socialLinks: string = '') {
-    const numbers = contactNumbers.split(',');
-    const links = socialLinks.split(',');
+    const numbers = contactNumbers != null ? contactNumbers.split(',') : [''];
+    const links = socialLinks != null ? socialLinks.split(',') : [''];
     const hasPhoneNumber = /pn./gi.test(contactNumbers);
     const hasMobileNumber = /mn./gi.test(contactNumbers);
     const hasFbLink = /fbLink./gi.test(socialLinks);
@@ -279,7 +279,6 @@ export const starterTemplates: ITemplate[] = [
       </div>
       <ul _ngcontent-c1="">
 <li class="single_latest_news">
-
 <p class="details">
   <i class="fa fa-envelope"></i> info@venusivfcenter.com</p>
   <p class="details">
@@ -290,6 +289,38 @@ export const starterTemplates: ITemplate[] = [
   <i class="fa fa-map-marker"></i> Mid Baneshwor, Kathmandu</p>
 </li></ul>
     </div>
+  </div>`
+  },
+  {
+    Id: 6,
+    Name: 'Ivf Our Practice',
+    IsBlog: false,
+    InnerHtml: `<div><div class="header">
+  <h1>Our Practice</h1>
+  </div>
+  
+  <div class="container">
+  <div class="entry">
+  <div class="entry-content">
+  <p><img alt="Georgia Reproductive Specialists " class="alignleft img-responsive size-full subimg wp-image-1797" src="https://www.ivf.com/wp-content/uploads/sites/295/2016/03/our-practice-img.jpg">Welcome to a place that has been trusted by thousands and brings hope to those with fertility challenges.</p>
+  
+  <p>The decision to have a baby is an important and exciting step&nbsp;and a basic desire for so many women and men. Yet, the path to parenthood can sometimes be challenging. It can feel scary to discover you may need help having a baby, so it’s important to know that you are not alone. Since 2000, Shady Grove Fertility Atlanta, formerly Georgia Reproductive Specialists has offered patients clinical excellence, cost-effective treatment options, and an exceptional success rate. Our holistic philosophy surrounds patients with emotional and physical care, supporting them with a medical and laboratory team that is not just top in its field but is compassionate as well.</p>
+  
+  <p>We know that every situation is different, which is why we customize our approach for each patient. We help couples and individuals with all aspects of fertility, including male factor, and offer reproductive procedures for everyone, whether they are single or married, gay or straight.</p>
+  
+  <p>From your first contact with us, you’ll experience our nurturing approach, backed by best-in-industry practices, using the latest research and technology. Our team of well-respected physicians and embryologists, with over 100 years of combined experience in reproductive medicine and the treatment of infertility, includes highly trained nurses, financial advisors, laboratory technicians and a knowledgeable administrative team.</p>
+  
+  <p>Call us today to begin your journey toward hope.</p>
+  
+  <div class="clearfix">&nbsp;</div>
+  </div>
+  
+  
+  <div class="clearfix">&nbsp;</div>
+  </div>
+  </div>
+  
+  
   </div>`
   }
 ];

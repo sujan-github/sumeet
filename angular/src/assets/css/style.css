@@ -1624,3 +1624,7 @@ div.categories header, div.archives header {
     text-decoration: underline;
     font-weight: 600;
 }
+
+.article-header {
+    text-align: center !important;
+}

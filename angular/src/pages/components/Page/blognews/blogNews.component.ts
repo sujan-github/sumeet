@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BlogService } from '../../../services/base.service';
-import { IBlog, ICategoryViewModel } from '../../../models/models';
+import { BlogService } from '../../../../services/base.service';
+import { IBlog, ICategoryViewModel } from '../../../../models/models';
 
 @Component({
   moduleId: module.id,
