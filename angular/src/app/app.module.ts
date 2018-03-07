@@ -19,10 +19,11 @@ import {
   NestedPageComponent,
   BlogNewsComponent,
 } from '../pages/pages';
+import { Constants } from '../constants/constants';
 
 const appRoutes: Routes = [
   {
-    path: 'venus/:page',
+    path: `${Constants.linkPrefix}/:page`,
     component: PageComponent,
   },
   {
@@ -39,7 +40,7 @@ const appRoutes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/venus/home',
+    redirectTo: `${Constants.linkPrefix}/home`,
     pathMatch: 'full'
   },
   {

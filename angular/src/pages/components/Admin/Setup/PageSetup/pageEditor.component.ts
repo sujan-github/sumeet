@@ -3,6 +3,7 @@ import { IPage, IMenu, ITemplate } from '../../../../../models/models';
 import { PageService, MenuService, TemplateService } from '../../../../../services/base.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { starterTemplates } from '../../../../../constants/templates';
+import { Constants } from '../../../../../constants/constants';
 
 @Component({
     moduleId: module.id,
@@ -129,11 +130,10 @@ export class PageEditorComponent implements OnInit {
         if (this._currentMenu.ParentId > 0) {
             this._currentMenu.Url = `${this.menus.filter(x => x.Id === this._currentMenu.ParentId)[0].Url}/${this._currentPage.PageTitle}`;
         } else {
-            this._currentMenu.Url = `#/Venus/${this._currentPage.PageTitle}`;
+            this._currentMenu.Url = `${Constants.linkPrefix}/${this._currentPage.PageTitle}`;
         }
         this._currentPage.Menu = this._currentPage.PageTitle;
         this.menuService.post(this._currentMenu).subscribe((menu) => {
-            debugger;
             this._currentPage.MenuId = <number>menu.inserted_id;
             this.pageService.post(this._currentPage).subscribe((page) => {
                 this._toggleForm();

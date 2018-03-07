@@ -445,7 +445,7 @@ nav.small .minilogo {
 .dropdown-submenu:hover>app-menu>.dropdown-menu {
     display: block;
 }
-
+@media (max-width: 768px) {
 .dropdown-submenu>a:after {
     display: block;
     content: " ";
@@ -458,6 +458,7 @@ nav.small .minilogo {
     border-left-color: #ccc;
     margin-top: 10px;
     margin-right: 5px;
+}
 }
 
 .dropdown-submenu:hover>a:after {

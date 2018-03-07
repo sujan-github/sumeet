@@ -3,6 +3,7 @@ import { IPage, IMenu, ITemplate } from '../../../models/models';
 import { PageService, MenuService, TemplateService } from '../../../services/base.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { starterTemplates } from '../../../constants/templates';
+import { Constants } from '../../../constants/constants';
 @Component({
     moduleId: module.id,
     selector: 'app-article-editor',
@@ -71,7 +72,7 @@ export class ArticleEditorComponent implements OnInit {
             this.currentMenu.Url = `${this.menus.filter(x => x.Id === this.currentMenu.ParentId)[0].Url}/${this.currentMenu.Name}`;
         } else {
             this.currentMenu.ParentId = 0;
-            this.currentMenu.Url = `#/venus/${this.currentMenu.Name}`;
+            this.currentMenu.Url = `${Constants.linkPrefix}/${this.currentMenu.Name}`;
         }
         this.menuService.post(this.currentMenu).subscribe((data: any) => {
             this.currentPage.MenuId = data.inserted_id;

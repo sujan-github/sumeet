@@ -13,6 +13,7 @@ export class MenuComponent implements OnInit {
     @Input() isRoot: boolean;
     private _allMenus: IMenu[];
     linkColor: string;
+    blogLink = Constants.blogLink;;
     constructor(private _menuService: MenuService) {
         this.isRoot = true;
     }

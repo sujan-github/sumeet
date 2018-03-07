@@ -118,7 +118,7 @@ export class PageComponent implements OnInit {
     getPage() {
         const url = window.location.hash;
         this._pageService.getAll().subscribe((pages: IPage[]) => {
-            const desiredPage = pages.filter(x => x.Menu === url.split('#/venus/')[1]);
+            const desiredPage = pages.filter(x => x.Menu === url.split(`${Constants.linkPrefix}/`)[1]);
             if (desiredPage.length > 0 && pages.length > 0) {
                 this.pageLayout = desiredPage[0].Content;
             } else {
